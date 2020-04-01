@@ -1,7 +1,7 @@
 Coding Standards and Best Practices
 
 Agreeing Members:
-Person McPerson 
+Angel Rivera-Velez
 Person O’Person 
 Person VonPerson
 
