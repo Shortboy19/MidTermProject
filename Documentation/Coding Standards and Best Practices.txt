@@ -1,7 +1,10 @@
 Coding Standards and Best Practices
 
 Agreeing Members:
+
 Matthew Scott
+Angel Rivera-Velez
+
 
 Purpose
 
