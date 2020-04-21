@@ -4,5 +4,23 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Andrew_Levans_Sandbox.unity
+    guid: c5a4a0499b16af648ae77ae76d2e255a
+  - enabled: 1
+    path: Assets/Scenes/Andrew_Levans_ResearchScene.unity
+    guid: d9e3293d1783082428f9210ce3fba370
+  - enabled: 1
+    path: Assets/Scenes/Angel_Gitcrash.unity
+    guid: 2e22b8a8e85da9048b19a0e482058964
+  - enabled: 1
+    path: Assets/Scenes/GriffinDesBles_Testing Scene.unity
+    guid: cad1e5f9716792b40a0fe60f042b3445
+  - enabled: 1
+    path: Assets/Scenes/Matt's_Scene.unity
+    guid: 598c0a7d4652be448859f7f8c4fb228d
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
