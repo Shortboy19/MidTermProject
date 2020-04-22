@@ -1,0 +1,64 @@
+Levels:
+1: Pariah (being an outcast)
+2: Stage fright (fear)
+3: Suffocation (Depression)
+4: Lucid (Hope)
+5: The light (Freedom)
+
+
+Top down of a level(suffocation)use icons for a key
+[where obstactables are]
+
+
+The story as the levels:
+
+Before all levels there will be the sound of the player 
+going to sleep indicating that they will be in a dream
+
+Starting in level 1 the prog is going through
+scenarios where they are constantly be put out as being an
+outcast, by first thier parents fighting, then failing in 
+trying to make new friends at school.
+
+In level 2, it will put the player in the place of being
+in stage fright, starting from a classroom where he has 
+try to face his fears (the dark shadows that now try to
+reach towards him) yet ending once they reached past an
+actual stage, confronted by the blinding spot light and
+trying to see if they can navigate through it to reach 
+once again into what is now seen as the safety of the 
+darkness.
+
+Level 3 is where the player will be running from a 
+wave like fog of darkness that is threatening to consume
+the player. In this case they will be navigating through
+many different dream like obstacles yet never really going
+in anywhere in particular. They'll find themselves plauged
+with shadow monsters around them trying to reach out but 
+end with finding a place that the character feels will be
+safe, even if it means they're alone.
+
+Level 4, despite feeling safe, the player is much darker 
+a sign that they have been corrupted by thier depression.
+The world around them has a bit of a light purple tinge 
+with the faintest hint of golden light. It's odd, yet the
+player will notice a consistent person who isn't a shadow
+monster but instead almost a being of light, close yet just
+out of reach. The person representing someone who has come 
+into thier life as a light of hope, they'll be navigating
+outside like through parks, and city streets places that 
+are outside of his home. The level would end with him 
+reaching an open plain on what seems to be like the 
+outside of the player's town.
+
+The final level, the player will running through a similar
+sort of dreamscape that was like the depression level
+however this time there will be a slightly lighter theme
+similar to the hope level as the player is running away to 
+try to avoid getting sucked back into depression. Upon 
+passing many of the shadow monsters that normally would try 
+to drag you in as well, they would turn white/golden until 
+they manage to get to a final doorway of light at the end
+that signifies the freedom into a new life of happiness that
+the character will now get to experience.Thus ending the 
+story of the game.
