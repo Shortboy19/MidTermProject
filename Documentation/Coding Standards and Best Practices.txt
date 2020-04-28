@@ -20,10 +20,12 @@ All team members are always expected to follow the coding standards and best pra
 ** Commenting standards **
 
 	File header expectation
+		Nessasary using statements are used
 		Example:
 
 	Method heading expectation
-		Example:
+		Method name makes sense
+		Example: PlayerFactory();
 
 	Code block expectation
 		Example:
@@ -33,52 +35,61 @@ All team members are always expected to follow the coding standards and best pra
 
 	Meaningful, descriptive words to name variables.
 	Good:
-		string CharacterName;
-		int Row, Column;
-		GameObject SpawnedItem;
+		string characterName;
+		int row, column;
+		GameObject spawnedItem;
 	Not Good:
 		string nam;
 		int i,j;
 		GameObject temp;
 
 	Capitalization expectation
+		Camel-case
 		Example:
+			superPowerUp
 		
 	Standard Prefixing 
 		Example:
 		
 	Abbreviation use 
+		only abbreviate when nessasary
 		Example:
 		
 ** Layout Conventions **	
 
 	Indenting standard
-		Example:
+		Example: Use Visual Studio default indenting format
 		
 	Curly braces ( {} ) format
 		Example:
+		MethodName()
+		{
+		}
 		
 	Blank line expectation
+		Little to none
 		Example:
 		
 	Spacing around operators
+		Little to none
 		Example:
 
 	Maximum characters per line
-		
+		around 100
 	Maximum nested conditions 
-		
+		3
 	Maximum lines per method
-		
+		50
 	Maximum lines per file
-
+		1000
 	#region usage
+		Use if file is too loaded
 		Example:
 		
 ** Programming Practices **
 
 	Static values (hardcoded numbers. Const variables, and #defines)
-
+		const correct and limited hardcoded variables
 	Commenting out code
 
 	DRY practices (“Don’t Repeat Yourself")
