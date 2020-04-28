@@ -135,7 +135,7 @@
 											"top": 118,
 											"width": 223,
 											"height": 13,
-											"text": "-bool HasDoubleJump",
+											"text": "-HasDoubleJump: bool",
 											"horizontalAlignment": 0
 										}
 									],
@@ -2446,7 +2446,7 @@
 											"top": 582,
 											"width": 110,
 											"height": 13,
-											"text": "-int CoinValue",
+											"text": "-CoinValue: int",
 											"horizontalAlignment": 0
 										}
 									],
@@ -4244,7 +4244,7 @@
 											"top": 182,
 											"width": 174.1162109375,
 											"height": 13,
-											"text": "-int AttackRadius",
+											"text": "-AttackRadius: int",
 											"horizontalAlignment": 0
 										}
 									],
@@ -4737,8 +4737,9 @@
 							"_parent": {
 								"$ref": "AAAAAAFxr9lL7U8aexc="
 							},
-							"name": "bool HasDoubleJump",
-							"visibility": "private"
+							"name": "HasDoubleJump",
+							"visibility": "private",
+							"type": "bool"
 						}
 					],
 					"operations": [
@@ -5177,8 +5178,9 @@
 							"_parent": {
 								"$ref": "AAAAAAFxvshrrYCCnco="
 							},
-							"name": "int CoinValue",
-							"visibility": "private"
+							"name": "CoinValue",
+							"visibility": "private",
+							"type": "int"
 						}
 					]
 				},
@@ -5446,8 +5448,9 @@
 							"_parent": {
 								"$ref": "AAAAAAFxwlbOWu4TzCI="
 							},
-							"name": "int AttackRadius",
-							"visibility": "private"
+							"name": "AttackRadius",
+							"visibility": "private",
+							"type": "int"
 						}
 					],
 					"operations": [
@@ -5466,7 +5469,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFxwn3LT/rueu4="
 									},
-									"name": "int  AttackRadius"
+									"name": "int  AttackRadius",
+									"type": ""
 								}
 							]
 						}
