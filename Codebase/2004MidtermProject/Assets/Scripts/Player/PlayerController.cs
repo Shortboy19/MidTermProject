@@ -7,10 +7,13 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    [Tooltip("The current instace of the player in the scene. (Use this instead of GetComponent<PlayerController> when trying to access the player from an outside script.)")]
+    public static PlayerController Player;
+
     #region Public Variables
     [Header("Movement Variables")]
     [Tooltip("The Component of type CharacterController attached to this object.")]
-    public CharacterController cc;
+    [HideInInspector] public CharacterController cc;
     [Tooltip("The mouse sensitivity for looking around. (Defaults to 100)")]
     [Range(1, 200)]
     public float LookSenstivity = 100f;
@@ -55,6 +58,12 @@ public class PlayerController : MonoBehaviour
     bool isSliding = false;
 
     #endregion
+
+    private void Awake()
+    {
+        //singleton management
+        if ( Player == null) { Player = this; } else { if (Player != this) Debug.LogWarning("Multiple or 0 " + this + " in the scene. There should only be 1 player."); }
+    }
 
     void Start()
     {

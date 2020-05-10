@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class StaminaScript : MonoBehaviour
 {
-    public GameObject player;
     Image image;
     // Start is called before the first frame update
     void Start()
@@ -16,6 +15,6 @@ public class StaminaScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        image.fillAmount = player.GetComponent<PlayerController>().maxStamina/ player.GetComponent<PlayerController>().currStamina;
+        image.fillAmount = PlayerController.Player.maxStamina/ PlayerController.Player.currStamina;
     }
 }
