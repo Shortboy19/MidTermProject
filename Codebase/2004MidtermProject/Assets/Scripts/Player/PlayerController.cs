@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     Camera cam;//the players camera
     float gravity = 9.8f;
     Vector3 moveDirection = Vector3.zero;
+    int KeyCount = 0;
 
     bool isSprinting = false;
     bool isSliding = false;
@@ -135,5 +136,18 @@ public class PlayerController : MonoBehaviour
             isSliding = true;
             cc.height = 1f;
         } else { cc.height = 2f; isSliding = false; }
+    }
+
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.name == "Key")
+        {
+            Destroy(collision.gameObject);
+            KeyCount++;
+        }
+        if (collision.gameObject.tag == "Exit" && KeyCount > 0)
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }
