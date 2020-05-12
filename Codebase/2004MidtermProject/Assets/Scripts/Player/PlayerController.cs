@@ -47,9 +47,11 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The rate at which the players stamina will regen. (Defaults to 1 per second)")]
     public float staminaRegenRate = 1f;
 
-    [Header("UI")]
     [Space(10)]
     public MiniMap minimap;
+
+    [Space(10)]
+    public GameObject flashlight;
     #endregion
     #region Private Variables
     Camera cam;//the players camera
@@ -59,6 +61,9 @@ public class PlayerController : MonoBehaviour
 
     bool isSprinting = false;
     bool isSliding = false;
+
+    GameObject enemy;
+    bool enemySeen = false;
 
     #endregion
 
@@ -73,6 +78,7 @@ public class PlayerController : MonoBehaviour
         cc = GetComponent<CharacterController>();
         cam = GetComponentInChildren<Camera>();
         currStamina = maxStamina;
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
 
     
@@ -84,6 +90,29 @@ public class PlayerController : MonoBehaviour
 
         if (!isSprinting && !isSliding) { currStamina += staminaRegenRate * Time.deltaTime; }
         currStamina = Mathf.Clamp(currStamina, 0, maxStamina);
+
+        Vector3 screenPoint = cam.WorldToViewportPoint(enemy.transform.position);
+        if(screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1)
+        {
+            if (enemySeen)
+            {
+                enemySeen = true;
+                //playSound
+            }
+        }
+        else
+        {
+            enemySeen = false;
+        }
+
+        if(Input.GetButtonDown("Mouse 0"))
+        {
+            flashlight.SetActive(true);
+        }
+        if (Input.GetButtonUp("Mouse 0"))
+        {
+            flashlight.SetActive(false);
+        }
     }
 
     void Movement()
@@ -160,6 +189,10 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Exit" && KeyCount > 0)
         {
             Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            enemy.GetComponent<Enemy>().Stun(4);
         }
     }
 }
