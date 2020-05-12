@@ -143,8 +143,8 @@ public class PlayerController : MonoBehaviour
         if(currStamina > slideStaminaCost)
         {
             isSliding = true;
-            cc.height = 1f;
-        } else { cc.height = 2f; isSliding = false; }
+            cc.height = 0.5f;
+        } else { cc.height = 1f; isSliding = false; }
     }
 
     void OnTriggerEnter(Collider collision)
