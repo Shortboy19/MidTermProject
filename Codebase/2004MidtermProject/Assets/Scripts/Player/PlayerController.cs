@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButton("Slide"))
             {
                 if (isSprinting) { Slide(); }
-            } else { cc.height = 2f; isSliding = false; }
+            } else { cc.height = 1f; isSliding = false; }
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
