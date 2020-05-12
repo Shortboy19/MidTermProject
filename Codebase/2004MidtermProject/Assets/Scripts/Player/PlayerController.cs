@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.name == "Key")
+        if (collision.gameObject.tag == "Key")
         {
             Destroy(collision.gameObject);
             KeyCount++;
