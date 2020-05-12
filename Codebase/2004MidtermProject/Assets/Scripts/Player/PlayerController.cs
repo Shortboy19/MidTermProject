@@ -105,11 +105,11 @@ public class PlayerController : MonoBehaviour
             enemySeen = false;
         }
 
-        if(Input.GetButtonDown("Mouse 0"))
+        if(Input.GetMouseButtonDown(0))
         {
             flashlight.SetActive(true);
         }
-        if (Input.GetButtonUp("Mouse 0"))
+        if (Input.GetMouseButtonUp(0))
         {
             flashlight.SetActive(false);
         }
