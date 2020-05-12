@@ -47,7 +47,9 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The rate at which the players stamina will regen. (Defaults to 1 per second)")]
     public float staminaRegenRate = 1f;
 
-
+    [Header("UI")]
+    [Space(10)]
+    public MiniMap minimap;
     #endregion
     #region Private Variables
     Camera cam;//the players camera
@@ -143,8 +145,8 @@ public class PlayerController : MonoBehaviour
         if(currStamina > slideStaminaCost)
         {
             isSliding = true;
-            cc.height = 1f;
-        } else { cc.height = 2f; isSliding = false; }
+            cc.height = 0.5f;
+        } else { cc.height = 1f; isSliding = false; }
     }
 
     void OnTriggerEnter(Collider collision)
@@ -153,6 +155,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             KeyCount++;
+            minimap.ShowExit();
         }
         if (collision.gameObject.tag == "Exit" && KeyCount > 0)
         {
