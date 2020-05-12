@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject player;
 
+    bool stunned = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +21,25 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player != null)
+        if (player != null && !stunned)
         {
             agent.SetDestination(player.transform.position);
         }
     }
+
+    public void Stun(float time)
+    {
+        StartCoroutine(StunEnemy(time));
+    }
+
+    IEnumerator StunEnemy(float waitTime)
+    {
+        float oldSpeed = agent.speed;
+        agent.speed = 0;
+        GetComponent<Collider>().enabled = false;
+        yield return new WaitForSeconds(waitTime);
+        agent.speed = oldSpeed;
+        GetComponent<Collider>().enabled = true;
+    }
+
 }
