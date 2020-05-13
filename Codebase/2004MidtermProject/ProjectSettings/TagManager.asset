@@ -7,6 +7,7 @@ TagManager:
   - Exit
   - Key
   - Enemy
+  - FlashLight
   layers:
   - Default
   - TransparentFX
