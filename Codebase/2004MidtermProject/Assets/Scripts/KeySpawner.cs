@@ -16,7 +16,7 @@ public class KeySpawner : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (Key == null)
+            if (!GameObject.FindWithTag("Key"))
             {
                 SpawnPoint = Random.Range(1, 5);
                 switch (SpawnPoint)
