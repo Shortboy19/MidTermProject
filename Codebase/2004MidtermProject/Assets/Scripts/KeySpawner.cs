@@ -16,21 +16,24 @@ public class KeySpawner : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            SpawnPoint = Random.Range(1, 5);
-            switch (SpawnPoint)
+            if (Key == null)
             {
-                case 1:
-                    Instantiate(Key, SpawnPoint1.position, SpawnPoint1.rotation);
-                    break;
-                case 2:
-                    Instantiate(Key, SpawnPoint2.position, SpawnPoint2.rotation);
-                    break;
-                case 3:
-                    Instantiate(Key, SpawnPoint3.position, SpawnPoint3.rotation);
-                    break;
-                case 4:
-                    Instantiate(Key, SpawnPoint4.position, SpawnPoint4.rotation);
-                    break;
+                SpawnPoint = Random.Range(1, 5);
+                switch (SpawnPoint)
+                {
+                    case 1:
+                        Instantiate(Key, SpawnPoint1.position, SpawnPoint1.rotation);
+                        break;
+                    case 2:
+                        Instantiate(Key, SpawnPoint2.position, SpawnPoint2.rotation);
+                        break;
+                    case 3:
+                        Instantiate(Key, SpawnPoint3.position, SpawnPoint3.rotation);
+                        break;
+                    case 4:
+                        Instantiate(Key, SpawnPoint4.position, SpawnPoint4.rotation);
+                        break;
+                }
             }
         }
     }
