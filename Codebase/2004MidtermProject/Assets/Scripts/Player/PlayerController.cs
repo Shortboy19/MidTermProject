@@ -190,9 +190,5 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
-        if (collision.gameObject.tag == "Enemy")
-        {
-            enemy.GetComponent<Enemy>().Stun(4);
-        }
     }
 }

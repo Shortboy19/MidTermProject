@@ -33,6 +33,14 @@ public class Enemy : MonoBehaviour
         StartCoroutine(StunEnemy(time));
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("FlashLight"))
+        {
+            Stun(4);
+        }
+    }
+
     IEnumerator StunEnemy(float waitTime)
     {
         float oldSpeed = agent.speed;
