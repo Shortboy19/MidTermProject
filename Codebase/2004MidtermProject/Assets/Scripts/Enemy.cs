@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     public NavMeshAgent agent;
     public GameObject player;
+    public Transform spawmpoint; 
 
     bool stunned = false;
 
@@ -15,7 +16,7 @@ public class Enemy : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
-
+        agent.Warp(spawmpoint.position); 
     }
 
     // Update is called once per frame
