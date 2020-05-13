@@ -10,13 +10,17 @@ public class Enemy : MonoBehaviour
     public Transform spawmpoint; 
 
     bool stunned = false;
+    float oldSpeed;
+    bool inMonolith = false;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
-        agent.Warp(spawmpoint.position); 
+        agent.Warp(spawmpoint.position);
+        oldSpeed = agent.speed;
+
     }
 
     // Update is called once per frame
@@ -39,15 +43,29 @@ public class Enemy : MonoBehaviour
         {
             Stun(4);
         }
+        if (other.gameObject.CompareTag("Monolith"))
+        {
+            inMonolith = true;
+            agent.speed = 0;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Monolith"))
+        {
+            inMonolith = false;
+            agent.speed = oldSpeed;
+        }
     }
 
     IEnumerator StunEnemy(float waitTime)
     {
-        float oldSpeed = agent.speed;
         agent.speed = 0;
         GetComponent<Collider>().enabled = false;
         yield return new WaitForSeconds(waitTime);
-        agent.speed = oldSpeed;
+        if (!inMonolith)
+            agent.speed = oldSpeed;
         GetComponent<Collider>().enabled = true;
     }
 
