@@ -240,6 +240,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b5b0157913f2af41bdbd8a4b95e5f1b, type: 3}
+--- !u!1 &480384392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 480384394}
+  - component: {fileID: 480384393}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &480384393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480384392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a701e463b3923bc46b81797d73901c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EffectsSounds: {fileID: 5790005206803120011}
+  MusicSounds: {fileID: 0}
+--- !u!4 &480384394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480384392}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.1, y: 1, z: -0.8699999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &577232885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24196,6 +24241,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: KeySpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 5790005206584404837, guid: 72efd212b5ba75044b0f60633f43c654,
+        type: 3}
+      propertyPath: m_TagString
+      value: Key
+      objectReference: {fileID: 0}
     - target: {fileID: 5790005206584404856, guid: 72efd212b5ba75044b0f60633f43c654,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24269,7 +24319,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1a1605f04516d6d4ebb80c6e8676de66, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 351501cacc90923438c7b5c2042663b9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
