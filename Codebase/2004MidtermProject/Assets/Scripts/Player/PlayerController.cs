@@ -35,9 +35,11 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The height that the player jumps. (Defaults to 5)")]
     [Range(0, 5)]
     [Space(10)]
-    public float slideDistance = 5f;
+    public float slideDistance = 3f;
     [Tooltip("The ammount of stamina sliding requires (Defaults to 3)")]
     public float slideStaminaCost = 3f;
+    [Tooltip("The amount of time it takes to complete a slide.")]
+    public float slideDuration = 0.25f;
 
     [Header("Stat Variables")]
     [Tooltip("The players maximum amount of stamina. (Defaults to 10")]
@@ -53,10 +55,12 @@ public class PlayerController : MonoBehaviour
     [Space(10)]
     public GameObject flashlight;
     #endregion
+
     #region Private Variables
     Camera cam;//the players camera
     float gravity = 9.8f;
     Vector3 moveDirection = Vector3.zero;
+    Vector3 slideDirection = Vector3.zero;
     int KeyCount = 0;
 
     bool isSprinting = false;
@@ -113,6 +117,16 @@ public class PlayerController : MonoBehaviour
         {
             flashlight.SetActive(false);
         }
+
+        if(isSliding)
+        {
+            if(slideTimer > 0)
+                Slide();
+        }
+        else
+        {
+            cc.height = 1f;
+        }
     }
 
     void Movement()
@@ -127,7 +141,6 @@ public class PlayerController : MonoBehaviour
                     isSprinting = true;
                     currStamina -= sprintStaminaCost * Time.deltaTime;
                 }
-
             }
             else { isSprinting = false; }
 
@@ -140,44 +153,68 @@ public class PlayerController : MonoBehaviour
                 Jump();
             }
 
-            if (Input.GetButton("Slide"))
+            if (Input.GetButtonDown("Slide"))
             {
-                if (isSprinting) { Slide(); }
-            } else { cc.height = 1f; isSliding = false; }
+                if (currStamina > slideStaminaCost)
+                {
+                    if (Input.GetAxisRaw("Vertical") > 0.1f)
+                    {
+                        isSliding = true;
+                        slideTimer = slideDuration;
+                        oldSpeed = walkSpeed;
+                        cc.height = 0.5f;
+                    }
+
+                    slideDirection = new Vector3(0.0f, 0.0f, 1);
+                    slideDirection = transform.TransformDirection(slideDirection);
+                    slideDirection *= slideDistance / slideDuration;
+                }
+            }
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
+        slideDirection.y -= gravity * Time.deltaTime;
 
-        cc.Move(moveDirection * Time.deltaTime);
+        cc.Move((isSliding ? slideDirection : moveDirection) * Time.deltaTime);
     }
 
     private void MouseLook()
     {
         float lookX = Input.GetAxis("Mouse X") * LookSenstivity * Time.deltaTime;
         float lookY = -Input.GetAxis("Mouse Y") * LookSenstivity * Time.deltaTime;
-
+    
         transform.Rotate(Vector3.up * lookX);
         cam.transform.Rotate(Vector3.right * lookY);
     }
-
+    
     void Jump()
     {
-        if( currStamina > jumpStaminaCost)
+        if (currStamina > jumpStaminaCost)
         {
             moveDirection.y = jumpHeight;
             currStamina -= jumpStaminaCost;
         }
     }
-
+    
+    
+    float slideTimer;
+    float oldSpeed;
     void Slide()
     {
-        if(currStamina > slideStaminaCost)
+        cc.height = 0.5f;
+        if (isSliding)
         {
-            isSliding = true;
-            cc.height = 0.5f;
-        } else { cc.height = 1f; isSliding = false; }
+            slideTimer -= Time.deltaTime;
+            walkSpeed = slideDistance / slideDuration;
+    
+            if (slideTimer <= 0)
+            {
+                walkSpeed = oldSpeed;
+                isSliding = false;
+            }
+        }
     }
-
+    
     void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Key")

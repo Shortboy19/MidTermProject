@@ -15,6 +15,6 @@ public class StaminaScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        image.fillAmount = PlayerController.Player.maxStamina/ PlayerController.Player.currStamina;
+        image.fillAmount = PlayerController.Player.currStamina/ PlayerController.Player.maxStamina;
     }
 }
