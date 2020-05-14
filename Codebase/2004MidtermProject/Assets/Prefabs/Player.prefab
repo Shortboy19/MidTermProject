@@ -239,12 +239,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cc: {fileID: 0}
   LookSenstivity: 100
-  walkSpeed: 5
+  walkSpeed: 3.5
   sprintSpeedModifier: 2
   sprintStaminaCost: 3
   jumpHeight: 3
   jumpStaminaCost: 3
-  slideDistance: 4
+  slideDistance: 3
   slideStaminaCost: 3
   slideDuration: 0.35
   maxStamina: 10
@@ -252,6 +252,7 @@ MonoBehaviour:
   staminaRegenRate: 1
   minimap: {fileID: 0}
   flashlight: {fileID: 7596025566471299199}
+  enemy: {fileID: 0}
 --- !u!54 &2299187549289797019
 Rigidbody:
   m_ObjectHideFlags: 0
