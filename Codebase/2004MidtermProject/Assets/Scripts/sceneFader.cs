@@ -9,6 +9,7 @@ public class sceneFader : MonoBehaviour
     public AnimationCurve curve;
     void Start()
     {
+        img.color = new Color(0f, 0f, 0f, 255);
         StartCoroutine(FadeInScene());
     }
     public void FadeTo(string scene)
