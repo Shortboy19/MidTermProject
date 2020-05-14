@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
 
     bool stunned = false;
     [HideInInspector] public float oldSpeed;
-    bool inMonolith = false;
+    [HideInInspector] public bool inMonolith = false;
 
     // Start is called before the first frame update
     void Start()
