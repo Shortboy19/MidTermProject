@@ -168,6 +168,7 @@ public class PlayerController : MonoBehaviour
                     slideDirection = new Vector3(0.0f, 0.0f, 1);
                     slideDirection = transform.TransformDirection(slideDirection);
                     slideDirection *= slideDistance / slideDuration;
+                    currStamina -= slideStaminaCost;
                 }
             }
         }
