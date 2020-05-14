@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
@@ -47,6 +48,10 @@ public class Enemy : MonoBehaviour
         {
             inMonolith = true;
             agent.speed = 0;
+        }
+        if (other.gameObject.CompareTag("Player"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 

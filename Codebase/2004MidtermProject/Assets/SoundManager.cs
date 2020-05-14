@@ -5,11 +5,13 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     //audio players component.
-    public AudioSource EffectsSounds;
-    public AudioSource MusicSounds;
+    AudioSource EffectSound;
+    AudioSource MusicSound;
+
+
 
     //singleton instance
-    public static SoundManager Instance = null;
+    public static SoundManager Instance;
 
     //Initialize the singleton instance
     private void Awake()
@@ -30,16 +32,15 @@ public class SoundManager : MonoBehaviour
     }
 
     //Play a single Clip through the sound effects source.
-    public void Play(AudioClip clip)
+    public void PlayAtPoint(AudioClip sound, Vector3 point)
     {
-        EffectsSounds.clip = clip;
-        EffectsSounds.Play(); 
+        AudioSource.PlayClipAtPoint(sound, point);
     }
 
     //Play a single Clip through the music source.
     public void PlayMusic(AudioClip song)
     {
-        MusicSounds.clip = song;
-        MusicSounds.Play(); 
+        MusicSound.clip = song;
+        MusicSound.Play(); 
     }
 }

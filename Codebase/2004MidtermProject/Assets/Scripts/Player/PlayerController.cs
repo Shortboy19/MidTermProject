@@ -219,6 +219,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Key")
         {
+            //SoundManager.Instance.PlayAtPoint(collision.gameObject.GetComponent<AudioSource>().clip, transform.position);
             Destroy(collision.gameObject);
             KeyCount++;
             minimap.ShowExit();
