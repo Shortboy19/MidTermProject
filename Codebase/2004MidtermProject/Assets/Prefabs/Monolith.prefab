@@ -120,7 +120,7 @@ Transform:
   m_GameObject: {fileID: 7601403310338777609}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.5, y: 12.5, z: 1.21}
-  m_LocalScale: {x: 5, y: 25, z: 5}
+  m_LocalScale: {x: 5, y: 75, z: 5}
   m_Children:
   - {fileID: 7601403310659711833}
   m_Father: {fileID: 0}
@@ -244,6 +244,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b51a8244649ee4f9e6acb376b49788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 3
+  cooldown: 5
   area: {fileID: 7601403310659711830}
   playerInArea: 0

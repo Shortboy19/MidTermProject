@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     public Transform spawmpoint; 
 
     bool stunned = false;
-    float oldSpeed;
+    [HideInInspector] public float oldSpeed;
     bool inMonolith = false;
 
     // Start is called before the first frame update
@@ -21,7 +21,6 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.Warp(spawmpoint.position);
         oldSpeed = agent.speed;
-
     }
 
     // Update is called once per frame
@@ -49,6 +48,10 @@ public class Enemy : MonoBehaviour
             inMonolith = true;
             agent.speed = 0;
         }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
         if (other.gameObject.CompareTag("Player"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

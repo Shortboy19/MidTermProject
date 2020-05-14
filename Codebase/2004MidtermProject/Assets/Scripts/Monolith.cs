@@ -10,11 +10,13 @@ public class Monolith : MonoBehaviour
     [SerializeField] GameObject area;
     public bool playerInArea = false;
     bool refreshing = false;
+    Enemy enemy;
 
     // Start is called before the first frame update
     void Start()
     {
         delay = cooldown;
+        enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>();
     }
 
     // Update is called once per frame
@@ -34,6 +36,7 @@ public class Monolith : MonoBehaviour
         if (refreshing)
         {
             area.SetActive(false);
+            enemy.agent.speed = enemy.oldSpeed;
             delay += Time.deltaTime;
             if ( delay >= cooldown)
             {

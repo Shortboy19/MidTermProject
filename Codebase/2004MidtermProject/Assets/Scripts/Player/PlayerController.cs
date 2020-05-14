@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
     bool isSprinting = false;
     bool isSliding = false;
 
-    GameObject enemy;
+    [HideInInspector] public GameObject enemy;
     bool enemySeen = false;
 
     #endregion
