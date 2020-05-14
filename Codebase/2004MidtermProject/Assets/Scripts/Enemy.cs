@@ -45,8 +45,11 @@ public class Enemy : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Monolith"))
         {
-            inMonolith = true;
-            agent.speed = 0;
+            if(Monolith.playerInArea)
+            {
+                inMonolith = true;
+                agent.speed = 0;
+            }
         }
     }
 

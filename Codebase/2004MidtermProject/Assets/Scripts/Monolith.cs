@@ -8,7 +8,7 @@ public class Monolith : MonoBehaviour
     public float cooldown = 3;
 
     [SerializeField] GameObject area;
-    public bool playerInArea = false;
+    public static bool playerInArea = false;
     bool refreshing = false;
     Enemy enemy;
 
@@ -36,6 +36,7 @@ public class Monolith : MonoBehaviour
         if (refreshing)
         {
             area.SetActive(false);
+            playerInArea = false;
             enemy.agent.speed = enemy.oldSpeed;
             enemy.inMonolith = false;
             delay += Time.deltaTime;
