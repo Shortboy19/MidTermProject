@@ -8,59 +8,67 @@ public class SceneNavigator : MonoBehaviour
 {
     public void ReloadScene()
     {
+        GameState.ResetState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void ReloadSceneWithFade()
     {
+        GameState.ResetState();
         StartCoroutine(FadeOutScene(SceneManager.GetActiveScene().buildIndex));
     }
 
     public void LoadScene(int index)
     {
+        GameState.ResetState();
         SceneManager.LoadScene(index);
     }
     public void LoadScene(string name)
     {
+        GameState.ResetState();
         SceneManager.LoadScene(name);
     }
 
     public void LoadSceneWithFade(int index)
     {
+        GameState.ResetState();
         StartCoroutine(FadeOutScene(index));
     }
     public void LoadSceneWithFade(string name)
     {
+        GameState.ResetState();
         StartCoroutine(FadeOutScene(name));
     }
 
     public void LoadNextScene()
     {
+        GameState.ResetState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void LoadPreviousScene()
     {
+        GameState.ResetState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     public void LoadNextSceneWithFade()
     {
+        GameState.ResetState();
         StartCoroutine(FadeOutScene(SceneManager.GetActiveScene().buildIndex + 1));
     }
     public void LoadPreviousSceneWithFade()
     {
+        GameState.ResetState();
         StartCoroutine(FadeOutScene(SceneManager.GetActiveScene().buildIndex - 1));
     }
 
     public void LoadMainMenu()
     {
-        GameState.gamePaused = false;
-        Time.timeScale = 1;
+        GameState.ResetState();
         SceneManager.LoadScene("Main Menu");
     }
     public void LoadMainMenuWithFade()
     {
-        GameState.gamePaused = false;
-        Time.timeScale = 1;
+        GameState.ResetState();
         StartCoroutine(FadeOutScene("Main Menu"));
     }
 

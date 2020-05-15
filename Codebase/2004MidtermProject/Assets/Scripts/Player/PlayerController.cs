@@ -58,11 +58,10 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The ammount of battery the battery pickup refills (Defaults to 2)")]
     public float batteryChargeAmount = 2f;
 
+    [Header("Other/Misc")]
     [Space(10)]
-    public MiniMap minimap;
-
-    [Space(10)]
-    public GameObject flashlight;
+    [SerializeField] MiniMap minimap;
+    [SerializeField] GameObject flashlight;
     #endregion
 
     #region Private Variables
@@ -77,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector] public GameObject enemy;
     [HideInInspector] public bool frozen;
-    bool enemySeen = false;
+    public static bool enemySeen = false;
 
     #endregion
 
@@ -94,6 +93,7 @@ public class PlayerController : MonoBehaviour
         currStamina = maxStamina;
         currBattery = maxBattery;
         enemy = GameObject.FindGameObjectWithTag("Enemy");
+        defaultPosY = cam.transform.localPosition.y;
     }
 
     
@@ -106,6 +106,17 @@ public class PlayerController : MonoBehaviour
         {
             MouseLook();
             Movement();
+            //HeadBobbing
+            if (isSprinting)
+            {
+                timer += Time.deltaTime * walkingBobbingSpeed;
+                transform.localPosition = new Vector3(transform.localPosition.x, defaultPosY + Mathf.Sin(timer) * bobbingAmount, transform.localPosition.z);
+            }
+            else
+            {
+                timer = 0;
+                transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Lerp(transform.localPosition.y, defaultPosY, Time.deltaTime * walkingBobbingSpeed), transform.localPosition.z);
+            }
         }
 
         //stamina
@@ -188,13 +199,17 @@ public class PlayerController : MonoBehaviour
         if (cc.isGrounded)
         {
             //Are we sprinting
-            if (Input.GetButton("Sprint"))
+            if(Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
             {
-                if (currStamina > sprintSpeedModifier)
+                if (Input.GetButton("Sprint"))
                 {
-                    isSprinting = true;
-                    currStamina -= sprintStaminaCost * Time.deltaTime;
+                    if (currStamina > sprintSpeedModifier)
+                    {
+                        isSprinting = true;
+                        currStamina -= sprintStaminaCost * Time.deltaTime;
+                    }
                 }
+                else { isSprinting = false; }
             }
             else { isSprinting = false; }
 
@@ -233,15 +248,26 @@ public class PlayerController : MonoBehaviour
         cc.Move((isSliding ? slideDirection : moveDirection) * Time.deltaTime);
     }
 
+    Vector3 rotClamp = Vector3.zero;
     private void MouseLook()
     {
         float lookX = Input.GetAxis("Mouse X") * LookSenstivity * Time.deltaTime;
         float lookY = -Input.GetAxis("Mouse Y") * LookSenstivity * Time.deltaTime;
-    
+
         transform.Rotate(Vector3.up * lookX);
-        cam.transform.Rotate(Vector3.right * lookY);
+
+        rotClamp.x += lookY;
+        rotClamp.x = Mathf.Clamp(rotClamp.x, -90, 60);
+        cam.transform.localEulerAngles = rotClamp;
     }
-    
+    #region Head Bobing Variables
+    public float walkingBobbingSpeed = 14f;
+    public float bobbingAmount = 0.05f;
+    float defaultPosY;
+    float timer = 0;
+    #endregion
+
+
     void Jump()
     {
         if (currStamina > jumpStaminaCost)
@@ -282,6 +308,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Exit" && KeyCount > 0)
         {
             Destroy(other.gameObject);
+            GameState.ShowWinMenu();
         }
         if(other.gameObject.CompareTag("Battery"))
         {
@@ -292,6 +319,10 @@ public class PlayerController : MonoBehaviour
                 if (currBattery > maxBattery)
                     currBattery = maxBattery;
             }
+        }
+        if (other.gameObject.CompareTag("Entrance"))
+        {
+            GameState.Instance.timer.isCounting = true;
         }
     }
 }

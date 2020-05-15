@@ -48,7 +48,8 @@ public class Enemy : MonoBehaviour
     {
         if(other.gameObject.CompareTag("FlashLight"))
         {
-            Stun(4);
+            if(PlayerController.enemySeen)
+                Stun(4);
         }
         if (other.gameObject.CompareTag("Monolith"))
         {
@@ -101,7 +102,7 @@ public class Enemy : MonoBehaviour
             restart = true;
 
         if (restart)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameState.ShowDeathMenu();
     }
 
 
