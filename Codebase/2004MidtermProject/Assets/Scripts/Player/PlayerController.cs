@@ -48,6 +48,15 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public float currStamina;
     [Tooltip("The rate at which the players stamina will regen. (Defaults to 1 per second)")]
     public float staminaRegenRate = 1f;
+    [Tooltip("The players maximum amount of flashlight battery. (Defaults to 10")]
+    [Space(10)]
+    public float maxBattery = 10f;
+    [Tooltip("The players current amount of battery.")]
+    [HideInInspector] public float currBattery;
+    [Tooltip("The ammount of battery the flashlight requires (Defaults to 1)")]
+    public float flashlightBatteryCost = 1f;
+    [Tooltip("The ammount of battery the battery pickup refills (Defaults to 2)")]
+    public float batteryChargeAmount = 2f;
 
     [Space(10)]
     public MiniMap minimap;
@@ -95,33 +104,44 @@ public class PlayerController : MonoBehaviour
             Movement();
         }
 
-
+        //stamina
         if (!isSprinting && !isSliding) { currStamina += staminaRegenRate * Time.deltaTime; }
         currStamina = Mathf.Clamp(currStamina, 0, maxStamina);
 
-        Vector3 screenPoint = cam.WorldToViewportPoint(enemy.transform.position);
-        if(screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1)
+        //monster detection
+        //Vector3 screenPoint = cam.WorldToViewportPoint(enemy.transform.position);
+        //if(screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1)
+        //{
+        //    if (enemySeen)
+        //    {
+        //        enemySeen = true;
+        //        //playSound
+        //    }
+        //}
+        //else
+        //{
+        //    enemySeen = false;
+        //}
+
+        //Flashlight
+        if (currBattery > flashlightBatteryCost)
         {
-            if (enemySeen)
+            if (Input.GetMouseButton(0))
             {
-                enemySeen = true;
-                //playSound
+                flashlight.SetActive(true);
+                currBattery -= flashlightBatteryCost * Time.deltaTime;
+            }
+            else
+            {
+                flashlight.SetActive(false);
             }
         }
         else
         {
-            enemySeen = false;
-        }
-
-        if(Input.GetMouseButtonDown(0))
-        {
-            flashlight.SetActive(true);
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
             flashlight.SetActive(false);
         }
 
+        //sliding
         if(isSliding)
         {
             if(slideTimer > 0)
@@ -232,6 +252,15 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Exit" && KeyCount > 0)
         {
             Destroy(collision.gameObject);
+        }
+        if(collision.gameObject.CompareTag("Battery"))
+        {
+            if(currBattery < maxBattery)
+            {
+                currBattery += batteryChargeAmount;
+                if (currBattery > maxBattery)
+                    currBattery = maxBattery;
+            }
         }
     }
 }

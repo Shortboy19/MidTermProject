@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class sceneFader : MonoBehaviour
 {
-    public Image img;
+    public Image fadeImg;
     public AnimationCurve curve;
     void Start()
     {
-        img.color = new Color(0f, 0f, 0f, 255);
+        fadeImg.color = new Color(0f, 0f, 0f, 255);
         StartCoroutine(FadeInScene());
     }
     public void FadeTo(string scene)
@@ -22,7 +22,7 @@ public class sceneFader : MonoBehaviour
         while (_delta > 0f)
         {
             _delta -= Time.deltaTime;
-            img.color = new Color(0f, 0f, 0f, curve.Evaluate(_delta));
+            fadeImg.color = new Color(0f, 0f, 0f, curve.Evaluate(_delta));
             yield return 0;
         }
     }
@@ -32,7 +32,7 @@ public class sceneFader : MonoBehaviour
         while (_delta < 1f)
         {
             _delta += Time.deltaTime;
-            img.color = new Color(0f, 0f, 0f, curve.Evaluate(_delta));
+            fadeImg.color = new Color(0f, 0f, 0f, curve.Evaluate(_delta));
             yield return 0;
         }
         SceneManager.LoadScene(scene);
