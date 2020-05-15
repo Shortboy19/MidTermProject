@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
     bool isSliding = false;
 
     [HideInInspector] public GameObject enemy;
+    [HideInInspector] public bool frozen;
     bool enemySeen = false;
 
     #endregion
@@ -88,8 +89,11 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        MouseLook();
-        Movement();
+        if(!frozen)
+        {
+            MouseLook();
+            Movement();
+        }
 
 
         if (!isSprinting && !isSliding) { currStamina += staminaRegenRate * Time.deltaTime; }
@@ -220,7 +224,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Key")
         {
-            //SoundManager.Instance.PlayAtPoint(collision.gameObject.GetComponent<AudioSource>().clip, transform.position);
+            //Play Sound
             Destroy(collision.gameObject);
             KeyCount++;
             minimap.ShowExit();

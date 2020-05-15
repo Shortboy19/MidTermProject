@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
@@ -12,6 +13,9 @@ public class Enemy : MonoBehaviour
     bool stunned = false;
     [HideInInspector] public float oldSpeed;
     [HideInInspector] public bool inMonolith = false;
+    [SerializeField] Transform eyes;
+
+    Camera playerCam;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +24,7 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.Warp(spawmpoint.position);
         oldSpeed = agent.speed;
+        playerCam = Camera.main;
     }
 
     // Update is called once per frame
@@ -29,6 +34,9 @@ public class Enemy : MonoBehaviour
         {
             agent.SetDestination(player.transform.position);
         }
+
+        if (kill)
+            KillPlayerAnim();
     }
 
     public void Stun(float time)
@@ -50,6 +58,15 @@ public class Enemy : MonoBehaviour
                 agent.speed = 0;
             }
         }
+        if (other.gameObject.CompareTag("Player"))
+        {
+            kill = true;
+            agent.speed = 0;
+            PlayerController.Player.frozen = true;
+            Quaternion targetRot = Quaternion.LookRotation(playerCam.transform.position - transform.position);
+            targetRot.x = targetRot.x = 0;
+            transform.rotation = targetRot;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -70,5 +87,22 @@ public class Enemy : MonoBehaviour
             agent.speed = oldSpeed;
         GetComponent<Collider>().enabled = true;
     }
+
+    bool kill = false;
+    bool restart = false;
+    float speed = 1;
+    void KillPlayerAnim()
+    {
+        Quaternion targetRot = Quaternion.LookRotation(eyes.position - playerCam.transform.position);
+        playerCam.transform.rotation = Quaternion.Lerp(playerCam.transform.rotation, targetRot, Time.deltaTime * speed);
+        speed += 0.025f;
+
+        if (playerCam.transform.rotation == targetRot)
+            restart = true;
+
+        if (restart)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 
 }
