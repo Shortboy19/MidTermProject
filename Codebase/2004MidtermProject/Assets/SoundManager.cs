@@ -5,10 +5,10 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     //audio players component.
-    AudioSource EffectSound;
-    AudioSource MusicSound;
+    [SerializeField] AudioSource EffectSound;
+    [SerializeField] AudioSource MusicSound;
 
-
+    public AudioClip[] effects;
 
     //singleton instance
     public static SoundManager Instance;
@@ -17,24 +17,23 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         //If there is not already an instance of SoundManager, set it to this.
-        if(Instance = null)
-        {
-            Instance = this;
-        }
-        //If an instance already exist, desotry whatever the object is to enforce the singleton.
-        else if(Instance != this)
-        {
-            Destroy(gameObject); 
-        }
-
-        //Set SoundManager to DontDestoryOnLoad so that it wont be destroyed when reloaded.
-        DontDestroyOnLoad(gameObject); 
+        if (Instance == null) { Instance = this; } else if (Instance != this) { Debug.LogError("0 or multiple " + this + " in the scene."); }
     }
 
     //Play a single Clip through the sound effects source.
-    public void PlayAtPoint(AudioClip sound, Vector3 point)
+    public void PlayEffectAtPoint(AudioClip sound, Vector3 point)
     {
         AudioSource.PlayClipAtPoint(sound, point);
+    }
+    public void PlayEffectAtPoint(AudioClip sound, Vector3 point, float volume)
+    {
+        AudioSource.PlayClipAtPoint(sound, point, volume);
+    }
+
+    public void PlayEffect(AudioClip clip)
+    {
+        EffectSound.clip = clip;
+        EffectSound.Play();
     }
 
     //Play a single Clip through the music source.

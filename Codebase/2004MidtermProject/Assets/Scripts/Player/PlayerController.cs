@@ -113,19 +113,36 @@ public class PlayerController : MonoBehaviour
         currStamina = Mathf.Clamp(currStamina, 0, maxStamina);
 
         //monster detection
-        //Vector3 screenPoint = cam.WorldToViewportPoint(enemy.transform.position);
-        //if(screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1)
-        //{
-        //    if (enemySeen)
-        //    {
-        //        enemySeen = true;
-        //        //playSound
-        //    }
-        //}
-        //else
-        //{
-        //    enemySeen = false;
-        //}
+        Vector3 screenPoint = cam.WorldToViewportPoint(enemy.transform.position);
+        if (screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1)
+        {
+            if (!enemySeen)
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, enemy.transform.position - transform.position, out hit, Mathf.Infinity))
+                {
+                    if (hit.collider.gameObject == enemy.gameObject)
+                    {
+                        enemySeen = true;
+                        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.effects[0], transform.position);
+                        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.effects[2], transform.position);
+                    }
+                }
+            }
+        }
+        else
+        {
+            if(enemySeen)
+            {
+                if(sightDelay == null)
+                {
+                    sightDelay = DelayedSightRefresh();
+                    StartCoroutine(sightDelay);
+                }
+            }
+            else
+                enemySeen = false;
+        }
 
         //Flashlight
         if (currBattery > flashlightBatteryCost)
@@ -155,6 +172,15 @@ public class PlayerController : MonoBehaviour
         {
             cc.height = 1f;
         }
+    }
+
+    IEnumerator sightDelay;
+
+    IEnumerator DelayedSightRefresh()
+    {
+        yield return new WaitForSeconds(5);
+        enemySeen = false;
+        sightDelay = null;
     }
 
     void Movement()
@@ -244,24 +270,24 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    void OnTriggerEnter(Collider collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Key")
+        if (other.gameObject.tag == "Key")
         {
-            //Play Sound
-            Destroy(collision.gameObject);
+            SoundManager.Instance.PlayEffectAtPoint(other.GetComponent<AudioSource>().clip, transform.position, 0.25f);
+            Destroy(other.gameObject);
             KeyCount++;
             minimap.ShowExit();
         }
-        if (collision.gameObject.tag == "Exit" && KeyCount > 0)
+        if (other.gameObject.tag == "Exit" && KeyCount > 0)
         {
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
         }
-        if(collision.gameObject.CompareTag("Battery"))
+        if(other.gameObject.CompareTag("Battery"))
         {
             if(currBattery < maxBattery)
             {
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
                 currBattery += batteryChargeAmount;
                 if (currBattery > maxBattery)
                     currBattery = maxBattery;

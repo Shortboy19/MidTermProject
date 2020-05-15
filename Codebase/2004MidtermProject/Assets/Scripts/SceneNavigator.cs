@@ -53,10 +53,14 @@ public class SceneNavigator : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        GameState.gamePaused = false;
+        Time.timeScale = 1;
         SceneManager.LoadScene("Main Menu");
     }
     public void LoadMainMenuWithFade()
     {
+        GameState.gamePaused = false;
+        Time.timeScale = 1;
         StartCoroutine(FadeOutScene("Main Menu"));
     }
 
