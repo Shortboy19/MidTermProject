@@ -25,7 +25,7 @@ public class GameState : MonoBehaviour
     public void Unpause()
     {
         Time.timeScale = 1;
-        pauseMenu.SetActive(true);
+        pauseMenu.SetActive(false);
         gamePaused = false;
     }
 
@@ -35,10 +35,5 @@ public class GameState : MonoBehaviour
         {
             TogglePause();
         }
-    }
-
-    public void Resume()
-    {
-        Unpause();
     }
 }

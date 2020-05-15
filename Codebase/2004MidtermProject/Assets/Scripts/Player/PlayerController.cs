@@ -98,6 +98,9 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
+        if (GameState.gamePaused)
+            return;
+
         if(!frozen)
         {
             MouseLook();
