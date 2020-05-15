@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - FlashLight
   - Monolith
+  - Battery
   layers:
   - Default
   - TransparentFX

@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour
         cc = GetComponent<CharacterController>();
         cam = GetComponentInChildren<Camera>();
         currStamina = maxStamina;
+        currBattery = maxBattery;
         enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
 
@@ -260,6 +261,7 @@ public class PlayerController : MonoBehaviour
         {
             if(currBattery < maxBattery)
             {
+                Destroy(collision.gameObject);
                 currBattery += batteryChargeAmount;
                 if (currBattery > maxBattery)
                     currBattery = maxBattery;
