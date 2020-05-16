@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0007200191, g: 0.0018433576, b: 0.05432608, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1929,6 +1929,11 @@ PrefabInstance:
       propertyPath: m_StoppingDistance
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5424791866911700604, guid: e0cf66170f0c957458b5f61c219d997c,
+        type: 3}
+      propertyPath: m_Speed
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5424791866911700605, guid: e0cf66170f0c957458b5f61c219d997c,
         type: 3}
       propertyPath: spawmpoint
@@ -3207,6 +3212,11 @@ PrefabInstance:
       propertyPath: minimap
       value: 
       objectReference: {fileID: 1319254185}
+    - target: {fileID: 1430072984192380013, guid: 494c6dd555a4b7a489dcee7e7f6c1c78,
+        type: 3}
+      propertyPath: walkSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1430072984192380014, guid: 494c6dd555a4b7a489dcee7e7f6c1c78,
         type: 3}
       propertyPath: m_Name
