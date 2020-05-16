@@ -198,25 +198,6 @@ public class PlayerController : MonoBehaviour
     {
         if (cc.isGrounded)
         {
-            //Are we sprinting
-            if(Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
-            {
-                if (Input.GetButton("Sprint"))
-                {
-                    if (currStamina > sprintSpeedModifier)
-                    {
-                        isSprinting = true;
-                        currStamina -= sprintStaminaCost * Time.deltaTime;
-                    }
-                }
-                else { isSprinting = false; }
-            }
-            else { isSprinting = false; }
-
-            moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection *= walkSpeed * (isSprinting ? sprintSpeedModifier : 1);
-
             if (Input.GetButtonDown("Jump"))
             {
                 Jump();
@@ -240,6 +221,25 @@ public class PlayerController : MonoBehaviour
                     currStamina -= slideStaminaCost;
                 }
             }
+            //Are we sprinting
+            if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
+            {
+                if (Input.GetButton("Sprint"))
+                {
+                    if (currStamina > sprintSpeedModifier)
+                    {
+                        isSprinting = true;
+                        currStamina -= sprintStaminaCost * Time.deltaTime;
+                    }
+                    else { isSprinting = false; }
+                }
+                else { isSprinting = false; }
+            }
+            else { isSprinting = false; }
+
+            moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
+            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection *= walkSpeed * (isSprinting ? sprintSpeedModifier : 1);
         }
 
         moveDirection.y -= gravity * Time.deltaTime;

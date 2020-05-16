@@ -106,7 +106,6 @@ public class Enemy : MonoBehaviour
     }
 
     bool kill = false;
-    bool restart = false;
     float speed = 1;
     void KillPlayerAnim()
     {
@@ -115,9 +114,6 @@ public class Enemy : MonoBehaviour
         speed += 0.025f;
 
         if (playerCam.transform.rotation == targetRot)
-            restart = true;
-
-        if (restart)
             GameState.ShowDeathMenu();
     }
 
