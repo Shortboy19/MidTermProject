@@ -8,12 +8,15 @@ public class Enemy : MonoBehaviour
 {
     public NavMeshAgent agent;
     public GameObject player;
-    public Transform spawmpoint; 
+    public Transform spawmpoint;
+    public Renderer rend; 
 
     bool stunned = false;
     [HideInInspector] public float oldSpeed;
     [HideInInspector] public bool inMonolith = false;
     [SerializeField] Transform eyes;
+
+    Light[] eyelights; 
 
     Camera playerCam;
 
@@ -25,6 +28,8 @@ public class Enemy : MonoBehaviour
         agent.Warp(spawmpoint.position);
         oldSpeed = agent.speed;
         playerCam = Camera.main;
+        rend = GetComponent<Renderer>();
+        eyelights = GetComponentsInChildren<Light>();  
     }
 
     // Update is called once per frame
@@ -42,6 +47,7 @@ public class Enemy : MonoBehaviour
     public void Stun(float time)
     {
         StartCoroutine(StunEnemy(time));
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -81,12 +87,22 @@ public class Enemy : MonoBehaviour
 
     IEnumerator StunEnemy(float waitTime)
     {
+        rend.material.color = Color.blue;
+        for (int i = 0; i < eyelights.Length; i++)
+        {
+            eyelights[i].color = Color.white;
+        }
         agent.speed = 0;
         GetComponent<Collider>().enabled = false;
         yield return new WaitForSeconds(waitTime);
         if (!inMonolith)
             agent.speed = oldSpeed;
         GetComponent<Collider>().enabled = true;
+        rend.material.color = Color.white;
+        for (int i = 0; i < eyelights.Length; i++)
+        {
+            eyelights[i].color = Color.red;
+        }
     }
 
     bool kill = false;
