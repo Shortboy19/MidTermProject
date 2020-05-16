@@ -231,13 +231,11 @@ public class PlayerController : MonoBehaviour
             {
                 if (currStamina > slideStaminaCost)
                 {
-                    if (Input.GetAxisRaw("Vertical") > 0.1f)
-                    {
-                        isSliding = true;
-                        slideTimer = slideDuration;
-                        oldSpeed = walkSpeed;
-                        cc.height = 0.5f;
-                    }
+                    
+                    isSliding = true;
+                    slideTimer = slideDuration;
+                    oldSpeed = walkSpeed;
+                    cc.height = 0.5f;
 
                     slideDirection = new Vector3(0.0f, 0.0f, 1);
                     slideDirection = transform.TransformDirection(slideDirection);
