@@ -53,13 +53,13 @@ public class GameState : MonoBehaviour
 
     public static void ShowDeathMenu()
     {
-        Time.timeScale = 0;
+        gamePaused = true;
         Instance.deathMenu.SetActive(true);
     }
 
     public static void ShowWinMenu()
     {
-        Time.timeScale = 0;
+        gamePaused = true;
         Instance.timer.isCounting = false;
         Instance.timer.GetTime();
         Instance.winMenu.SetActive(true);
