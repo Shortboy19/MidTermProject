@@ -3212,13 +3212,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1430072984192380015, guid: 494c6dd555a4b7a489dcee7e7f6c1c78,
-        type: 3}
-      propertyPath: m_SkinWidth
-      value: 0.0001
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2299187549289797019, guid: 494c6dd555a4b7a489dcee7e7f6c1c78, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 494c6dd555a4b7a489dcee7e7f6c1c78, type: 3}
 --- !u!1001 &1680691051580472813
 PrefabInstance:

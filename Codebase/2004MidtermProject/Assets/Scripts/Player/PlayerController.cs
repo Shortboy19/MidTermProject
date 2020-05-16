@@ -17,10 +17,10 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The mouse sensitivity for looking around. (Defaults to 100)")]
     [Range(1, 200)]
     public float LookSenstivity = 100f;
-    [Tooltip("The speed at which the player moves. (Defaults to 5)")]
+    [Tooltip("The speed at which the player moves. (Defaults to 2.5)")]
     [Range(0,10)]
     [Space(10)]
-    public float walkSpeed = 5f;
+    public float walkSpeed = 2.5f;
     [Tooltip("The multiplier to the players speed while sprinting. (Defaults to 2)")]
     [Range(0, 10)]
     public float sprintSpeedModifier = 2f;
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     public float staminaRegenRate = 1f;
     [Tooltip("The players maximum amount of flashlight battery. (Defaults to 10")]
     [Space(10)]
-    public float maxBattery = 10f;
+    public float maxBattery = 5f;
     [Tooltip("The players current amount of battery.")]
     [HideInInspector] public float currBattery;
     [Tooltip("The ammount of battery the flashlight requires (Defaults to 1)")]
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         //singleton management
-        if ( Player == null) { Player = this; } else { if (Player != this) Debug.LogWarning("Multiple or 0 " + this + " in the scene. There should only be 1 player."); }
+        if ( Player == null) { Player = this; } else { if (Player != this) Debug.LogWarning("Multiple " + this + " in the scene. There should only be 1 player."); }
     }
 
     void Start()
@@ -94,6 +94,7 @@ public class PlayerController : MonoBehaviour
         currBattery = maxBattery;
         enemy = GameObject.FindGameObjectWithTag("Enemy");
         defaultPosY = cam.transform.localPosition.y;
+        frozen = false;
     }
 
     
@@ -107,20 +108,23 @@ public class PlayerController : MonoBehaviour
             MouseLook();
             Movement();
             //HeadBobbing
-            if (isSprinting)
+            if (cc.isGrounded)
             {
-                timer += Time.deltaTime * walkingBobbingSpeed;
-                transform.localPosition = new Vector3(transform.localPosition.x, defaultPosY + Mathf.Sin(timer) * bobbingAmount, transform.localPosition.z);
-            }
-            else
-            {
-                timer = 0;
-                transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Lerp(transform.localPosition.y, defaultPosY, Time.deltaTime * walkingBobbingSpeed), transform.localPosition.z);
+                if (isSprinting)
+                {
+                    timer += Time.deltaTime * walkingBobbingSpeed;
+                    cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, defaultPosY + Mathf.Sin(timer) * bobbingAmount, cam.transform.localPosition.z);
+                }
+                else
+                {
+                    timer = 0;
+                    cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, Mathf.Lerp(cam.transform.localPosition.y, defaultPosY, Time.deltaTime * walkingBobbingSpeed), cam.transform.localPosition.z);
+                }
             }
         }
 
         //stamina
-        if (!isSprinting && !isSliding) { currStamina += staminaRegenRate * Time.deltaTime; }
+        if (!isSprinting && !isSliding && cc.isGrounded) { currStamina += staminaRegenRate * Time.deltaTime; }
         currStamina = Mathf.Clamp(currStamina, 0, maxStamina);
 
         //monster detection
@@ -198,6 +202,26 @@ public class PlayerController : MonoBehaviour
     {
         if (cc.isGrounded)
         {
+            //Are we sprinting
+            if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
+            {
+                if (Input.GetButton("Sprint"))
+                {
+                    if (currStamina > sprintSpeedModifier)
+                    {
+                        isSprinting = true;
+                        currStamina -= sprintStaminaCost * Time.deltaTime;
+                    }
+                    else { isSprinting = false; }
+                }
+                else { isSprinting = false; }
+            }
+            else { isSprinting = false; }
+
+            moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
+            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection *= walkSpeed * (isSprinting ? sprintSpeedModifier : 1);
+
             if (Input.GetButtonDown("Jump"))
             {
                 Jump();
@@ -221,29 +245,11 @@ public class PlayerController : MonoBehaviour
                     currStamina -= slideStaminaCost;
                 }
             }
-            //Are we sprinting
-            if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
-            {
-                if (Input.GetButton("Sprint"))
-                {
-                    if (currStamina > sprintSpeedModifier)
-                    {
-                        isSprinting = true;
-                        currStamina -= sprintStaminaCost * Time.deltaTime;
-                    }
-                    else { isSprinting = false; }
-                }
-                else { isSprinting = false; }
-            }
-            else { isSprinting = false; }
 
-            moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection *= walkSpeed * (isSprinting ? sprintSpeedModifier : 1);
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
-        slideDirection.y -= gravity * Time.deltaTime;
+        if (isSliding) { slideDirection.y -= gravity * Time.deltaTime; }
 
         cc.Move((isSliding ? slideDirection : moveDirection) * Time.deltaTime);
     }
@@ -267,7 +273,6 @@ public class PlayerController : MonoBehaviour
     float timer = 0;
     #endregion
 
-
     void Jump()
     {
         if (currStamina > jumpStaminaCost)
@@ -276,7 +281,6 @@ public class PlayerController : MonoBehaviour
             currStamina -= jumpStaminaCost;
         }
     }
-    
     
     float slideTimer;
     float oldSpeed;

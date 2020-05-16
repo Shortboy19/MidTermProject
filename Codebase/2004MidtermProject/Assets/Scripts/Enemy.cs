@@ -50,12 +50,13 @@ public class Enemy : MonoBehaviour
         
     }
 
+    float stunDuration = 4;
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("FlashLight"))
         {
             if(PlayerController.enemySeen)
-                Stun(4);
+                Stun(stunDuration);
         }
         if (other.gameObject.CompareTag("Monolith"))
         {
@@ -103,6 +104,7 @@ public class Enemy : MonoBehaviour
         {
             eyelights[i].color = Color.red;
         }
+        stunDuration -= 0.5f;
     }
 
     bool kill = false;
@@ -113,7 +115,7 @@ public class Enemy : MonoBehaviour
         playerCam.transform.rotation = Quaternion.Lerp(playerCam.transform.rotation, targetRot, Time.deltaTime * speed);
         speed += 0.025f;
 
-        if (playerCam.transform.rotation == targetRot)
+        if (speed >= 2)
             GameState.ShowDeathMenu();
     }
 
