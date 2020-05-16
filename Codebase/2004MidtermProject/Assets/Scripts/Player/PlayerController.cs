@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Flashlight
-        if (currBattery > flashlightBatteryCost)
+        if (currBattery > 0)
         {
             if (Input.GetMouseButton(0))
             {
