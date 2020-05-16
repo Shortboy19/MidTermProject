@@ -18,6 +18,7 @@ public class GameState : MonoBehaviour
         if (Instance == null) { Instance = this; } else if (Instance != this) { Debug.LogError("0 or multiple " + this + " in the scene."); }
 
         Time.timeScale = 1;
+        gamePaused = false;
         deathMenu.SetActive(false);
         winMenu.SetActive(false);
     }
