@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     [Space(10)]
     [SerializeField] MiniMap minimap;
     [SerializeField] GameObject flashlight;
+    [SerializeField] ObjectiveTracker objective;
     #endregion
 
     #region Private Variables
@@ -89,6 +90,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         cc = GetComponent<CharacterController>();
+        objective = FindObjectOfType<ObjectiveTracker>();
         cam = GetComponentInChildren<Camera>();
         currStamina = maxStamina;
         currBattery = maxBattery;
@@ -193,7 +195,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DelayedSightRefresh()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10);
         enemySeen = false;
         sightDelay = null;
     }
@@ -247,7 +249,7 @@ public class PlayerController : MonoBehaviour
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
-        if (isSliding) { slideDirection.y -= gravity * Time.deltaTime; }
+        if (isSliding) { slideDirection.y -= gravity * 2 * Time.deltaTime; }
 
         cc.Move((isSliding ? slideDirection : moveDirection) * Time.deltaTime);
     }
@@ -266,7 +268,7 @@ public class PlayerController : MonoBehaviour
     }
     #region Head Bobing Variables
     public float walkingBobbingSpeed = 14f;
-    public float bobbingAmount = 0.05f;
+    public float bobbingAmount = 0.1f;
     float defaultPosY;
     float timer = 0;
     #endregion
@@ -305,6 +307,7 @@ public class PlayerController : MonoBehaviour
             SoundManager.Instance.PlayEffectAtPoint(other.GetComponent<AudioSource>().clip, transform.position, 0.25f);
             Destroy(other.gameObject);
             KeyCount++;
+            objective.DisplayNewObjective("Get to the exit");
             minimap.ShowExit();
         }
         if (other.gameObject.tag == "Exit" && KeyCount > 0)

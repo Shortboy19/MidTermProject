@@ -5,10 +5,12 @@ using UnityEngine;
 public class Trap : MonoBehaviour
 {
     [SerializeField] GameObject interactableCanvas;
-    [SerializeField] GameObject trapObj;
-    [SerializeField] float duration = 5;
+    public GameObject trapObj;
+    public float duration = 5;
+
     bool activated = false;
     bool playerInRange = false;
+
     void Start()
     {
         interactableCanvas.SetActive(false);
@@ -21,20 +23,25 @@ public class Trap : MonoBehaviour
             return;
 
         if (!activated && Input.GetButtonDown("Interact"))
-            Activate();
+            StartCoroutine(Activate());
     }
 
-    void Activate()
+    void TurnOn()
     {
         trapObj.SetActive(true);
         activated = true;
-        StartCoroutine(Deactivate());
     }
-    IEnumerator Deactivate()
+    void TurnOff()
     {
-        yield return new WaitForSeconds(duration);
         trapObj.SetActive(false);
         activated = false;
+    }
+
+    IEnumerator Activate()
+    {
+        TurnOn();
+        yield return new WaitForSeconds(duration);
+        TurnOff();
     }
 
     private void OnTriggerEnter(Collider other)
