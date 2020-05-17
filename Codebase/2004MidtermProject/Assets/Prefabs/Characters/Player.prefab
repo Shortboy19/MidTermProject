@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cc: {fileID: 0}
   LookSenstivity: 100
-  walkSpeed: 2.5
+  walkSpeed: 3.5
   sprintSpeedModifier: 2
   sprintStaminaCost: 3
   jumpHeight: 3
@@ -323,7 +323,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1079
+    m_Bits: 5175
   m_RenderingPath: 1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
