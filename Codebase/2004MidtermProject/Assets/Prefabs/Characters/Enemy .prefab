@@ -403,11 +403,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 4.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -430,6 +430,7 @@ MonoBehaviour:
   agent: {fileID: 5424791866911700604}
   player: {fileID: 1430072984192380014, guid: 494c6dd555a4b7a489dcee7e7f6c1c78, type: 3}
   spawmpoint: {fileID: 0}
+  rend: {fileID: 0}
   oldSpeed: 0
   inMonolith: 0
   eyes: {fileID: 7783690267376550266}

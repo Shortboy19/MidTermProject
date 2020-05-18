@@ -277,7 +277,7 @@ public class PlayerController : MonoBehaviour
     }
     #region Head Bobing Variables
     public float walkingBobbingSpeed = 14f;
-    public float bobbingAmount = 0.05f;
+    public float bobbingAmount = 0.025f;
     float defaultPosY;
     float timer = 0;
     #endregion
