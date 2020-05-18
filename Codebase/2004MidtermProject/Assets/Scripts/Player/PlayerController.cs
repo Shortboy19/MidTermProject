@@ -112,10 +112,10 @@ public class PlayerController : MonoBehaviour
             //HeadBobbing
             if (cc.isGrounded)
             {
-                if (isSprinting)
+                if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
                 {
                     timer += Time.deltaTime * walkingBobbingSpeed;
-                    cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, defaultPosY + Mathf.Sin(timer) * bobbingAmount, cam.transform.localPosition.z);
+                    cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, defaultPosY + Mathf.Sin(timer) * (isSprinting ? bobbingAmount * 2: bobbingAmount), cam.transform.localPosition.z);
                 }
                 else
                 {
@@ -184,10 +184,15 @@ public class PlayerController : MonoBehaviour
         {
             if(slideTimer > 0)
                 Slide();
-        }
-        else
-        {
-            cc.height = 1f;
+            else
+            {
+                if (!Physics.Raycast(transform.position, transform.up, 1f))
+                {
+                    walkSpeed = oldSpeed;
+                    isSliding = false;
+                    cc.height = 1f;
+                }
+            }
         }
     }
 
@@ -204,17 +209,19 @@ public class PlayerController : MonoBehaviour
     {
         if (cc.isGrounded)
         {
-            //Are we sprinting
             if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
             {
                 if (Input.GetButton("Sprint"))
                 {
-                    if (currStamina > sprintSpeedModifier)
+                    if(!isSprinting)
                     {
-                        isSprinting = true;
-                        currStamina -= sprintStaminaCost * Time.deltaTime;
+                        if (currStamina > sprintSpeedModifier)
+                        {
+                            isSprinting = true;
+                            currStamina -= sprintStaminaCost * Time.deltaTime;
+                        }
+                        else { isSprinting = false; }
                     }
-                    else { isSprinting = false; }
                 }
                 else { isSprinting = false; }
             }
@@ -231,18 +238,20 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown("Slide"))
             {
-                if (currStamina > slideStaminaCost)
+                if(!isSliding)
                 {
-                    
-                    isSliding = true;
-                    slideTimer = slideDuration;
-                    oldSpeed = walkSpeed;
-                    cc.height = 0.5f;
+                    if (currStamina > slideStaminaCost)
+                    {
 
-                    slideDirection = new Vector3(0.0f, 0.0f, 1);
-                    slideDirection = transform.TransformDirection(slideDirection);
-                    slideDirection *= slideDistance / slideDuration;
-                    currStamina -= slideStaminaCost;
+                        isSliding = true;
+                        slideTimer = slideDuration;
+                        oldSpeed = walkSpeed;
+
+                        slideDirection = new Vector3(0.0f, 0.0f, 1);
+                        slideDirection = transform.TransformDirection(slideDirection);
+                        slideDirection *= slideDistance / slideDuration;
+                        currStamina -= slideStaminaCost;
+                    }
                 }
             }
 
@@ -268,7 +277,7 @@ public class PlayerController : MonoBehaviour
     }
     #region Head Bobing Variables
     public float walkingBobbingSpeed = 14f;
-    public float bobbingAmount = 0.1f;
+    public float bobbingAmount = 0.05f;
     float defaultPosY;
     float timer = 0;
     #endregion
@@ -291,11 +300,15 @@ public class PlayerController : MonoBehaviour
         {
             slideTimer -= Time.deltaTime;
             walkSpeed = slideDistance / slideDuration;
-    
-            if (slideTimer <= 0)
+            
+            if(!Physics.Raycast(transform.position, transform.up, 1f))
             {
-                walkSpeed = oldSpeed;
-                isSliding = false;
+                if (slideTimer <= 0)
+                {
+                    walkSpeed = oldSpeed;
+                    isSliding = false;
+                    cc.height = 1f;
+                }
             }
         }
     }
@@ -328,6 +341,14 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Entrance"))
         {
             GameState.Instance.timer.isCounting = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Entrance"))
+        {
+            other.isTrigger = false;
         }
     }
 }

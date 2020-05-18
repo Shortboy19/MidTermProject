@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 1845224333}
   - component: {fileID: 1845224332}
   m_Layer: 5
-  m_Name: MinimapBG
+  m_Name: Minimap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1342,7 +1342,7 @@ GameObject:
   - component: {fileID: 5441513554857337128}
   - component: {fileID: 8426875800220208358}
   m_Layer: 5
-  m_Name: RedZone
+  m_Name: YellowZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1388,7 +1388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.39215687}
+  m_Color: {r: 0.92933357, g: 1, b: 0, a: 0.39215687}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2857,7 +2857,7 @@ GameObject:
   - component: {fileID: 879831511532410782}
   - component: {fileID: 3391577899824238704}
   m_Layer: 5
-  m_Name: BlueZone (1)
+  m_Name: GreyBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -35,6 +35,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameState.gameWon)
+            return;
+
         if (player != null && !stunned)
         {
             agent.SetDestination(player.transform.position);
@@ -74,15 +77,6 @@ public class Enemy : MonoBehaviour
             Quaternion targetRot = Quaternion.LookRotation(playerCam.transform.position - transform.position);
             targetRot.x = targetRot.x = 0;
             transform.rotation = targetRot;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Monolith"))
-        {
-            inMonolith = false;
-            agent.speed = oldSpeed;
         }
     }
 

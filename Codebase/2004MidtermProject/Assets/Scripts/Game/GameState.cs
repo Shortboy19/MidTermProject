@@ -11,6 +11,8 @@ public class GameState : MonoBehaviour
     public GameObject deathMenu;
     public GameObject winMenu;
 
+    public static bool gameWon = false;
+
     public GameTimer timer;
 
     private void Awake()
@@ -21,6 +23,7 @@ public class GameState : MonoBehaviour
         gamePaused = false;
         deathMenu.SetActive(false);
         winMenu.SetActive(false);
+        gameWon = false;
     }
 
     public void TogglePause()
@@ -60,6 +63,7 @@ public class GameState : MonoBehaviour
 
     public static void ShowWinMenu()
     {
+        gameWon = true;
         gamePaused = true;
         Instance.timer.isCounting = false;
         Instance.timer.GetTime();

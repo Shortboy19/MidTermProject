@@ -14,14 +14,15 @@ public class ObjectiveTracker : MonoBehaviour
         DisplayNewObjective("Find the key", 1.5f);
     }
 
-    public void DisplayNewObjective(string objective, float delay = 0)
+    public void DisplayNewObjective(string objective, float delay = 1.5f)
     {
         StartCoroutine(NewObjective(objective, delay));
     }
 
-    IEnumerator NewObjective(string message, float delay = 0)
+    IEnumerator NewObjective(string message, float delay = 1.5f)
     {
         text.color = Color.green;
+        yield return new WaitForSeconds(delay);
         string oldObj = text.text;
         while(oldObj != string.Empty)
         {
@@ -29,8 +30,6 @@ public class ObjectiveTracker : MonoBehaviour
             text.text = oldObj;
             yield return new WaitForSeconds(0.025f);
         }
-
-        yield return new WaitForSeconds(delay);
 
         text.color = Color.white;
         for(int i = 0; i < message.Length; i++)
