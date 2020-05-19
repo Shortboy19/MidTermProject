@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
 
     public void Stun(float time)
     {
-        StartCoroutine(StunEnemy(time));
+        StartCoroutine(StunEnemy(time)); 
         
     }
 
