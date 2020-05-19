@@ -198,6 +198,86 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: ThunderClap.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: PlayerWalking
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f950cbd90a69bf4a9d92444f22886c8, type: 3}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: PlayerRunning
+      value: 
+      objectReference: {fileID: 8300000, guid: d0bf854d7d93a944893fcf7d13f5cca5, type: 3}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: MetalGateClose
+      value: 
+      objectReference: {fileID: 8300000, guid: 92747990a92937547be46a5562f39147, type: 3}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: Dark
+      value: 
+      objectReference: {fileID: 8300000, guid: 67608d5396333824180ea6ee70df2ab4, type: 3}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: MetalGate
+      value: 
+      objectReference: {fileID: 8300000, guid: 4e31ad1633de53d46bea36a4a29d804a, type: 3}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: GhostPassThroughWalls
+      value: 
+      objectReference: {fileID: 8300000, guid: 2fb77fc99bbe68543a6809af1f87d199, type: 3}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: GhostFade
+      value: 
+      objectReference: {fileID: 8300000, guid: 2544b6b9538044f448c4fe3d1f38d1ea, type: 3}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: GhostBreath
+      value: 
+      objectReference: {fileID: 8300000, guid: 877ffe84c0a9c8b4b9f7b2031b326386, type: 3}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: FlashLightClick
+      value: 
+      objectReference: {fileID: 8300000, guid: 556fd49dc01df324aa9a91660197a257, type: 3}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: ThunderClap.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: be6ee4d04c274b54587a200bab5f0b71, type: 3}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: ThunderClap.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2c97f650d26e6964f941c5d8193cf258, type: 3}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: ThunderClap.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: e6144f941a01c1f4b8708dbd0fac54d9, type: 3}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: TrapButton
+      value: 
+      objectReference: {fileID: 8300000, guid: 16e7ca1653f7e91488d9e1af662c0f50, type: 3}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: Rain
+      value: 
+      objectReference: {fileID: 8300000, guid: f01bb12fea8aca446a2183d18c2cf3f5, type: 3}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: PlayerSliding
+      value: 
+      objectReference: {fileID: 8300000, guid: 67608d5396333824180ea6ee70df2ab4, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ce8838aa0ddbc94cb44657c92360764, type: 3}
 --- !u!4 &1122038648 stripped
