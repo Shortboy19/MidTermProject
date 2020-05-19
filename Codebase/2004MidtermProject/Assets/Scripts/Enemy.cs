@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public float oldSpeed;
     [HideInInspector] public bool inMonolith = false;
     [SerializeField] Transform eyes;
+    Animator anim;
 
     Light[] eyelights; 
 
@@ -28,7 +29,9 @@ public class Enemy : MonoBehaviour
         oldSpeed = agent.speed;
         playerCam = Camera.main;
         rend = GetComponent<Renderer>();
-        eyelights = GetComponentsInChildren<Light>();  
+        eyelights = GetComponentsInChildren<Light>();
+        agent.updateRotation = false;
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -49,6 +52,11 @@ public class Enemy : MonoBehaviour
             KillPlayerAnim();
     }
 
+    private void LateUpdate()
+    {
+        transform.rotation = Quaternion.LookRotation(agent.velocity.normalized);
+    }
+
     public void Stun(float time)
     {
         StartCoroutine(StunEnemy(time));
@@ -62,27 +70,20 @@ public class Enemy : MonoBehaviour
             if(PlayerController.enemySeen)
                 Stun(stunDuration);
         }
-        if (other.gameObject.CompareTag("Monolith"))
-        {
-            if(Monolith.playerInArea)
-            {
-                inMonolith = true;
-                agent.speed = 0;
-            }
-        }
         if (other.gameObject.CompareTag("Player"))
         {
             kill = true;
             agent.speed = 0;
             PlayerController.Player.frozen = true;
-            Quaternion targetRot = Quaternion.LookRotation(playerCam.transform.position - transform.position);
-            targetRot.x = targetRot.x = 0;
-            transform.rotation = targetRot;
+            //Quaternion targetRot = Quaternion.LookRotation(playerCam.transform.position - transform.position);
+            //targetRot.x = targetRot.x = 0;
+            //transform.rotation = targetRot;
         }
     }
 
     IEnumerator StunEnemy(float waitTime)
     {
+        anim.SetBool("Stunned", true);
         rend.material.color = Color.blue;
         for (int i = 0; i < eyelights.Length; i++)
         {
@@ -99,6 +100,7 @@ public class Enemy : MonoBehaviour
         {
             eyelights[i].color = Color.red;
         }
+        anim.SetBool("Stunned", false);
         stunDuration -= 0.5f;
     }
 
