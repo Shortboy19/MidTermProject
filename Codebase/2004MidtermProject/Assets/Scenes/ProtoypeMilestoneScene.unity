@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.0007200191, g: 0.0018433576, b: 0.05432608, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1131,7 +1131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 556903366}
   m_Layer: 0
-  m_Name: EnemySpawnPoint3
+  m_Name: EnemySpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1661,7 +1661,7 @@ GameObject:
   m_Component:
   - component: {fileID: 987984704}
   m_Layer: 0
-  m_Name: EnemySpawnPoint4
+  m_Name: EnemySpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1745,27 +1745,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5424791866911700605, guid: e0cf66170f0c957458b5f61c219d997c,
         type: 3}
-      propertyPath: spawmpoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5424791866911700605, guid: e0cf66170f0c957458b5f61c219d997c,
-        type: 3}
-      propertyPath: SpawnPoint1
+      propertyPath: spawnPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1194580317}
     - target: {fileID: 5424791866911700605, guid: e0cf66170f0c957458b5f61c219d997c,
         type: 3}
-      propertyPath: SpawnPoint2
+      propertyPath: spawnPoints.Array.data[1]
       value: 
       objectReference: {fileID: 1393867058}
     - target: {fileID: 5424791866911700605, guid: e0cf66170f0c957458b5f61c219d997c,
         type: 3}
-      propertyPath: SpawnPoint3
+      propertyPath: spawnPoints.Array.data[2]
       value: 
       objectReference: {fileID: 556903366}
     - target: {fileID: 5424791866911700605, guid: e0cf66170f0c957458b5f61c219d997c,
         type: 3}
-      propertyPath: SpawnPoint4
+      propertyPath: spawnPoints.Array.data[3]
       value: 
       objectReference: {fileID: 987984704}
     - target: {fileID: 5424791866911700606, guid: e0cf66170f0c957458b5f61c219d997c,
@@ -2171,7 +2166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1393867058}
   m_Layer: 0
-  m_Name: EnemySpawnPoint2
+  m_Name: EnemySpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

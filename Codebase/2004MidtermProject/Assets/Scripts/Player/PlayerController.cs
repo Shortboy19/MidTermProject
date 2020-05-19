@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
     bool isSliding = false;
 
     [HideInInspector] public GameObject enemy;
+    [HideInInspector] public Enemy enemyComp;
     [HideInInspector] public bool frozen;
     public static bool enemySeen = false;
 
@@ -95,6 +96,7 @@ public class PlayerController : MonoBehaviour
         currStamina = maxStamina;
         currBattery = maxBattery;
         enemy = GameObject.FindGameObjectWithTag("Enemy");
+        enemyComp = enemy.GetComponent<Enemy>();
         defaultPosY = cam.transform.localPosition.y;
         frozen = false;
     }
@@ -141,6 +143,7 @@ public class PlayerController : MonoBehaviour
                     if (hit.collider.gameObject == enemy.gameObject)
                     {
                         enemySeen = true;
+                        enemyComp.anim.SetTrigger("Scare");
                         SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.effects[0], transform.position);
                         SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.effects[2], transform.position);
                     }
@@ -202,6 +205,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(10);
         enemySeen = false;
+        enemyComp.anim.ResetTrigger("Scare");
         sightDelay = null;
     }
 

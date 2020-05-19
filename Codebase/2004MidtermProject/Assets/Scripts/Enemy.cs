@@ -8,18 +8,13 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject player;
     public int SpawnLocationNumber;
-    public Transform spawmpoint;
-    public Transform SpawnPoint1;
-    public Transform SpawnPoint2;
-    public Transform SpawnPoint3;
-    public Transform SpawnPoint4;
+    public Transform[] spawnPoints;
     public Renderer rend; 
+    public Animator anim;
 
     bool stunned = false;
     [HideInInspector] public float oldSpeed;
-    [HideInInspector] public bool inMonolith = false;
     [SerializeField] Transform eyes;
-    Animator anim;
 
     Light[] eyelights; 
 
@@ -31,33 +26,19 @@ public class Enemy : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
-
-        SpawnLocationNumber = Random.Range(1, 5);
-        switch (SpawnLocationNumber)
-        {
-            case 1:
-                spawmpoint = SpawnPoint1;
-                agent.Warp(spawmpoint.position);
-                break;
-            case 2:
-                spawmpoint = SpawnPoint2;
-                agent.Warp(spawmpoint.position);
-                break;
-            case 3:
-                spawmpoint = SpawnPoint3;
-                agent.Warp(spawmpoint.position);
-                break;
-            case 4:
-                spawmpoint = SpawnPoint4;
-                agent.Warp(spawmpoint.position);
-                break;
-        }
+        agent.Warp(PickSpawnPoint().position);
         oldSpeed = agent.speed;
         playerCam = Camera.main;
         rend = GetComponent<Renderer>();
         eyelights = GetComponentsInChildren<Light>();
         agent.updateRotation = false;
         anim = GetComponentInChildren<Animator>();
+    }
+
+    Transform PickSpawnPoint()
+    {
+        SpawnLocationNumber = Random.Range(1, spawnPoints.Length);
+        return spawnPoints[SpawnLocationNumber];
     }
 
     // Update is called once per frame
@@ -80,7 +61,8 @@ public class Enemy : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.rotation = Quaternion.LookRotation(agent.velocity.normalized);
+        if(!stunned)
+            transform.rotation = Quaternion.LookRotation(agent.velocity.normalized);
     }
 
     public void Stun(float time)
@@ -118,8 +100,7 @@ public class Enemy : MonoBehaviour
         agent.speed = 0;
         GetComponent<Collider>().enabled = false;
         yield return new WaitForSeconds(waitTime);
-        if (!inMonolith)
-            agent.speed = oldSpeed;
+        agent.speed = oldSpeed;
         GetComponent<Collider>().enabled = true;
         rend.material.color = Color.white;
         for (int i = 0; i < eyelights.Length; i++)

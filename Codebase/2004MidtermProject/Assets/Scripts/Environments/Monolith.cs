@@ -38,7 +38,6 @@ public class Monolith : MonoBehaviour
             area.SetActive(false);
             playerInArea = false;
             enemy.agent.speed = enemy.oldSpeed;
-            enemy.inMonolith = false;
             delay += Time.deltaTime;
             if ( delay >= cooldown)
             {
