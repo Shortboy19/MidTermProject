@@ -278,6 +278,11 @@ PrefabInstance:
       propertyPath: PlayerSliding
       value: 
       objectReference: {fileID: 8300000, guid: 67608d5396333824180ea6ee70df2ab4, type: 3}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: PlayerHurt
+      value: 
+      objectReference: {fileID: 8300000, guid: 946d8600645dcbd4b80e9b96f077458e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ce8838aa0ddbc94cb44657c92360764, type: 3}
 --- !u!4 &1122038648 stripped

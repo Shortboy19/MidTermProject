@@ -9,6 +9,7 @@ public class DeathZone : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+            SoundManager.Instance.PlayEffect(SoundManager.Instance.PlayerHurt); 
             GameState.ShowDeathMenu();
         }
     }

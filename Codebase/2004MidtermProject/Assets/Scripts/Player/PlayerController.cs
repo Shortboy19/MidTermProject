@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
                 if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
                 {
                     timer += Time.deltaTime * walkingBobbingSpeed;
-                    cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, defaultPosY + Mathf.Sin(timer) * (isSprinting ? bobbingAmount * 2: bobbingAmount), cam.transform.localPosition.z);
+                    cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, defaultPosY + Mathf.Sin(timer) * (isSprinting ? bobbingAmount * 2 : bobbingAmount), cam.transform.localPosition.z);
                 }
                 else
                 {
@@ -171,6 +171,7 @@ public class PlayerController : MonoBehaviour
             {
                 flashlight.SetActive(true);
                 currBattery -= flashlightBatteryCost * Time.deltaTime;
+                SoundManager.Instance.PlayEffect(SoundManager.Instance.FlashLightClick); 
             }
             else
             {
@@ -223,6 +224,7 @@ public class PlayerController : MonoBehaviour
                         {
                             isSprinting = true;
                             currStamina -= sprintStaminaCost * Time.deltaTime;
+                            SoundManager.Instance.PlayEffect(SoundManager.Instance.PlayerRunning); 
                         }
                         else { isSprinting = false; }
                     }
@@ -255,6 +257,7 @@ public class PlayerController : MonoBehaviour
                         slideDirection = transform.TransformDirection(slideDirection);
                         slideDirection *= slideDistance / slideDuration;
                         currStamina -= slideStaminaCost;
+                        SoundManager.Instance.PlayEffect(SoundManager.Instance.PlayerSliding); 
                     }
                 }
             }

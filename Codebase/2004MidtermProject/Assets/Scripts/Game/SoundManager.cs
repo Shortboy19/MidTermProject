@@ -7,17 +7,19 @@ public class SoundManager : MonoBehaviour
     //audio players component.
     [SerializeField] AudioSource EffectSound;
     [SerializeField] AudioSource MusicSound;
-    public AudioSource[] ThunderClap;
-    public AudioSource PlayerWalking;
-    public AudioSource PlayerRunning;
-    public AudioSource Rain;
-    public AudioSource MetalGate;
-    public AudioSource GhostPassThroughWalls;
-    public AudioSource GhostBreath;
-    public AudioSource FlashLightClick;
-    public AudioSource MetalGateClose;
-    public AudioSource GhostFade;
-    public AudioSource Dark; 
+    public AudioClip[] ThunderClap;
+    public AudioClip PlayerWalking;
+    public AudioClip PlayerRunning;
+    public AudioClip Rain;
+    public AudioClip MetalGate;
+    public AudioClip GhostPassThroughWalls;
+    public AudioClip GhostBreath;
+    public AudioClip FlashLightClick;
+    public AudioClip MetalGateClose;
+    public AudioClip GhostFade;
+    public AudioClip PlayerSliding;
+    public AudioClip TrapButton;
+    public AudioClip PlayerHurt; 
 
     public AudioClip[] effects;
 
