@@ -7,7 +7,12 @@ public class Enemy : MonoBehaviour
 {
     public NavMeshAgent agent;
     public GameObject player;
+    public int SpawnLocationNumber;
     public Transform spawmpoint;
+    public Transform SpawnPoint1;
+    public Transform SpawnPoint2;
+    public Transform SpawnPoint3;
+    public Transform SpawnPoint4;
     public Renderer rend; 
 
     bool stunned = false;
@@ -19,13 +24,34 @@ public class Enemy : MonoBehaviour
     Light[] eyelights; 
 
     Camera playerCam;
-
+    
+    
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
-        agent.Warp(spawmpoint.position);
+
+        SpawnLocationNumber = Random.Range(1, 5);
+        switch (SpawnLocationNumber)
+        {
+            case 1:
+                spawmpoint = SpawnPoint1;
+                agent.Warp(spawmpoint.position);
+                break;
+            case 2:
+                spawmpoint = SpawnPoint2;
+                agent.Warp(spawmpoint.position);
+                break;
+            case 3:
+                spawmpoint = SpawnPoint3;
+                agent.Warp(spawmpoint.position);
+                break;
+            case 4:
+                spawmpoint = SpawnPoint4;
+                agent.Warp(spawmpoint.position);
+                break;
+        }
         oldSpeed = agent.speed;
         playerCam = Camera.main;
         rend = GetComponent<Renderer>();
