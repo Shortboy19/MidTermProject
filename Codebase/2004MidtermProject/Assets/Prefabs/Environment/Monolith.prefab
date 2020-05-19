@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1991876335904467701}
   m_LocalRotation: {x: -0.61237246, y: 0.35355335, z: 0.61237246, w: 0.35355335}
-  m_LocalPosition: {x: 1, y: -0.58, z: 0}
+  m_LocalPosition: {x: 1, y: -0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7601403310338777613}
@@ -80,7 +80,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8192
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -117,7 +117,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2965594879730791693}
   m_LocalRotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: -0.58, z: -1}
+  m_LocalPosition: {x: 0, y: -0.6, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7601403310338777613}
@@ -172,7 +172,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8192
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 7601403310338777610}
   - component: {fileID: 7601403310338777611}
   - component: {fileID: 7601403310338777608}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Monolith
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8251384476858652146}
   m_LocalRotation: {x: 0, y: 0.8660254, z: 0.5, w: 0}
-  m_LocalPosition: {x: 0, y: -0.58, z: 1}
+  m_LocalPosition: {x: 0, y: -0.6, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7601403310338777613}
@@ -454,7 +454,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8192
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -491,7 +491,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8604382050453412944}
   m_LocalRotation: {x: -0.3535534, y: 0.61237246, z: 0.3535534, w: 0.61237246}
-  m_LocalPosition: {x: -1, y: -0.58, z: 0}
+  m_LocalPosition: {x: -1, y: -0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7601403310338777613}
@@ -546,7 +546,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8192
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
