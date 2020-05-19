@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
@@ -36,7 +35,10 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         if (GameState.gameWon)
+        {
+            agent.speed = 0;
             return;
+        }
 
         if (player != null && !stunned)
         {
@@ -112,6 +114,4 @@ public class Enemy : MonoBehaviour
         if (speed >= 2)
             GameState.ShowDeathMenu();
     }
-
-
 }
