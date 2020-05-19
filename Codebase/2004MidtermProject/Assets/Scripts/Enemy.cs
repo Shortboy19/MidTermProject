@@ -57,6 +57,8 @@ public class Enemy : MonoBehaviour
 
         if (kill)
             KillPlayerAnim();
+   
+
     }
 
     private void LateUpdate()
@@ -117,7 +119,7 @@ public class Enemy : MonoBehaviour
     {
         Quaternion targetRot = Quaternion.LookRotation(eyes.position - playerCam.transform.position);
         playerCam.transform.rotation = Quaternion.Lerp(playerCam.transform.rotation, targetRot, Time.deltaTime * speed);
-        speed += 0.025f;
+        speed += 0.025f; 
 
         if (speed >= 2)
             GameState.ShowDeathMenu();
