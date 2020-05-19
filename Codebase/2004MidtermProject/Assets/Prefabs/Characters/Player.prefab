@@ -255,7 +255,9 @@ MonoBehaviour:
   batteryChargeAmount: 2
   minimap: {fileID: 0}
   flashlight: {fileID: 7596025566471299199}
+  objective: {fileID: 0}
   enemy: {fileID: 0}
+  enemyComp: {fileID: 0}
   frozen: 0
   walkingBobbingSpeed: 14
   bobbingAmount: 0.05
@@ -323,7 +325,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 5175
+    m_Bits: 13367
   m_RenderingPath: 1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
