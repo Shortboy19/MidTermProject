@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
                     if (hit.collider.gameObject == enemy.gameObject)
                     {
                         enemySeen = true;
-                        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.effects[0], transform.position, 0.25f);
+                        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.effects[0], transform.position, 0.4f);
                         SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.effects[2], transform.position);
                     }
                 }
