@@ -69,7 +69,20 @@ public class SoundManager : MonoBehaviour
     {
         RainSound.clip = Rain;
         RainSound.loop = true;
+        RainSound.volume = 0;
         RainSound.Play();
+        StartCoroutine(LerpRainVolume());
         NightSound.Play();
+    }
+
+    float volMod = 0;
+    IEnumerator LerpRainVolume()
+    {
+        while(volMod < 1)
+        {
+            RainSound.volume = Mathf.Lerp(0, 0.15f, volMod);
+            yield return new WaitForEndOfFrame();
+            volMod += 0.01f;
+        }
     }
 }

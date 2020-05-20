@@ -65,11 +65,13 @@ public class SceneNavigator : MonoBehaviour
     {
         GameState.ResetState();
         SceneManager.LoadScene("Main Menu");
+        GameState.gamePaused = false;
     }
     public void LoadMainMenuWithFade()
     {
         GameState.ResetState();
         StartCoroutine(FadeOutScene("Main Menu"));
+        GameState.gamePaused = false;
     }
 
     public void Quit()
@@ -91,6 +93,8 @@ public class SceneNavigator : MonoBehaviour
             fadeImg.color = new Color(0f, 0f, 0f, 255);
             StartCoroutine(FadeIn());
         }
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     IEnumerator FadeIn()
