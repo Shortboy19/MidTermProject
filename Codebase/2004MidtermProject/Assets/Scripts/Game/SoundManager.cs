@@ -7,6 +7,8 @@ public class SoundManager : MonoBehaviour
     //audio players component.
     [SerializeField] AudioSource EffectSound;
     [SerializeField] AudioSource MusicSound;
+    [SerializeField] AudioSource RainSound;
+
     public AudioClip[] ThunderClap;
     public AudioClip[] PlayerWalking;
     public AudioClip PlayerRunning;
@@ -60,5 +62,12 @@ public class SoundManager : MonoBehaviour
     {
         MusicSound.clip = song;
         MusicSound.Play(); 
+    }
+
+    public void StartRain()
+    {
+        RainSound.clip = Rain;
+        RainSound.loop = true;
+        RainSound.Play();
     }
 }

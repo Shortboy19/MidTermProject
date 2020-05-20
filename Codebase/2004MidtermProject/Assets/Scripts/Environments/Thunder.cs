@@ -17,7 +17,7 @@ public class Thunder : MonoBehaviour
 
         InvokeRepeating("PlayThunderEffect", 8 , Random.Range(10, 31));
 
-        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Rain, transform.position); 
+        SoundManager.Instance.StartRain();
     }
 
     void PlayThunderEffect()
@@ -45,7 +45,7 @@ public class Thunder : MonoBehaviour
 
         yield return new WaitForSeconds(0.05f); 
 
-         num = Random.Range(0.1f, 0.16f);
+        num = Random.Range(0.1f, 0.16f);
 
         for (int j = 0; j < lights.Length; j++)
         {
