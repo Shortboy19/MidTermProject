@@ -3725,6 +3725,7 @@ GameObject:
   - component: {fileID: 8278199206968495791}
   - component: {fileID: 4155319595258387108}
   - component: {fileID: 5676298070652921749}
+  - component: {fileID: 8278199206968495789}
   m_Layer: 0
   m_Name: Enemy (1)
   m_TagString: Enemy
@@ -3732,6 +3733,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8278199206968495789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8278199206968495788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d87625aaded6144aea99a536df94f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eyes:
+  - {fileID: 809298732946732522}
+  - {fileID: 6670383009105612997}
 --- !u!195 &8278199206968495790
 NavMeshAgent:
   m_ObjectHideFlags: 0
