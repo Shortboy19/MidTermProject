@@ -101,7 +101,6 @@ public class PlayerController : MonoBehaviour
         enemyComp = enemy.GetComponent<Enemy>();
         defaultPosY = cam.transform.localPosition.y;
         frozen = false;
-
     }
 
     
@@ -146,7 +145,6 @@ public class PlayerController : MonoBehaviour
                     if (hit.collider.gameObject == enemy.gameObject)
                     {
                         enemySeen = true;
-                        enemyComp.anim.SetTrigger("Scare");
                         SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.effects[0], transform.position);
                         SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.effects[2], transform.position);
                     }
@@ -230,7 +228,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(10);
         enemySeen = false;
-        enemyComp.anim.ResetTrigger("Scare");
+        //enemyComp.anim.ResetTrigger("Scare");
         sightDelay = null;
     }
 
@@ -279,7 +277,7 @@ public class PlayerController : MonoBehaviour
                         slideDirection = transform.TransformDirection(slideDirection);
                         slideDirection *= slideDistance / slideDuration;
                         currStamina -= slideStaminaCost;
-                        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.PlayerSliding, transform.position); 
+                        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.PlayerSliding, transform.position, 2); 
                     }
                 }
             }
