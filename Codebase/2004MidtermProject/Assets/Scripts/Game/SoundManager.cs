@@ -8,7 +8,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource EffectSound;
     [SerializeField] AudioSource MusicSound;
     public AudioClip[] ThunderClap;
-    public AudioClip PlayerWalking;
+    public AudioClip[] PlayerWalking;
     public AudioClip PlayerRunning;
     public AudioClip Rain;
     public AudioClip MetalGate;
@@ -43,10 +43,16 @@ public class SoundManager : MonoBehaviour
         AudioSource.PlayClipAtPoint(sound, point, volume);
     }
 
-    public void PlayEffect(AudioClip clip)
+    public void PlayGlobalEffect(AudioClip clip)
     {
         EffectSound.clip = clip;
         EffectSound.Play();
+    }
+
+    public void PlayEffect(AudioSource source, AudioClip clip)
+    {
+        source.clip = clip;
+        source.Play();
     }
 
     //Play a single Clip through the music source.

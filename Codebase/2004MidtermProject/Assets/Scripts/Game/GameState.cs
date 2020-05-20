@@ -57,6 +57,7 @@ public class GameState : MonoBehaviour
 
     public static void ShowDeathMenu()
     {
+        //SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt);
         gamePaused = true;
         Instance.deathMenu.SetActive(true);
     }

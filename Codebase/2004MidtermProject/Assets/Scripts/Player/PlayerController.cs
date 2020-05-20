@@ -93,12 +93,15 @@ public class PlayerController : MonoBehaviour
         cc = GetComponent<CharacterController>();
         objective = FindObjectOfType<ObjectiveTracker>();
         cam = GetComponentInChildren<Camera>();
+        moveSound = GetComponent<AudioSource>();
+
         currStamina = maxStamina;
         currBattery = maxBattery;
         enemy = GameObject.FindGameObjectWithTag("Enemy");
         enemyComp = enemy.GetComponent<Enemy>();
         defaultPosY = cam.transform.localPosition.y;
         frozen = false;
+
     }
 
     
@@ -169,18 +172,17 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
-                flashlight.SetActive(true);
                 currBattery -= flashlightBatteryCost * Time.deltaTime;
-                SoundManager.Instance.PlayEffect(SoundManager.Instance.FlashLightClick); 
+                FlashLight(true);
             }
             else
             {
-                flashlight.SetActive(false);
+                FlashLight(false);
             }
         }
         else
         {
-            flashlight.SetActive(false);
+            FlashLight(false);
         }
 
         //sliding
@@ -200,6 +202,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    bool flashlightOn = false;
+    void FlashLight(bool val)
+    {
+        if(val == true)
+        {
+            if (flashlightOn)
+                return;
+
+            flashlight.SetActive(true);
+            flashlightOn = true;
+            SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.FlashLightClick, transform.position);
+        }
+        else
+        {
+            if (!flashlightOn)
+                return;
+            flashlightOn = false;
+            flashlight.SetActive(false);
+            SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.FlashLightClick, transform.position);
+        }
+    }
+
     IEnumerator sightDelay;
 
     IEnumerator DelayedSightRefresh()
@@ -210,6 +234,8 @@ public class PlayerController : MonoBehaviour
         sightDelay = null;
     }
 
+    AudioSource moveSound;
+
     void Movement()
     {
         if (cc.isGrounded)
@@ -218,20 +244,16 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetButton("Sprint"))
                 {
-                    if(!isSprinting)
+                    if (currStamina > sprintSpeedModifier)
                     {
-                        if (currStamina > sprintSpeedModifier)
-                        {
-                            isSprinting = true;
-                            currStamina -= sprintStaminaCost * Time.deltaTime;
-                            SoundManager.Instance.PlayEffect(SoundManager.Instance.PlayerRunning); 
-                        }
-                        else { isSprinting = false; }
+                        isSprinting = true;
+                        currStamina -= sprintStaminaCost * Time.deltaTime;
                     }
+                    else { isSprinting = false;}
                 }
-                else { isSprinting = false; }
+                else { isSprinting = false;}
             }
-            else { isSprinting = false; }
+            else { isSprinting = false; moveSound.clip = null; }
 
             moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
@@ -257,7 +279,7 @@ public class PlayerController : MonoBehaviour
                         slideDirection = transform.TransformDirection(slideDirection);
                         slideDirection *= slideDistance / slideDuration;
                         currStamina -= slideStaminaCost;
-                        SoundManager.Instance.PlayEffect(SoundManager.Instance.PlayerSliding); 
+                        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.PlayerSliding, transform.position); 
                     }
                 }
             }
@@ -268,6 +290,40 @@ public class PlayerController : MonoBehaviour
         if (isSliding) { slideDirection.y -= gravity * 2 * Time.deltaTime; }
 
         cc.Move((isSliding ? slideDirection : moveDirection) * Time.deltaTime);
+
+        if(!moveSoundPlaying)
+        {
+            StartCoroutine(PlayMoveSound());
+        }
+    }
+
+    AudioClip RandomFootstep()
+    {
+        int i = Random.Range(0, SoundManager.Instance.PlayerWalking.Length);
+        return SoundManager.Instance.PlayerWalking[i];
+    }
+
+    bool moveSoundPlaying = false;
+    IEnumerator PlayMoveSound()
+    {
+        if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
+            moveSound.clip = RandomFootstep();
+        else
+            moveSound = null;
+
+        moveSoundPlaying = true;
+        float delay = isSprinting ? 0.3225f : 0.3805f;
+
+        if(moveSound == null)
+        {
+            moveSound = GetComponent<AudioSource>();
+        }
+
+        if(cc.isGrounded && !isSliding)
+            moveSound.Play();
+
+        yield return new WaitForSeconds(delay);
+        moveSoundPlaying = false;
     }
 
     Vector3 rotClamp = Vector3.zero;

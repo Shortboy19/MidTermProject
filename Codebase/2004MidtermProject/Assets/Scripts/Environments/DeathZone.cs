@@ -9,7 +9,7 @@ public class DeathZone : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            SoundManager.Instance.PlayEffect(SoundManager.Instance.PlayerHurt); 
+            SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt); 
             GameState.ShowDeathMenu();
         }
     }
