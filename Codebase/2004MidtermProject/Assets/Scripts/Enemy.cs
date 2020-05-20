@@ -80,12 +80,15 @@ public class Enemy : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Player"))
         {
+            anim.SetBool("Stunned", true);
             kill = true;
             agent.speed = 0;
+            stunned = true;
             PlayerController.Player.frozen = true;
-            //Quaternion targetRot = Quaternion.LookRotation(playerCam.transform.position - transform.position);
-            //targetRot.x = targetRot.x = 0;
-            //transform.rotation = targetRot;
+            SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt);
+            Quaternion targetRot = Quaternion.LookRotation(playerCam.transform.position - transform.position);
+            targetRot.x = targetRot.x = 0;
+            transform.rotation = targetRot;
         }
     }
 

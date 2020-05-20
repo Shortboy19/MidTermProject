@@ -319,7 +319,9 @@ public class PlayerController : MonoBehaviour
             moveSound = GetComponent<AudioSource>();
         }
 
-        moveSound.Play();
+        if(cc.isGrounded && !isSliding)
+            moveSound.Play();
+
         yield return new WaitForSeconds(delay);
         moveSoundPlaying = false;
     }
