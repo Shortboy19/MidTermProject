@@ -42,7 +42,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -169,7 +169,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -301,6 +301,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EffectSound: {fileID: 7879438273053917199}
   MusicSound: {fileID: 2002259562854365693}
+  ThunderClap:
+  - {fileID: 8300000, guid: be6ee4d04c274b54587a200bab5f0b71, type: 3}
+  - {fileID: 8300000, guid: 2c97f650d26e6964f941c5d8193cf258, type: 3}
+  - {fileID: 8300000, guid: e6144f941a01c1f4b8708dbd0fac54d9, type: 3}
+  PlayerWalking:
+  - {fileID: 8300000, guid: b338a8ff95636c748ad45c528c405ffc, type: 3}
+  - {fileID: 8300000, guid: 4a26a545b9231584ca0eebf104376816, type: 3}
+  - {fileID: 8300000, guid: 9279ec8312421b242a5fd627931e2daa, type: 3}
+  - {fileID: 8300000, guid: acadb9977a6fabb4da97fdc3ddca8b6b, type: 3}
+  - {fileID: 8300000, guid: 06ab7f306bf57664fabe649b2d9f9ae6, type: 3}
+  - {fileID: 8300000, guid: a5ce982bf42bafc4bb7d73a04686f6b5, type: 3}
+  - {fileID: 8300000, guid: 760b88d404e45de4cb64d3e7abfeb2b8, type: 3}
+  - {fileID: 8300000, guid: 8f251ca43727ae640a2140ba05a89dd5, type: 3}
+  PlayerRunning: {fileID: 8300000, guid: d0bf854d7d93a944893fcf7d13f5cca5, type: 3}
+  Rain: {fileID: 8300000, guid: f01bb12fea8aca446a2183d18c2cf3f5, type: 3}
+  MetalGate: {fileID: 8300000, guid: 4e31ad1633de53d46bea36a4a29d804a, type: 3}
+  GhostPassThroughWalls: {fileID: 8300000, guid: 2fb77fc99bbe68543a6809af1f87d199,
+    type: 3}
+  GhostBreath: {fileID: 8300000, guid: 877ffe84c0a9c8b4b9f7b2031b326386, type: 3}
+  FlashLightClick: {fileID: 8300000, guid: 556fd49dc01df324aa9a91660197a257, type: 3}
+  MetalGateClose: {fileID: 8300000, guid: 92747990a92937547be46a5562f39147, type: 3}
+  GhostFade: {fileID: 8300000, guid: 2544b6b9538044f448c4fe3d1f38d1ea, type: 3}
+  PlayerSliding: {fileID: 8300000, guid: fe0440fcf0a41894b9be34e64973d855, type: 3}
+  TrapButton: {fileID: 8300000, guid: 16e7ca1653f7e91488d9e1af662c0f50, type: 3}
+  PlayerHurt: {fileID: 8300000, guid: 946d8600645dcbd4b80e9b96f077458e, type: 3}
   effects:
   - {fileID: 8300000, guid: 5b8d898c415e4b74f91bc6981f22f8f5, type: 3}
   - {fileID: 8300000, guid: 351501cacc90923438c7b5c2042663b9, type: 3}
