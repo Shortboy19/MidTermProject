@@ -75,10 +75,10 @@ public class Enemy : MonoBehaviour
     float stunDuration = 4;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("FlashLight"))
+        if(other.gameObject.CompareTag("HalfWall"))
         {
-            if(PlayerController.enemySeen)
-                Stun(stunDuration);
+            if( Vector3.Distance(transform.position, player.transform.position) < 10)
+                SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.GhostPassThroughWalls);
         }
         if (other.gameObject.CompareTag("Player"))
         {
@@ -94,6 +94,22 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("FlashLight"))
+        {
+            if (PlayerController.enemySeen)
+            {
+                if (StunRoutine == null)
+                {
+                    StunRoutine = StunEnemy(stunDuration);
+                    StartCoroutine(StunRoutine);
+                }
+            }
+        }
+    }
+
+    IEnumerator StunRoutine;
     IEnumerator StunEnemy(float waitTime)
     {
         anim.SetBool("Stunned", true);
@@ -114,6 +130,7 @@ public class Enemy : MonoBehaviour
         }
         anim.SetBool("Stunned", false);
         stunDuration -= 0.5f;
+        StunRoutine = null;
     }
 
     bool kill = false;

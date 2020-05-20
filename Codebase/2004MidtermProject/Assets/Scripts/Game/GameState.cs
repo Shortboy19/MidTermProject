@@ -53,6 +53,17 @@ public class GameState : MonoBehaviour
         {
             TogglePause();
         }
+
+        if (!gamePaused)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     public static void ShowDeathMenu()

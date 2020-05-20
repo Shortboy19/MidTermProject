@@ -12,6 +12,7 @@ TagManager:
   - Battery
   - Entrance
   - Trap
+  - HalfWall
   layers:
   - Default
   - TransparentFX

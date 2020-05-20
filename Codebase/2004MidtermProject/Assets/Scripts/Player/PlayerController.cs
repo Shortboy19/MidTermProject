@@ -103,6 +103,11 @@ public class PlayerController : MonoBehaviour
         frozen = false;
     }
 
+    IEnumerator AlertMonster()
+    {
+        yield return new WaitForSeconds(3);
+        SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.GhostBreath);
+    }
     
     void Update()
     {
@@ -145,7 +150,7 @@ public class PlayerController : MonoBehaviour
                     if (hit.collider.gameObject == enemy.gameObject)
                     {
                         enemySeen = true;
-                        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.effects[0], transform.position);
+                        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.effects[0], transform.position, 0.25f);
                         SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.effects[2], transform.position);
                     }
                 }
@@ -402,6 +407,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Entrance"))
         {
             GameState.Instance.timer.isCounting = true;
+            StartCoroutine(AlertMonster());
         }
     }
 

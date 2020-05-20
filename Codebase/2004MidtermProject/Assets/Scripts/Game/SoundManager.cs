@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource EffectSound;
     [SerializeField] AudioSource MusicSound;
     [SerializeField] AudioSource RainSound;
+    [SerializeField] AudioSource NightSound;
 
     public AudioClip[] ThunderClap;
     public AudioClip[] PlayerWalking;
@@ -69,5 +70,6 @@ public class SoundManager : MonoBehaviour
         RainSound.clip = Rain;
         RainSound.loop = true;
         RainSound.Play();
+        NightSound.Play();
     }
 }
