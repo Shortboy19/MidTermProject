@@ -36,12 +36,14 @@ public class GameState : MonoBehaviour
 
     public void Pause()
     {
+        SoundManager.Instance.StopAllSounds();
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
         gamePaused = true;
     }
     public void Unpause()
     {
+        SoundManager.Instance.ResumeAllSounds();
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
         gamePaused = false;
@@ -86,5 +88,6 @@ public class GameState : MonoBehaviour
     {
         gamePaused = false;
         Time.timeScale = 1;
+        SoundManager.Instance.ResumeAllSounds();
     }
 }

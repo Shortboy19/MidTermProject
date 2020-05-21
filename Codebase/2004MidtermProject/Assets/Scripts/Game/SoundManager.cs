@@ -9,6 +9,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource MusicSound;
     [SerializeField] AudioSource RainSound;
     [SerializeField] AudioSource NightSound;
+    [SerializeField] AudioSource ThunderSound;
 
     public AudioClip[] ThunderClap;
     public AudioClip[] PlayerWalking;
@@ -48,6 +49,14 @@ public class SoundManager : MonoBehaviour
 
     public void PlayGlobalEffect(AudioClip clip)
     {
+        EffectSound.volume = 1;
+        EffectSound.clip = clip;
+        EffectSound.Play();
+    }
+
+    public void PlayGlobalEffect(AudioClip clip, float volume)
+    {
+        EffectSound.volume = volume;
         EffectSound.clip = clip;
         EffectSound.Play();
     }
@@ -67,6 +76,9 @@ public class SoundManager : MonoBehaviour
 
     public void StartRain()
     {
+        if (RainSound.isPlaying)
+            return;
+        
         RainSound.clip = Rain;
         RainSound.loop = true;
         RainSound.volume = 0;
@@ -85,4 +97,47 @@ public class SoundManager : MonoBehaviour
             volMod += 0.01f;
         }
     }
+
+    public void PlayThunderEffect(AudioClip clip, float volume)
+    {
+        ThunderSound.volume = volume;
+        ThunderSound.clip = clip;
+        ThunderSound.Play();
+    }
+
+    float EffectSoundVol;
+    float MusicSoundVol;
+    float RainSoundVol;
+    float NightSoundVol;
+    float ThunderSoundVol;
+
+    public void StopAllSounds()
+    {
+        GetSoundVolumes();
+
+        EffectSound.volume = 0;
+        MusicSound.volume = 0;
+        RainSound.volume = 0;
+        NightSound.volume = 0;
+        ThunderSound.volume = 0;
+    }
+
+    public void ResumeAllSounds()
+    {
+        EffectSound.volume = EffectSoundVol;
+        MusicSound.volume = MusicSoundVol;
+        RainSound.volume = RainSoundVol;
+        NightSound.volume = NightSoundVol;
+        ThunderSound.volume = ThunderSoundVol;
+    }
+
+    void GetSoundVolumes()
+    {
+        EffectSoundVol = EffectSound.volume;
+        MusicSoundVol = MusicSound.volume;
+        RainSoundVol = RainSound.volume;
+        NightSoundVol = NightSound.volume;
+        ThunderSoundVol = ThunderSound.volume;
+    }
+
 }

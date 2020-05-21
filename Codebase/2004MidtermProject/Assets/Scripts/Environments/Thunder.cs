@@ -15,21 +15,20 @@ public class Thunder : MonoBehaviour
             lights[j].gameObject.SetActive(false);
         }
 
-        InvokeRepeating("PlayThunderEffect", 8 , Random.Range(10, 31));
-
         SoundManager.Instance.StartRain();
+        InvokeRepeating("PlayThunderEffect", 3 , Random.Range(20, 61));
     }
 
     void PlayThunderEffect()
     {
         int i = Random.Range(0, SoundManager.Instance.ThunderClap.Length);
-        SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.ThunderClap[i]);
+        SoundManager.Instance.PlayThunderEffect(SoundManager.Instance.ThunderClap[i], 0.9f);
         StartCoroutine(LightFlicker()); 
     }
 
     IEnumerator LightFlicker()
     {
-        float num = Random.Range(0.1f, 0.16f); 
+        float num = Random.Range(0.1f, 0.16f);
 
         for (int j = 0; j < lights.Length; j++)
         {

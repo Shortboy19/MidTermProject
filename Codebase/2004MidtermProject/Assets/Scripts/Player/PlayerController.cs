@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
     #region Private Variables
     Camera cam;//the players camera
-    float gravity = 9.8f;
+    float gravity = 20;
     Vector3 moveDirection = Vector3.zero;
     Vector3 slideDirection = Vector3.zero;
     int KeyCount = 0;
@@ -290,7 +290,7 @@ public class PlayerController : MonoBehaviour
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
-        if (isSliding) { slideDirection.y -= gravity * 2 * Time.deltaTime; }
+        if (isSliding) { slideDirection.y -= gravity * Time.deltaTime; }
 
         cc.Move((isSliding ? slideDirection : moveDirection) * Time.deltaTime);
 
@@ -352,7 +352,7 @@ public class PlayerController : MonoBehaviour
     {
         if (currStamina > jumpStaminaCost)
         {
-            moveDirection.y = jumpHeight;
+            moveDirection.y = jumpHeight * 2;
             currStamina -= jumpStaminaCost;
         }
     }
