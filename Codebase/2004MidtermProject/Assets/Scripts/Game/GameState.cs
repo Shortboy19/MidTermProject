@@ -90,4 +90,16 @@ public class GameState : MonoBehaviour
         Time.timeScale = 1;
         SoundManager.Instance.ResumeAllSounds();
     }
+
+    public GameObject optionsMenu;
+
+    public void ShowOptions()
+    {
+        optionsMenu.SetActive(true);
+    }
+
+    public void HideOptions()
+    {
+        optionsMenu.SetActive(false);
+    }
 }

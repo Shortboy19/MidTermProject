@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public static float MusicVolume = 1;
+    public static float EffectsVolume = 1;
+    public static float AmbientVolume = 1;
+
     //audio players component.
     [SerializeField] AudioSource EffectSound;
     [SerializeField] AudioSource MusicSound;
@@ -40,29 +44,30 @@ public class SoundManager : MonoBehaviour
     //Play a single Clip through the sound effects source.
     public void PlayEffectAtPoint(AudioClip sound, Vector3 point)
     {
-        AudioSource.PlayClipAtPoint(sound, point);
+        AudioSource.PlayClipAtPoint(sound, point, 1 * EffectsVolume);
     }
     public void PlayEffectAtPoint(AudioClip sound, Vector3 point, float volume)
     {
-        AudioSource.PlayClipAtPoint(sound, point, volume);
+        AudioSource.PlayClipAtPoint(sound, point, volume * EffectsVolume);
     }
 
     public void PlayGlobalEffect(AudioClip clip)
     {
-        EffectSound.volume = 1;
+        EffectSound.volume = 1 * EffectsVolume;
         EffectSound.clip = clip;
         EffectSound.Play();
     }
 
     public void PlayGlobalEffect(AudioClip clip, float volume)
     {
-        EffectSound.volume = volume;
+        EffectSound.volume = volume * EffectsVolume;
         EffectSound.clip = clip;
         EffectSound.Play();
     }
 
     public void PlayEffect(AudioSource source, AudioClip clip)
     {
+        source.volume = 1 * EffectsVolume;
         source.clip = clip;
         source.Play();
     }
@@ -70,6 +75,7 @@ public class SoundManager : MonoBehaviour
     //Play a single Clip through the music source.
     public void PlayMusic(AudioClip song)
     {
+        MusicSound.volume = 1 * MusicVolume;
         MusicSound.clip = song;
         MusicSound.Play(); 
     }
@@ -92,7 +98,7 @@ public class SoundManager : MonoBehaviour
     {
         while(volMod < 1)
         {
-            RainSound.volume = Mathf.Lerp(0, 0.15f, volMod);
+            RainSound.volume = Mathf.Lerp(0, 0.15f * AmbientVolume, volMod);
             yield return new WaitForEndOfFrame();
             volMod += 0.01f;
         }
@@ -100,7 +106,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayThunderEffect(AudioClip clip, float volume)
     {
-        ThunderSound.volume = volume;
+        ThunderSound.volume = volume * AmbientVolume;
         ThunderSound.clip = clip;
         ThunderSound.Play();
     }
@@ -140,4 +146,16 @@ public class SoundManager : MonoBehaviour
         ThunderSoundVol = ThunderSound.volume;
     }
 
+    public void UpdateMusicSoundVolume()
+    {
+        MusicSound.volume = 1 * MusicVolume;
+        MusicSoundVol = 1 * MusicVolume;
+    }
+
+    public void UpdateAmbientSoundVolume()
+    {
+        RainSoundVol = 0.15f * AmbientVolume;
+        NightSoundVol = 0.15f * AmbientVolume;
+
+    }
 }
