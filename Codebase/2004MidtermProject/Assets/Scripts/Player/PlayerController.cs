@@ -394,7 +394,7 @@ public class PlayerController : MonoBehaviour
             objective.DisplayNewObjective("Get to the exit");
             minimap.ShowExit();
         }
-        if (other.gameObject.tag == "Exit" && KeyCount > 0)
+        if (other.gameObject.CompareTag("Exit") && KeyCount > 0)
         {
             Destroy(other.gameObject);
             GameState.ShowWinMenu();
