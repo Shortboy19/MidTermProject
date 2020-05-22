@@ -19,8 +19,11 @@ public class Monolith : MonoBehaviour
 
     private void Update()
     {
-        if (playerCanActivate && Input.GetButtonDown("Interact"))
-            Activate();
+        if (Input.GetButtonDown("Interact"))
+        {
+            if (playerCanActivate)
+                Activate();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -57,7 +60,7 @@ public class Monolith : MonoBehaviour
         }
         SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.MonolithActivate);
         Enemy enemy = FindObjectOfType<Enemy>();
-        enemy.oldSpeed = 5.5f;
         enemy.agent.speed = 5.5f;
+        enemy.oldSpeed = 5.5f;
     }
 }

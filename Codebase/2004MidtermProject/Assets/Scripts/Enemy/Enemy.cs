@@ -46,12 +46,8 @@ public class Enemy : MonoBehaviour
     {
         if (GameState.gamePaused)
         {
-            agent.speed = 0;
+            agent.SetDestination(transform.position);
             return;
-        }
-        else
-        {
-            agent.speed = oldSpeed;
         }
 
         if (player != null && !stunned)
@@ -116,15 +112,16 @@ public class Enemy : MonoBehaviour
     IEnumerator StunRoutine;
     IEnumerator StunEnemy(float waitTime)
     {
+        agent.speed = 0;
         anim.SetBool("Stunned", true);
         rend.material.color = Color.blue;
         for (int i = 0; i < eyelights.Length; i++)
         {
             eyelights[i].color = Color.white;
         }
-        agent.speed = 0;
         GetComponent<Collider>().enabled = false;
         yield return new WaitForSeconds(waitTime);
+
         agent.speed = oldSpeed;
         GetComponent<Collider>().enabled = true;
         rend.material.color = Color.white;

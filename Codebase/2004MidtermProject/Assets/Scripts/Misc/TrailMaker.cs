@@ -13,19 +13,15 @@ public class TrailMaker : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.Warp(waypoints[0].position);
+        StartCoroutine(DrawPath());
     }
 
-    int i = 0;
-    private void FixedUpdate()
+    IEnumerator DrawPath()
     {
-        if (i == waypoints.Length - 1)
-            return;
-
-        if( Vector3.Distance(waypoints[i].position, transform.position) < 0.05f)
+        for (int i  = 0; i < waypoints.Length; i++)
         {
-            i++;
             agent.Warp(waypoints[i].position);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 }
