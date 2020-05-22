@@ -88,7 +88,6 @@ public class GameState : MonoBehaviour
     {
         gamePaused = false;
         Time.timeScale = 1;
-        SoundManager.Instance.ResumeAllSounds();
     }
 
     public GameObject optionsMenu;
