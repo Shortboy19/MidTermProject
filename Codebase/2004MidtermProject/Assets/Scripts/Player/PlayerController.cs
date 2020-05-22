@@ -352,6 +352,10 @@ public class PlayerController : MonoBehaviour
     {
         if (currStamina > jumpStaminaCost)
         {
+            if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
+            {
+                moveDirection += 0.75f * transform.forward;
+            }
             moveDirection.y = jumpHeight * 2;
             currStamina -= jumpStaminaCost;
         }
