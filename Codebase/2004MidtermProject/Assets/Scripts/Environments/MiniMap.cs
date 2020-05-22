@@ -14,11 +14,11 @@ public class MiniMap : MonoBehaviour
 
     public void ShowKey()
     {
-        cam.cullingMask = (1 << LayerMask.NameToLayer("Player")) | (1 << LayerMask.NameToLayer("Key") | (0 << LayerMask.NameToLayer("Exit")));
+        cam.cullingMask = (1 << LayerMask.NameToLayer("Player")) | (1 << LayerMask.NameToLayer("Key") | (0 << LayerMask.NameToLayer("Exit")) | (1 << LayerMask.NameToLayer("Trail")));
     }
 
     public void ShowExit()
     {
-        cam.cullingMask = (1 << LayerMask.NameToLayer("Player")) | (0 << LayerMask.NameToLayer("Key") | (1 << LayerMask.NameToLayer("Exit")));
+        cam.cullingMask = (1 << LayerMask.NameToLayer("Player")) | (0 << LayerMask.NameToLayer("Key") | (1 << LayerMask.NameToLayer("Exit")) | (1 << LayerMask.NameToLayer("Trail")));
     }
 }

@@ -17,10 +17,10 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The mouse sensitivity for looking around. (Defaults to 100)")]
     [Range(1, 200)]
     public float LookSenstivity = 100f;
-    [Tooltip("The speed at which the player moves. (Defaults to 2.5)")]
+    [Tooltip("The speed at which the player moves. (Defaults to 3.5)")]
     [Range(0,10)]
     [Space(10)]
-    public float walkSpeed = 2.5f;
+    public float walkSpeed = 3.5f;
     [Tooltip("The multiplier to the players speed while sprinting. (Defaults to 2)")]
     [Range(0, 10)]
     public float sprintSpeedModifier = 2f;
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
     float gravity = 20;
     Vector3 moveDirection = Vector3.zero;
     Vector3 slideDirection = Vector3.zero;
-    int KeyCount = 0;
+    public bool hasKey = false;
 
     bool isSprinting = false;
     bool isSliding = false;
@@ -248,7 +248,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetButton("Sprint"))
                 {
-                    if (currStamina > sprintSpeedModifier)
+                    if (currStamina > 0)
                     {
                         isSprinting = true;
                         currStamina -= sprintStaminaCost * Time.deltaTime;
@@ -272,7 +272,7 @@ public class PlayerController : MonoBehaviour
             {
                 if(!isSliding)
                 {
-                    if (currStamina > slideStaminaCost)
+                    if (currStamina > 0)
                     {
 
                         isSliding = true;
@@ -351,7 +351,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (currStamina > jumpStaminaCost)
+        if (currStamina > 0)
         {
             if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
             {
@@ -390,11 +390,11 @@ public class PlayerController : MonoBehaviour
         {
             SoundManager.Instance.PlayEffectAtPoint(other.GetComponent<AudioSource>().clip, transform.position, 0.25f);
             Destroy(other.gameObject);
-            KeyCount++;
+            hasKey = true;
             objective.DisplayNewObjective("Get to the exit");
             minimap.ShowExit();
         }
-        if (other.gameObject.CompareTag("Exit") && KeyCount > 0)
+        if (other.gameObject.CompareTag("Exit") && hasKey)
         {
             Destroy(other.gameObject);
             GameState.ShowWinMenu();

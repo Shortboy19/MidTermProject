@@ -188,6 +188,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
+        type: 3}
+      propertyPath: MonolithActivate
+      value: 
+      objectReference: {fileID: 8300000, guid: 2795324746784084996800714c0c9a5a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ce8838aa0ddbc94cb44657c92360764, type: 3}
 --- !u!4 &1122038648 stripped

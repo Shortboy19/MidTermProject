@@ -6,13 +6,15 @@ using UnityEngine;
 public class Monolith : MonoBehaviour
 {
     [SerializeField] GameObject textObj;
+    [SerializeField] GameObject trailMaker;
+    Light[] lights;
 
-    bool activated = false;
     bool playerCanActivate = false;
 
     void Start()
     {
         textObj.SetActive(false);
+        lights = GetComponentsInChildren<Light>();
     }
 
     private void Update()
@@ -25,7 +27,7 @@ public class Monolith : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if(PlayerController.Player.hasShard)
+            if(PlayerController.Player.hasShard && PlayerController.Player.hasKey)
             {
                 textObj.SetActive(true);
                 playerCanActivate = true;
@@ -48,5 +50,14 @@ public class Monolith : MonoBehaviour
         PlayerController.Player.hasShard = false;
 
         //put trail activation here
+        trailMaker.SetActive(true);
+        for(int i = 0; i < lights.Length; i++)
+        {
+            lights[i].color = Color.red;
+        }
+        SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.MonolithActivate);
+        Enemy enemy = FindObjectOfType<Enemy>();
+        enemy.oldSpeed = 5.5f;
+        enemy.agent.speed = 5.5f;
     }
 }

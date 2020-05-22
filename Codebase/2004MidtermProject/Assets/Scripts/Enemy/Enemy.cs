@@ -49,6 +49,10 @@ public class Enemy : MonoBehaviour
             agent.speed = 0;
             return;
         }
+        else
+        {
+            agent.speed = oldSpeed;
+        }
 
         if (player != null && !stunned)
         {
