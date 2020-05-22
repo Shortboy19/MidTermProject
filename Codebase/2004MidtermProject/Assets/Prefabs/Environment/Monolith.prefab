@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 7601403310338777610}
   - component: {fileID: 7601403310338777611}
   - component: {fileID: 7601403310338777608}
+  - component: {fileID: 1461203167}
   m_Layer: 13
   m_Name: Monolith
   m_TagString: Untagged
@@ -374,6 +375,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1461203167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7601403310338777609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62b51a8244649ee4f9e6acb376b49788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textObj: {fileID: 0}
 --- !u!1 &8251384476858652146
 GameObject:
   m_ObjectHideFlags: 0

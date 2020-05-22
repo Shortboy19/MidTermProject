@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameState.gameWon)
+        if (GameState.gamePaused)
         {
             agent.speed = 0;
             return;

@@ -30,6 +30,7 @@ public class Thunder : MonoBehaviour
     {
         float num = Random.Range(0.1f, 0.16f);
 
+        Camera.main.cullingMask ^= 1 << LayerMask.NameToLayer("FakeMonsterScare");
         for (int j = 0; j < lights.Length; j++)
         {
             lights[j].gameObject.SetActive(true);
@@ -37,6 +38,7 @@ public class Thunder : MonoBehaviour
 
         yield return new WaitForSeconds(num);
 
+        Camera.main.cullingMask ^= 1 << LayerMask.NameToLayer("FakeMonsterScare");
         for (int j = 0; j < lights.Length; j++)
         {
             lights[j].gameObject.SetActive(false);
@@ -46,13 +48,14 @@ public class Thunder : MonoBehaviour
 
         num = Random.Range(0.1f, 0.16f);
 
+        Camera.main.cullingMask ^= 1 << LayerMask.NameToLayer("FakeMonsterScare");
         for (int j = 0; j < lights.Length; j++)
         {
             lights[j].gameObject.SetActive(true);
         }
 
         yield return new WaitForSeconds(num);
-
+        Camera.main.cullingMask ^= 1 << LayerMask.NameToLayer("FakeMonsterScare");
         for (int j = 0; j < lights.Length; j++)
         {
             lights[j].gameObject.SetActive(false);

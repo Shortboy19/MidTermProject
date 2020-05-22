@@ -1,66 +1,52 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Monolith : MonoBehaviour
 {
-    float delay;
-    public float cooldown = 3;
+    [SerializeField] GameObject textObj;
 
-    [SerializeField] GameObject area;
-    public static bool playerInArea = false;
-    bool refreshing = false;
-    Enemy enemy;
+    bool activated = false;
+    bool playerCanActivate = false;
 
-    // Start is called before the first frame update
     void Start()
     {
-        delay = cooldown;
-        enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>();
+        textObj.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(playerInArea && !refreshing)
-        {
-            delay -= Time.deltaTime;
-            if(delay <= 0 && !refreshing)
-            {
-                refreshing = true;
-                delay = 0;
-            }
-        }
-
-
-        if (refreshing)
-        {
-            area.SetActive(false);
-            playerInArea = false;
-            enemy.agent.speed = enemy.oldSpeed;
-            delay += Time.deltaTime;
-            if ( delay >= cooldown)
-            {
-                refreshing = false;
-                delay = cooldown;
-                area.SetActive(true);
-            }
-        }
+        if (playerCanActivate && Input.GetButtonDown("Interact"))
+            Activate();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            playerInArea = true;
+            if(PlayerController.Player.hasShard)
+            {
+                textObj.SetActive(true);
+                playerCanActivate = true;
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            textObj.SetActive(false);
+            playerCanActivate = false;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    void Activate()
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            playerInArea = false;
-        }
+        textObj.SetActive(false);
+        playerCanActivate = false;
+        PlayerController.Player.hasShard = false;
+
+        //put trail activation here
     }
 }

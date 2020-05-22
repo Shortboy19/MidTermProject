@@ -13,6 +13,7 @@ TagManager:
   - Entrance
   - Trap
   - HalfWall
+  - Shard
   layers:
   - Default
   - TransparentFX
@@ -28,7 +29,7 @@ TagManager:
   - Player
   - Trap
   - Monolith
-  - 
+  - FakeMonsterScare
   - 
   - 
   - 

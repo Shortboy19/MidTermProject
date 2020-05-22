@@ -77,7 +77,8 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector] public GameObject enemy;
     [HideInInspector] public Enemy enemyComp;
-    [HideInInspector] public bool frozen;
+    [HideInInspector] public bool frozen = false;
+    [HideInInspector] public bool hasShard = false;
     public static bool enemySeen = false;
 
     #endregion
@@ -352,6 +353,10 @@ public class PlayerController : MonoBehaviour
     {
         if (currStamina > jumpStaminaCost)
         {
+            if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
+            {
+                moveDirection += 0.75f * transform.forward;
+            }
             moveDirection.y = jumpHeight * 2;
             currStamina -= jumpStaminaCost;
         }
@@ -394,7 +399,12 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             GameState.ShowWinMenu();
         }
-        if(other.gameObject.CompareTag("Battery"))
+        if (other.gameObject.CompareTag("Shard"))
+        {
+            Destroy(other.gameObject);
+            hasShard = true;
+        }
+        if (other.gameObject.CompareTag("Battery"))
         {
             if(currBattery < maxBattery)
             {
