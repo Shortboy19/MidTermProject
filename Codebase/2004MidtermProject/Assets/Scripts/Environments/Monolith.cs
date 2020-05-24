@@ -58,9 +58,9 @@ public class Monolith : MonoBehaviour
         {
             lights[i].color = Color.red;
         }
-        SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.MonolithActivate);
+        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.MonolithActivate, PlayerController.Player.transform.position);
         Enemy enemy = FindObjectOfType<Enemy>();
-        enemy.agent.speed = 5.5f;
-        enemy.oldSpeed = 5.5f;
+        enemy.agent.speed = 6.25f;
+        enemy.oldSpeed = 6.25f;
     }
 }

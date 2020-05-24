@@ -122,10 +122,10 @@ public class PlayerController : MonoBehaviour
             //HeadBobbing
             if (cc.isGrounded)
             {
-                if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
+                if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0 && isSprinting && !isSliding)
                 {
                     timer += Time.deltaTime * walkingBobbingSpeed;
-                    cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, defaultPosY + Mathf.Sin(timer) * (isSprinting ? bobbingAmount * 2 : bobbingAmount), cam.transform.localPosition.z);
+                    cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, defaultPosY + Mathf.Sin(timer) * bobbingAmount, cam.transform.localPosition.z);
                 }
                 else
                 {

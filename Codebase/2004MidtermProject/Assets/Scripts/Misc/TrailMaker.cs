@@ -6,22 +6,29 @@ using UnityEngine.AI;
 public class TrailMaker : MonoBehaviour
 {
     NavMeshAgent agent;
+    TrailRenderer trail;
+    [SerializeField] LineRenderer trailPart;
     [SerializeField] Transform destination;
-
     [SerializeField] Transform[] waypoints;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        //trail = GetComponent<TrailRenderer>();
         StartCoroutine(DrawPath());
     }
 
     IEnumerator DrawPath()
     {
+        trailPart.positionCount = waypoints.Length;
         for (int i  = 0; i < waypoints.Length; i++)
         {
-            agent.Warp(waypoints[i].position);
-            yield return new WaitForSeconds(0.25f);
+            //agent.Warp(waypoints[i].position);
+            for(int j = i; j < waypoints.Length; j++)
+            {
+                trailPart.SetPosition(j, waypoints[i].position);
+            }
+            yield return new WaitForSeconds(0.025f);
         }
     }
 }
