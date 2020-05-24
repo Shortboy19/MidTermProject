@@ -383,7 +383,8 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    
+
+    [HideInInspector] public bool hitExit = false;
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Key")
@@ -396,6 +397,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Exit") && hasKey)
         {
+            hitExit  = true;
             Destroy(other.gameObject);
             GameState.ShowWinMenu();
         }
@@ -423,7 +425,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Entrance"))
+        if (other.gameObject.CompareTag("Entrance") && transform.position.z >= -29)
         {
             other.isTrigger = false;
         }

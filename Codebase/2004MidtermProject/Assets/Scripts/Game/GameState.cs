@@ -77,11 +77,14 @@ public class GameState : MonoBehaviour
 
     public static void ShowWinMenu()
     {
-        gameWon = true;
-        gamePaused = true;
-        Instance.timer.isCounting = false;
-        Instance.timer.GetTime();
-        Instance.winMenu.SetActive(true);
+        if(PlayerController.Player.hitExit)
+        {
+            gameWon = true;
+            gamePaused = true;
+            Instance.timer.isCounting = false;
+            Instance.timer.GetTime();
+            Instance.winMenu.SetActive(true);
+        }
     }
 
     public static void ResetState()
