@@ -135,8 +135,15 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //stamina
-        if (!isSprinting && !isSliding && cc.isGrounded) { currStamina += staminaRegenRate * Time.deltaTime; }
+        //stamina regen
+        if (!isSprinting && !isSliding && cc.isGrounded)
+        {
+            currStamina += staminaRegenRate * Time.deltaTime;
+        }
+        if(!canSprint && currStamina > 0.5f)
+        {
+            canSprint = true;
+        }
         currStamina = Mathf.Clamp(currStamina, 0, maxStamina);
 
         //monster detection
@@ -240,24 +247,25 @@ public class PlayerController : MonoBehaviour
 
     AudioSource moveSound;
 
+    bool canSprint; //used for recovery time after emptying stamina
     void Movement()
     {
         if (cc.isGrounded)
         {
-            if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
+            if (Input.GetButton("Sprint") && canSprint)
             {
-                if (Input.GetButton("Sprint"))
+                if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
                 {
                     if (currStamina > 0)
                     {
                         isSprinting = true;
                         currStamina -= sprintStaminaCost * Time.deltaTime;
                     }
-                    else { isSprinting = false;}
+                    else { isSprinting = false; canSprint = false; }
                 }
-                else { isSprinting = false;}
+                else { isSprinting = false; moveSound.clip = null; }
             }
-            else { isSprinting = false; moveSound.clip = null; }
+            else { isSprinting = false; }
 
             moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
