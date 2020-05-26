@@ -264,6 +264,7 @@ MonoBehaviour:
   hasShard: 0
   walkingBobbingSpeed: 14
   bobbingAmount: 0.05
+  hitExit: 0
 --- !u!82 &4061503056976832619
 AudioSource:
   m_ObjectHideFlags: 0
