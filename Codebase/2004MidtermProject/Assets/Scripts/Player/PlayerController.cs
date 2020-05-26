@@ -405,8 +405,9 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Exit") && hasKey)
         {
-            hitExit  = true;
-            Destroy(other.gameObject);
+            SoundManager.Instance.PlayEffectAtPoint(other.GetComponent<AudioSource>().clip, transform.position, 0.25f);
+            other.GetComponent<Animator>().SetBool("Triggered", true);
+            hitExit = true;
             GameState.ShowWinMenu();
         }
         if (other.gameObject.CompareTag("Shard"))
