@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
+    public static bool isOpen = false;
     [SerializeField] Slider musicVol;
     [SerializeField] Slider effectsVol;
     [SerializeField] Slider ambientVol;
@@ -44,5 +45,12 @@ public class OptionsMenu : MonoBehaviour
         SoundManager.Instance.UpdateMusicSoundVolume();
     }
 
-
+    private void OnEnable()
+    {
+        isOpen = true;
+    }
+    private void OnDisable()
+    {
+        isOpen = false;
+    }
 }

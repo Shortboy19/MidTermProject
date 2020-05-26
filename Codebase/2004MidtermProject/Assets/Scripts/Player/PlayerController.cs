@@ -30,8 +30,6 @@ public class PlayerController : MonoBehaviour
     [Range(0, 5)]
     [Space(10)]
     public float jumpHeight = 3f;
-    [Tooltip("The ammount of stamina jumping requires (Defaults to 3)")]
-    public float jumpStaminaCost = 3f;
     [Tooltip("The height that the player jumps. (Defaults to 5)")]
     [Range(0, 5)]
     [Space(10)]
@@ -299,7 +297,7 @@ public class PlayerController : MonoBehaviour
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
-        if (isSliding) { slideDirection.y -= gravity * Time.deltaTime; }
+        if (isSliding) { slideDirection.y -= gravity * 2 * Time.deltaTime; }
 
         cc.Move((isSliding ? slideDirection : moveDirection) * Time.deltaTime);
 
@@ -359,15 +357,11 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (currStamina > 0)
+        if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
         {
-            if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
-            {
-                moveDirection += 0.75f * transform.forward;
-            }
-            moveDirection.y = jumpHeight * 2;
-            currStamina -= jumpStaminaCost;
+            moveDirection += 0.75f * transform.forward;
         }
+        moveDirection.y = jumpHeight * 2;
     }
     
     float slideTimer;

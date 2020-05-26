@@ -51,7 +51,7 @@ public class GameState : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Pause"))
+        if (Input.GetButtonDown("Pause") && !OptionsMenu.isOpen)
         {
             TogglePause();
         }

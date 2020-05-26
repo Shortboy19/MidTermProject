@@ -80,15 +80,18 @@ public class Enemy : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Player"))
         {
-            kill = true;
-            anim.SetBool("Stunned", true);
-            agent.SetDestination(transform.position);
-            stunned = true;
-            PlayerController.Player.frozen = true;
-            SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt);
-            Quaternion targetRot = Quaternion.LookRotation(playerCam.transform.position - transform.position);
-            targetRot.x = targetRot.x = 0;
-            transform.rotation = targetRot;
+            if(!kill)
+            {
+                kill = true;
+                anim.SetBool("Stunned", true);
+                agent.SetDestination(transform.position);
+                stunned = true;
+                PlayerController.Player.frozen = true;
+                SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt);
+                Quaternion targetRot = Quaternion.LookRotation(playerCam.transform.position - transform.position);
+                targetRot.x = targetRot.x = 0;
+                transform.rotation = targetRot;
+            }
         }
     }
 
@@ -137,8 +140,6 @@ public class Enemy : MonoBehaviour
     void KillPlayerAnim()
     {
         Quaternion targetRot = Quaternion.LookRotation(eyes.position - playerCam.transform.position);
-        playerCam.transform.rotation = Quaternion.Lerp(playerCam.transform.rotation, targetRot, Time.deltaTime * speed);
-        speed += 0.025f;
 
         if (playerCam.transform.rotation == targetRot)
         {
@@ -147,5 +148,8 @@ public class Enemy : MonoBehaviour
             Debug.Log(targetRot);
             GameState.ShowDeathMenu();
         }
+        playerCam.transform.rotation = Quaternion.Lerp(playerCam.transform.rotation, targetRot, Time.deltaTime * speed);
+        speed += 0.025f;
+
     }
 }
