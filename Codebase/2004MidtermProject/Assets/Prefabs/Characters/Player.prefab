@@ -243,7 +243,6 @@ MonoBehaviour:
   sprintSpeedModifier: 2
   sprintStaminaCost: 3
   jumpHeight: 3
-  jumpStaminaCost: 1
   slideDistance: 3
   slideStaminaCost: 2
   slideDuration: 0.35
