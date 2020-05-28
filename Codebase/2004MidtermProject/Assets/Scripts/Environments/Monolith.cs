@@ -81,7 +81,7 @@ public class Monolith : MonoBehaviour
     {
         transform.position = Vector3.Lerp(floatVec, new Vector3(0, floatVec.y * (1+floatAmount), 0), floatSpeed);
 
-        floatSpeed = Mathf.PingPong(Time.time, 1);
+        floatSpeed = Mathf.PingPong(Time.time * 0.5f, 1);
     }
 
     float rotSpeedMod = 1;

@@ -129,6 +129,8 @@ public class PlayerController : MonoBehaviour
                 {
                     timer = 0;
                     cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, Mathf.Lerp(cam.transform.localPosition.y, defaultPosY, Time.deltaTime * walkingBobbingSpeed), cam.transform.localPosition.z);
+
+                    if (moveSound != null) { moveSound.Stop(); }
                 }
             }
         }
@@ -263,7 +265,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else { isSprinting = false; moveSound.clip = null; }
             }
-            else { isSprinting = false; }
+            else { isSprinting = false;}
 
             moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
@@ -317,9 +319,13 @@ public class PlayerController : MonoBehaviour
     IEnumerator PlayMoveSound()
     {
         if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
+        {
             moveSound.clip = RandomFootstep();
+        }
         else
-            moveSound = null;
+        {
+            moveSound.clip = null;
+        }
 
         moveSoundPlaying = true;
         float delay = isSprinting ? 0.3225f : 0.3805f;

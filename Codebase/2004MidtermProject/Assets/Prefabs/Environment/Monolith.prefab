@@ -5144,7 +5144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b51a8244649ee4f9e6acb376b49788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatAmount: 0.05
+  floatAmount: 0.015
   textObj: {fileID: 0}
   trailMaker: {fileID: 0}
 --- !u!65 &5292797210885002467
