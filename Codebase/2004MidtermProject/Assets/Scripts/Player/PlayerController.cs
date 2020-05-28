@@ -334,7 +334,7 @@ public class PlayerController : MonoBehaviour
         {
             moveSound = GetComponent<AudioSource>();
         }
-        moveSound.volume = 1 * SoundManager.EffectsVolume;
+        moveSound.volume = 0.125f * SoundManager.EffectsVolume;
 
         if(cc.isGrounded && !isSliding)
             moveSound.Play();

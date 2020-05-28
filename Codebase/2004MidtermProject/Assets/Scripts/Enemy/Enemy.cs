@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour
                 PlayerController.Player.frozen = true;
                 SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt);
                 Quaternion targetRot = Quaternion.LookRotation(playerCam.transform.position - transform.position);
-                targetRot.x = targetRot.x = 0;
+                targetRot.x = targetRot.z = 0;
                 transform.rotation = targetRot;
             }
         }
