@@ -82,6 +82,7 @@ public class Enemy : MonoBehaviour
         {
             if(!kill)
             {
+                StartCoroutine(WaitForDeath());
                 kill = true;
                 anim.SetBool("Stunned", true);
                 agent.SetDestination(transform.position);
@@ -140,16 +141,13 @@ public class Enemy : MonoBehaviour
     void KillPlayerAnim()
     {
         Quaternion targetRot = Quaternion.LookRotation(eyes.position - playerCam.transform.position);
-
-        if (playerCam.transform.rotation == targetRot)
-        {
-            Debug.Log(speed);
-            Debug.Log(playerCam.transform.rotation);
-            Debug.Log(targetRot);
-            GameState.ShowDeathMenu();
-        }
         playerCam.transform.rotation = Quaternion.Lerp(playerCam.transform.rotation, targetRot, Time.deltaTime * speed);
         speed += 0.025f;
+    }
 
+    IEnumerator WaitForDeath()
+    {
+        yield return new WaitForSeconds(3);
+        GameState.ShowDeathMenu();
     }
 }
