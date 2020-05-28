@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0007200191, g: 0.0018433576, b: 0.05432608, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17481,11 +17481,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BatteryPickup
-      objectReference: {fileID: 0}
-    - target: {fileID: 862129055469676076, guid: 447ff6e3e6115374d8597c8418441965,
-        type: 3}
-      propertyPath: m_DrawHalo
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3545257856578953557, guid: 447ff6e3e6115374d8597c8418441965,
         type: 3}
