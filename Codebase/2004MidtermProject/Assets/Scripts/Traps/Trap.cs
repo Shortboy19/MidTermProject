@@ -10,6 +10,7 @@ public class Trap : MonoBehaviour
 
     bool activated = false;
     bool playerInRange = false;
+    bool armed = false;
 
     void Start()
     {
@@ -23,9 +24,12 @@ public class Trap : MonoBehaviour
             return;
 
         if (!activated && Input.GetButtonDown("Interact"))
-            StartCoroutine(Activate());
+            Armed();
     }
-
+    void Armed()
+    {
+        armed = true;
+    }
     void TurnOn()
     {
         trapObj.SetActive(true);
@@ -35,6 +39,7 @@ public class Trap : MonoBehaviour
     {
         trapObj.SetActive(false);
         activated = false;
+        armed = false;
     }
 
     IEnumerator Activate()
@@ -50,6 +55,10 @@ public class Trap : MonoBehaviour
         {
             interactableCanvas.SetActive(true);
             playerInRange = true;
+        }
+        if (other.CompareTag("Enemy")&&armed)
+        {
+            StartCoroutine(Activate());
         }
     }
     private void OnTriggerExit(Collider other)
