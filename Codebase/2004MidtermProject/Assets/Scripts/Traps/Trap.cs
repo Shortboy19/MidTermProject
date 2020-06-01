@@ -6,6 +6,10 @@ public class Trap : MonoBehaviour
 {
     [SerializeField] GameObject interactableCanvas;
     public GameObject trapObj;
+    public GameObject button;
+    public GameObject button1;
+    public Material armedMat;
+    public Material unarmedMat;
     public float duration = 5;
 
     bool activated = false;
@@ -23,12 +27,15 @@ public class Trap : MonoBehaviour
         if (!playerInRange)
             return;
 
-        if (!activated && Input.GetButtonDown("Interact"))
+        if (!armed && Input.GetButtonDown("Interact"))
             Armed();
     }
     void Armed()
     {
         armed = true;
+        button.GetComponent<MeshRenderer>().material = armedMat;
+        if(button1!=null)
+            button1.GetComponent<MeshRenderer>().material = armedMat;
     }
     void TurnOn()
     {
@@ -40,6 +47,9 @@ public class Trap : MonoBehaviour
         trapObj.SetActive(false);
         activated = false;
         armed = false;
+        button.GetComponent<MeshRenderer>().material = unarmedMat;
+        if (button1 != null)
+            button1.GetComponent<MeshRenderer>().material = unarmedMat;
     }
 
     IEnumerator Activate()

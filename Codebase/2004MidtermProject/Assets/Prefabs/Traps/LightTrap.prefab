@@ -295,6 +295,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableCanvas: {fileID: 8283202794046158484}
   trapObj: {fileID: 482821281815265514}
+  button: {fileID: 6667675474899373156}
+  armedMat: {fileID: 2100000, guid: b4ae177bd96468f4eb3790b620d914f0, type: 2}
+  unarmedMat: {fileID: 2100000, guid: 7f49548ade8152249823f295afa0a867, type: 2}
   duration: 6
 --- !u!1 &5540356758116079292
 GameObject:
