@@ -428,7 +428,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Entrance"))
         {
-            GameState.Instance.timer.isCounting = true;
+            GameTimer.isCounting = true;
             StartCoroutine(AlertMonster());
         }
     }

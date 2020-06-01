@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class GameTimer : MonoBehaviour
 {
-    float timer;
+    float timer=0;
     int attempts=1;
 
     string hours;
     string minutes;
     string seconds;
 
-    public bool isCounting = false;
+    public static bool isCounting = false;
 
     [SerializeField] TextMeshProUGUI timerText;
     public static GameTimer Instance;
@@ -22,7 +22,7 @@ public class GameTimer : MonoBehaviour
     }
     private void Start()
     {
-        timer = 0;
+
     }
 
     private void Update()
@@ -43,6 +43,7 @@ public class GameTimer : MonoBehaviour
                 timerText = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
         }
         timerText.text = $" in {hours}:{minutes}:{seconds} \n with {attempts} attempts";
+        Debug.Log($" in {hours}:{minutes}:{seconds} \n with {attempts} attempts");
     }
     public void AttemptFailed()
     {

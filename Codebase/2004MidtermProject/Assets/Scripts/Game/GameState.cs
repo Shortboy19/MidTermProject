@@ -82,9 +82,9 @@ public class GameState : MonoBehaviour
         {
             gameWon = true;
             gamePaused = true;
-            GameTimer.Instance.isCounting = false;
-            GameTimer.Instance.GetTime();
             Instance.winMenu.SetActive(true);
+            GameTimer.isCounting = false;
+            GameTimer.Instance.GetTime();
         }
     }
 
