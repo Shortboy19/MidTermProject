@@ -73,6 +73,7 @@ public class GameState : MonoBehaviour
         //SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt);
         gamePaused = true;
         Instance.deathMenu.SetActive(true);
+        GameTimer.Instance.AttemptFailed();
     }
 
     public static void ShowWinMenu()
@@ -81,8 +82,8 @@ public class GameState : MonoBehaviour
         {
             gameWon = true;
             gamePaused = true;
-            Instance.timer.isCounting = false;
-            Instance.timer.GetTime();
+            GameTimer.Instance.isCounting = false;
+            GameTimer.Instance.GetTime();
             Instance.winMenu.SetActive(true);
         }
     }

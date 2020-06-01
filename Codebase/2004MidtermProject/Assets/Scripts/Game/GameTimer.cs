@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameTimer : MonoBehaviour
 {
     float timer;
+    int attempts=1;
 
     string hours;
     string minutes;
@@ -14,7 +15,11 @@ public class GameTimer : MonoBehaviour
     public bool isCounting = false;
 
     [SerializeField] TextMeshProUGUI timerText;
-
+    public static GameTimer Instance;
+    private void Awake()
+    {
+        if (Instance == null) { Instance = this; } else if (Instance != this) { Debug.LogError("0 or multiple " + this + " in the scene."); }
+    }
     private void Start()
     {
         timer = 0;
@@ -32,6 +37,15 @@ public class GameTimer : MonoBehaviour
         minutes = Mathf.Floor(timer / 60).ToString("00");
         seconds = (timer % 60).ToString("00");
 
-        timerText.text = $" in {hours}:{minutes}:{seconds}";
+        if (timerText == null)
+        {
+            if (GameObject.Find("Timer"))
+                timerText = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
+        }
+        timerText.text = $" in {hours}:{minutes}:{seconds} \n with {attempts} attempts";
+    }
+    public void AttemptFailed()
+    {
+        attempts++;
     }
 }
