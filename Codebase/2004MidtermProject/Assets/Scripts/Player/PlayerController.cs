@@ -58,8 +58,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Other/Misc")]
     [Space(10)]
+    public GameObject flashlight;
     [SerializeField] MiniMap minimap;
-    [SerializeField] GameObject flashlight;
     [SerializeField] ObjectiveTracker objective;
     #endregion
 
@@ -77,6 +77,9 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public Enemy enemyComp;
     [HideInInspector] public bool frozen = false;
     [HideInInspector] public bool hasShard = false;
+    [HideInInspector] public bool UVFlashlight = false;
+    [HideInInspector] public bool hasBlueLife = false;
+    [SerializeField] GameObject[] shards;
     public static bool enemySeen = false;
 
     #endregion
@@ -136,7 +139,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //stamina regen
-        if (!isSprinting && !isSliding && cc.isGrounded)
+        if (!isSprinting && !isSliding)
         {
             currStamina += staminaRegenRate * Time.deltaTime;
         }
@@ -429,25 +432,37 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("YellowShard"))
         {
-            Destroy(other.gameObject);
+            for(int i = 0; i < shards.Length; i++)
+            {
+                Destroy(shards[i]);
+            }
             hasShard = true;
             Monolith.shardCharge = 1;
         }
         if (other.gameObject.CompareTag("GreenShard"))
         {
-            Destroy(other.gameObject);
+            for (int i = 0; i < shards.Length; i++)
+            {
+                Destroy(shards[i]);
+            }
             hasShard = true;
             Monolith.shardCharge = 2;
         }
         if (other.gameObject.CompareTag("PurpleShard"))
         {
-            Destroy(other.gameObject);
+            for (int i = 0; i < shards.Length; i++)
+            {
+                Destroy(shards[i]);
+            }
             hasShard = true;
             Monolith.shardCharge = 3;
         }
         if (other.gameObject.CompareTag("BlueShard"))
         {
-            Destroy(other.gameObject);
+            for (int i = 0; i < shards.Length; i++)
+            {
+                Destroy(shards[i]);
+            }
             hasShard = true;
             Monolith.shardCharge = 4;
         }

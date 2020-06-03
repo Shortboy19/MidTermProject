@@ -9,7 +9,7 @@ public class KeySpawner : MonoBehaviour
     private int SpawnPoint;
     public Transform[] SpawnPoints;
     #endregion
-    private void Start()
+    public void Start()
     {
         if (!GameObject.FindWithTag("Key"))
         {

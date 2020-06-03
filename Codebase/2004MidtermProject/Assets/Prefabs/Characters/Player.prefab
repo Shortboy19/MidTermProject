@@ -251,16 +251,21 @@ MonoBehaviour:
   staminaRegenRate: 1
   maxBattery: 5
   currBattery: 0
-  flashlightBatteryCost: 1
+  flashlightBatteryCost: 2
   batteryChargeAmount: 2
-  minimap: {fileID: 0}
   flashlight: {fileID: 7596025566471299199}
+  minimap: {fileID: 0}
   objective: {fileID: 0}
-  hasKey: 0
+  hasKey: 1
   enemy: {fileID: 0}
   enemyComp: {fileID: 0}
   frozen: 0
   hasShard: 0
+  shards:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   walkingBobbingSpeed: 14
   bobbingAmount: 0.05
   hitExit: 0

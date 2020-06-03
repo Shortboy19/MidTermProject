@@ -13,12 +13,15 @@ public class Enemy : MonoBehaviour
     public Animator anim;
 
     bool stunned = false;
+    bool scared = false;
     [HideInInspector] public float oldSpeed;
     [SerializeField] Transform eyes;
 
     Light[] eyelights; 
 
     Camera playerCam;
+
+    GameObject lifeSaver;
     
     
     // Start is called before the first frame update
@@ -33,9 +36,11 @@ public class Enemy : MonoBehaviour
         eyelights = GetComponentsInChildren<Light>();
         agent.updateRotation = false;
         anim = GetComponentInChildren<Animator>();
+
+        lifeSaver = GameObject.Find("Monolith");
     }
 
-    Transform PickSpawnPoint()
+    public Transform PickSpawnPoint()
     {
         SpawnLocationNumber = Random.Range(1, spawnPoints.Length);
         return spawnPoints[SpawnLocationNumber];
@@ -50,7 +55,7 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        if (player != null && !stunned && !kill)
+        if (player != null && !stunned && !kill && !scared)
         {
             agent.SetDestination(player.transform.position);
         }
@@ -80,18 +85,25 @@ public class Enemy : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Player"))
         {
-            if(!kill)
+            if(!PlayerController.Player.hasBlueLife)
             {
-                StartCoroutine(WaitForDeath());
-                kill = true;
-                anim.SetBool("Stunned", true);
-                agent.SetDestination(transform.position);
-                stunned = true;
-                PlayerController.Player.frozen = true;
-                SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt);
-                Quaternion targetRot = Quaternion.LookRotation(playerCam.transform.position - transform.position);
-                targetRot.x = targetRot.z = 0;
-                transform.rotation = targetRot;
+                if(!kill)
+                {
+                    StartCoroutine(WaitForDeath());
+                    kill = true;
+                    anim.SetBool("Stunned", true);
+                    agent.SetDestination(transform.position);
+                    stunned = true;
+                    PlayerController.Player.frozen = true;
+                    SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt);
+                    Quaternion targetRot = Quaternion.LookRotation(playerCam.transform.position - transform.position);
+                    targetRot.x = targetRot.z = 0;
+                    transform.rotation = targetRot;
+                }
+            }
+            else
+            {
+                lifeSaver.GetComponent<LifeSaver>().SaveFromMonster();
             }
         }
     }
@@ -102,10 +114,17 @@ public class Enemy : MonoBehaviour
         {
             if (PlayerController.enemySeen)
             {
-                if (StunRoutine == null)
+                if(PlayerController.Player.UVFlashlight)
                 {
-                    StunRoutine = StunEnemy(stunDuration);
-                    StartCoroutine(StunRoutine);
+                    StartCoroutine(Scare(4));
+                }
+                else
+                {
+                    if (StunRoutine == null)
+                    {
+                        StunRoutine = StunEnemy(stunDuration);
+                        StartCoroutine(StunRoutine);
+                    }
                 }
             }
         }
@@ -149,5 +168,28 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         GameState.ShowDeathMenu();
+    }
+
+    IEnumerator Scare(float waitTime)
+    {
+        scared = true;
+        agent.SetDestination(new Vector3(0, 0, 0));
+        anim.SetBool("Stunned", true);
+        rend.material.color = new Color(1, 0, 1);
+        for (int i = 0; i < eyelights.Length; i++)
+        {
+            eyelights[i].color = new Color(1, 0.5f, 0);
+        }
+        GetComponent<Collider>().enabled = false;
+        yield return new WaitForSeconds(waitTime);
+
+        scared = false;
+        GetComponent<Collider>().enabled = true;
+        rend.material.color = Color.white;
+        for (int i = 0; i < eyelights.Length; i++)
+        {
+            eyelights[i].color = Color.red;
+        }
+        anim.SetBool("Stunned", false);
     }
 }
