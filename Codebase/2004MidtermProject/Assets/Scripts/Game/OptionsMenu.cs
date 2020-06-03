@@ -19,6 +19,22 @@ public class OptionsMenu : MonoBehaviour
 
     void Start()
     {
+        if (PlayerPrefs.HasKey("Music Volume"))
+        {
+            SoundManager.MusicVolume = PlayerPrefs.GetFloat("Music Volume");
+        }
+        if (PlayerPrefs.HasKey("Effects Volume"))
+        {
+            SoundManager.EffectsVolume = PlayerPrefs.GetFloat("Effects Volume");
+        }
+        if (PlayerPrefs.HasKey("Ambient Volume"))
+        {
+            SoundManager.AmbientVolume = PlayerPrefs.GetFloat("Ambient Volume");
+        }
+        if (PlayerPrefs.HasKey("Sensitivity"))
+        {
+            PlayerController.Player.LookSenstivity = PlayerPrefs.GetFloat("Sensitivity");
+        }
         musicVol.value = SoundManager.MusicVolume;
         effectsVol.value = SoundManager.EffectsVolume;
         ambientVol.value = SoundManager.AmbientVolume;
@@ -43,6 +59,10 @@ public class OptionsMenu : MonoBehaviour
 
         SoundManager.Instance.UpdateAmbientSoundVolume();
         SoundManager.Instance.UpdateMusicSoundVolume();
+        PlayerPrefs.SetFloat("Music Volume", musicVol.value);
+        PlayerPrefs.SetFloat("Effects Volume", effectsVol.value);
+        PlayerPrefs.SetFloat("Ambient Volume", ambientVol.value);
+        PlayerPrefs.SetFloat("Sensitivity", sensitivitySlider.value * 200);
     }
 
     private void OnEnable()
