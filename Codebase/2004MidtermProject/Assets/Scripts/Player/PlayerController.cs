@@ -407,7 +407,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Exit") && hasKey)
         {
             SoundManager.Instance.PlayEffectAtPoint(other.GetComponent<AudioSource>().clip, transform.position, 0.25f);
-            other.GetComponent<Animator>().SetBool("Triggered", true);
+            other.GetComponent<Animation>().Play();
             hitExit = true;
             GameState.ShowWinMenu();
         }
