@@ -43,6 +43,8 @@ public class Trap : MonoBehaviour
     }
     void Armed()
     {
+        interactableCanvas.SetActive(false);
+        playerInRange = false;
         armed = true;
         button.GetComponent<MeshRenderer>().material = armedMat;
         if(button1!=null)
