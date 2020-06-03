@@ -8,9 +8,12 @@ public class Trap : MonoBehaviour
     public GameObject trapObj;
     public GameObject button;
     public GameObject button1;
+    public GameObject enemy;
     public Material armedMat;
     public Material unarmedMat;
     public float duration = 5;
+    public GameObject[] fakeGhosts;
+    Vector3[] telePoints;
 
     bool activated = false;
     bool playerInRange = false;
@@ -19,7 +22,15 @@ public class Trap : MonoBehaviour
     void Start()
     {
         interactableCanvas.SetActive(false);
-        trapObj.SetActive(false);
+        if (trapObj)
+        {
+            trapObj.SetActive(false);
+        }
+        telePoints = new Vector3[fakeGhosts.Length];
+        for (int i = 0; i < fakeGhosts.Length; i++)
+        {
+            telePoints[i] = fakeGhosts[i].transform.position;
+        }
     }
 
     private void Update()
@@ -39,12 +50,22 @@ public class Trap : MonoBehaviour
     }
     void TurnOn()
     {
-        trapObj.SetActive(true);
+        if (enemy)
+        {
+            enemy.transform.position = telePoints[Random.Range(0, telePoints.Length-1)];
+        }
+        if (trapObj)
+        {
+            trapObj.SetActive(true);
+        }
         activated = true;
     }
     void TurnOff()
     {
-        trapObj.SetActive(false);
+        if (trapObj)
+        {
+            trapObj.SetActive(false);
+        }
         activated = false;
         armed = false;
         button.GetComponent<MeshRenderer>().material = unarmedMat;
@@ -61,7 +82,7 @@ public class Trap : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")&& !armed)
         {
             interactableCanvas.SetActive(true);
             playerInRange = true;
