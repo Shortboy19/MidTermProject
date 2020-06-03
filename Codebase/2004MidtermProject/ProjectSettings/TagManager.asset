@@ -13,7 +13,10 @@ TagManager:
   - Entrance
   - Trap
   - HalfWall
-  - Shard
+  - YellowShard
+  - GreenShard
+  - BlueShard
+  - PurpleShard
   layers:
   - Default
   - TransparentFX

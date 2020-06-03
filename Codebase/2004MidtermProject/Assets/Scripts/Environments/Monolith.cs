@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Monolith : MonoBehaviour
 {
+    public static int shardCharge = 0;
     float rotSpeed = 0.035f;
     [Range(0, 1)]
     [SerializeField] float floatAmount = 0.05f;
@@ -65,16 +66,25 @@ public class Monolith : MonoBehaviour
         playerCanActivate = false;
         PlayerController.Player.hasShard = false;
 
-        //put trail activation here
-        trailMaker.SetActive(true);
-        for(int i = 0; i < lights.Length; i++)
+        //activate shard here
+        switch (shardCharge)
         {
-            lights[i].color = Color.red;
+            case 1:
+                YellowShard();
+                break;
+            case 2:
+                GreenShard();
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            default:
+                //Do nothing
+                break;
         }
-        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.MonolithActivate, PlayerController.Player.transform.position);
-        Enemy enemy = FindObjectOfType<Enemy>();
-        enemy.agent.speed = 6.25f;
-        enemy.oldSpeed = 6.25f;
     }
 
     void Bounce()
@@ -94,5 +104,41 @@ public class Monolith : MonoBehaviour
             rotSpeedMod -= 0.005f;
             Debug.Log(rotSpeedMod);
         };
+    }
+
+    void YellowShard()
+    {
+        string message = "You just activated the <color=yellow>Yellow Monolith Shard</color>. Your minimap will now display the quickest possible path to the exit. \n\nBut be warned, the monster has now become <color=red>aggrivated</color> and will chase after you at accelerated speeds.";
+        DialogBox.ShowWindow("Shard Activated", message);
+        //put trail activation here
+        trailMaker.SetActive(true);
+        for (int i = 0; i < lights.Length; i++)
+        {
+            lights[i].color = Color.yellow;
+        }
+        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.MonolithActivate, PlayerController.Player.transform.position);
+        Enemy enemy = FindObjectOfType<Enemy>();
+        enemy.agent.speed = 6.25f;
+        enemy.oldSpeed = 6.25f;
+    }
+
+    void GreenShard()
+    {
+        string message = "You just activated the <color=green>Green Monolith Shard</color>. Your stamina and battery life have just been doubled and refilled. \n\nBut be warned, your stamina will now recover at <color=red>half</color> the rate it used to and batteries have become <color=red>less</color> effective.";
+        DialogBox.ShowWindow("Shard Activated", message);
+        //put trail activation here
+        for (int i = 0; i < lights.Length; i++)
+        {
+            lights[i].color = Color.green;
+        }
+        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.MonolithActivate, PlayerController.Player.transform.position);
+
+        PlayerController.Player.maxStamina *= 2;
+        PlayerController.Player.maxBattery *= 2;
+
+        PlayerController.Player.currStamina *= PlayerController.Player.maxStamina;
+        PlayerController.Player.currBattery *= PlayerController.Player.maxBattery;
+
+        PlayerController.Player.staminaRegenRate *= 0.5f;
     }
 }

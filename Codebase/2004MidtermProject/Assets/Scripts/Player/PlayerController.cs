@@ -411,11 +411,6 @@ public class PlayerController : MonoBehaviour
             hitExit = true;
             GameState.ShowWinMenu();
         }
-        if (other.gameObject.CompareTag("Shard"))
-        {
-            Destroy(other.gameObject);
-            hasShard = true;
-        }
         if (other.gameObject.CompareTag("Battery"))
         {
             if(currBattery < maxBattery)
@@ -430,6 +425,31 @@ public class PlayerController : MonoBehaviour
         {
             GameTimer.isCounting = true;
             StartCoroutine(AlertMonster());
+        }
+
+        if (other.gameObject.CompareTag("YellowShard"))
+        {
+            Destroy(other.gameObject);
+            hasShard = true;
+            Monolith.shardCharge = 1;
+        }
+        if (other.gameObject.CompareTag("GreenShard"))
+        {
+            Destroy(other.gameObject);
+            hasShard = true;
+            Monolith.shardCharge = 2;
+        }
+        if (other.gameObject.CompareTag("PurpleShard"))
+        {
+            Destroy(other.gameObject);
+            hasShard = true;
+            Monolith.shardCharge = 3;
+        }
+        if (other.gameObject.CompareTag("BlueShard"))
+        {
+            Destroy(other.gameObject);
+            hasShard = true;
+            Monolith.shardCharge = 4;
         }
     }
 
