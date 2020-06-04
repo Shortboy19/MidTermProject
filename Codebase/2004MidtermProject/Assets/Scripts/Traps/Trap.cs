@@ -43,6 +43,7 @@ public class Trap : MonoBehaviour
     }
     void Armed()
     {
+        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.TrapButton, transform.position); 
         interactableCanvas.SetActive(false);
         playerInRange = false;
         armed = true;

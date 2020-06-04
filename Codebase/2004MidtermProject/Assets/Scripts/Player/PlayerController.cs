@@ -422,6 +422,7 @@ public class PlayerController : MonoBehaviour
                 currBattery += batteryChargeAmount;
                 if (currBattery > maxBattery)
                     currBattery = maxBattery;
+                SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Battery, transform.position); 
             }
         }
         if (other.gameObject.CompareTag("Entrance"))
@@ -438,6 +439,7 @@ public class PlayerController : MonoBehaviour
             }
             hasShard = true;
             Monolith.shardCharge = 1;
+            SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Shard, transform.position); 
         }
         if (other.gameObject.CompareTag("GreenShard"))
         {
@@ -447,6 +449,7 @@ public class PlayerController : MonoBehaviour
             }
             hasShard = true;
             Monolith.shardCharge = 2;
+            SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Shard, transform.position);
         }
         if (other.gameObject.CompareTag("PurpleShard"))
         {
@@ -456,6 +459,7 @@ public class PlayerController : MonoBehaviour
             }
             hasShard = true;
             Monolith.shardCharge = 3;
+            SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Shard, transform.position);
         }
         if (other.gameObject.CompareTag("BlueShard"))
         {
@@ -465,6 +469,7 @@ public class PlayerController : MonoBehaviour
             }
             hasShard = true;
             Monolith.shardCharge = 4;
+            SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Shard, transform.position);
         }
     }
 

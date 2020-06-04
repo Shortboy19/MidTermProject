@@ -28,7 +28,9 @@ public class SoundManager : MonoBehaviour
     public AudioClip PlayerSliding;
     public AudioClip TrapButton;
     public AudioClip PlayerHurt; 
-    public AudioClip MonolithActivate; 
+    public AudioClip MonolithActivate;
+    public AudioClip Shard;
+    public AudioClip Battery;
 
     public AudioClip[] effects;
 
