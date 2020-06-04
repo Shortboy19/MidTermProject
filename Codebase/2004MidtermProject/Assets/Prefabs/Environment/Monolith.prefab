@@ -5043,8 +5043,8 @@ GameObject:
   - component: {fileID: 7601403310338777611}
   - component: {fileID: 7601403310338777608}
   - component: {fileID: 1461203167}
-  - component: {fileID: 5292797210885002467}
   - component: {fileID: 472400166}
+  - component: {fileID: 5317504422870168224}
   m_Layer: 13
   m_Name: Monolith
   m_TagString: Monolith
@@ -5148,19 +5148,6 @@ MonoBehaviour:
   floatAmount: 0.015
   textObj: {fileID: 0}
   trailMaker: {fileID: 0}
---- !u!65 &5292797210885002467
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7601403310338777609}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.35, y: 0.15, z: 2.35}
-  m_Center: {x: 0, y: -0.55, z: 0}
 --- !u!114 &472400166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5177,6 +5164,20 @@ MonoBehaviour:
   enemy: {fileID: 0}
   keySpawner: {fileID: 0}
   map: {fileID: 0}
+--- !u!136 &5317504422870168224
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7601403310338777609}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.94987184
+  m_Height: 0.29999998
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.55, z: 0}
 --- !u!1 &8251384476858652146
 GameObject:
   m_ObjectHideFlags: 0

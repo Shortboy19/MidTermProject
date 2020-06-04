@@ -4255,7 +4255,8 @@ MonoBehaviour:
   pauseMenu: {fileID: 1202680046126994782}
   deathMenu: {fileID: 6850525554491422750}
   winMenu: {fileID: 8286380443709966677}
-  timer: {fileID: 7677748355455506007, guid: 3b5b0157913f2af41bdbd8a4b95e5f1b, type: 3}
+  options: {fileID: 0}
+  timer: {fileID: 0}
   optionsMenu: {fileID: 0}
 --- !u!114 &4532775424287286275
 MonoBehaviour:
@@ -5576,7 +5577,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: in 00:05:42
+  m_text: in 00:05:42 in 7 attempts
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -5618,7 +5619,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_firstOverflowCharacterIndex: 0

@@ -10,6 +10,7 @@ public class GameState : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject deathMenu;
     public GameObject winMenu;
+    [SerializeField] OptionsMenu options;
 
     public static bool gameWon = false;
 
@@ -104,5 +105,11 @@ public class GameState : MonoBehaviour
     public void HideOptions()
     {
         optionsMenu.SetActive(false);
+    }
+
+    private void Start()
+    {
+        options.Start();
+        options.Apply();
     }
 }

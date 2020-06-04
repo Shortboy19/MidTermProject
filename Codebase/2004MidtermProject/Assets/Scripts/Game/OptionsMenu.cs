@@ -17,7 +17,7 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] TextMeshProUGUI ambientVolText;
     [SerializeField] TextMeshProUGUI sensitivityText;
 
-    void Start()
+    public void Start()
     {
         if (PlayerPrefs.HasKey("Music Volume"))
         {
