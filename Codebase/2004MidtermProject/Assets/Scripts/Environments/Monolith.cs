@@ -111,7 +111,7 @@ public class Monolith : MonoBehaviour
     {
         if(!PlayerController.Player.hasKey)
         {
-            DialogBox.ShowWindow("Unavailable", "You need the <color=yellow>key</color> to activate this shard. \n\nHeads towards the <color=yellow>indicator<yellow> on you minimap to find it.");
+            DialogBox.ShowWindow("Unavailable", "You need the <color=yellow>key</color> to activate this shard. \n\nHeads towards the <color=yellow>indicator</color> on you minimap to find it.");
             return;
         }
 

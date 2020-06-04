@@ -451,6 +451,7 @@ public class PlayerController : MonoBehaviour
             hasShard = true;
             Monolith.shardCharge = 1;
             SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Shard, transform.position);
+            DialogBox.ShowWindow("Shard Found", "It looks like you found a <color=yellow>Shard</color>. Shards can be activated activated at the monolith for a mysterious effect.");
         }
         if (other.gameObject.CompareTag("GreenShard"))
         {
@@ -461,6 +462,7 @@ public class PlayerController : MonoBehaviour
             hasShard = true;
             Monolith.shardCharge = 2;
             SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Shard, transform.position);
+            DialogBox.ShowWindow("Shard Found", "It looks like you found a <color=green>Shard</color>. Shards can be activated activated at the monolith for a mysterious effect.");
         }
         if (other.gameObject.CompareTag("PurpleShard"))
         {
@@ -471,6 +473,7 @@ public class PlayerController : MonoBehaviour
             hasShard = true;
             Monolith.shardCharge = 3;
             SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Shard, transform.position);
+            DialogBox.ShowWindow("Shard Found", "It looks like you found a <color=#9700FF>Shard</color>. Shards can be activated activated at the monolith for a mysterious effect.");
         }
         if (other.gameObject.CompareTag("BlueShard"))
         {
@@ -481,6 +484,7 @@ public class PlayerController : MonoBehaviour
             hasShard = true;
             Monolith.shardCharge = 4;
             SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Shard, transform.position);
+            DialogBox.ShowWindow("Shard Found", "It looks like you found a <color=#00D6FF>Shard</color>. Shards can be activated activated at the monolith for a mysterious effect.");
         }
     }
 
