@@ -108,6 +108,7 @@ public class Monolith : MonoBehaviour
 
     void YellowShard()
     {
+        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.MonolithActivate, PlayerController.Player.transform.position);
         string message = "You just activated the <color=yellow>Yellow Monolith Shard</color>. Your <color=yellow>minimap</color> will now display the quickest possible path to the exit. \n\nBut be warned, the monster has now become <color=red>aggrivated</color> and will chase after you at accelerated speeds.";
         DialogBox.ShowWindow("Shard Activated", message);
         //put trail activation here
@@ -116,7 +117,6 @@ public class Monolith : MonoBehaviour
         {
             lights[i].color = Color.yellow;
         }
-        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.MonolithActivate, PlayerController.Player.transform.position);
         Enemy enemy = FindObjectOfType<Enemy>();
         enemy.agent.speed = 6.25f;
         enemy.oldSpeed = 6.25f;
@@ -124,6 +124,7 @@ public class Monolith : MonoBehaviour
 
     void GreenShard()
     {
+        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.MonolithActivate, PlayerController.Player.transform.position);
         string message = "You just activated the <color=green>Green Monolith Shard</color>. Your stamina and battery life have just been <color=green>doubled</color> and <color=green>refilled</color>. \n\nBut be warned, your stamina will now recover at <color=red>half</color> the rate it used to and batteries have become <color=red>less</color> effective.";
         DialogBox.ShowWindow("Shard Activated", message);
         //put trail activation here
@@ -131,7 +132,6 @@ public class Monolith : MonoBehaviour
         {
             lights[i].color = Color.green;
         }
-        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.MonolithActivate, PlayerController.Player.transform.position);
 
         PlayerController.Player.maxStamina *= 2;
         PlayerController.Player.maxBattery *= 2;
@@ -144,6 +144,7 @@ public class Monolith : MonoBehaviour
 
     void PurpleShard()
     {
+        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.MonolithActivate, PlayerController.Player.transform.position);
         string message = "You just activated the <color=#9700FF>Purple Monolith Shard</color>. Your flashlight now emits <color=#9700FF>UV</color> light that will scare the monster instead of stunning it. \n\nBut be warned, your flashlight will now drain battery at <color=red>twice</color> the rate it used to.";
         DialogBox.ShowWindow("Shard Activated", message);
         //put trail activation here
@@ -151,7 +152,6 @@ public class Monolith : MonoBehaviour
         {
             lights[i].color = new Color(1, 0, 1);
         }
-        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.MonolithActivate, PlayerController.Player.transform.position);
 
         PlayerController.Player.flashlight.GetComponentInChildren<Light>().color = new Color(0.9f, 0, 0.9f);
 
@@ -160,6 +160,7 @@ public class Monolith : MonoBehaviour
 
     void BlueShard()
     {
+        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.MonolithActivate, PlayerController.Player.transform.position);
         string message = "You just activated the <color=#00D6FF>Blue Monolith Shard</color>. You now have a <color=#00D6FF>savior</color> watching over you that will <color=#00D6FF>protect</color> you from death. \n\nBut be warned, it can only protect you <color=red>once</color> and doing so will cause you to <color=red>lose</color> the key and have to go back for it.";
         DialogBox.ShowWindow("Shard Activated", message);
         //put trail activation here

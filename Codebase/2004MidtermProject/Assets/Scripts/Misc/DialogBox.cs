@@ -24,10 +24,10 @@ public class DialogBox : MonoBehaviour
         window.SetActive(false);
     }
 
-    public static void ShowWindow(string TITLE, string MESSAGE)
+    public static void ShowWindow(string TITLE, string MESSAGE, bool muteSounds = true)
     {
         Time.timeScale = 0;
-        SoundManager.Instance.StopAllSounds();
+        if (muteSounds) { SoundManager.Instance.StopAllSounds(); }
         GameState.gamePaused = true;
         Instance.window.SetActive(true);
 

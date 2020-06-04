@@ -12,10 +12,10 @@ public class Enemy : MonoBehaviour
     public Renderer rend; 
     public Animator anim;
 
-    bool stunned = false;
-    bool scared = false;
+    [HideInInspector] public bool stunned = false;
+    [HideInInspector] public bool scared = false;
     [HideInInspector] public float oldSpeed;
-    [SerializeField] Transform eyes;
+    public Transform eyes;
 
     Light[] eyelights; 
 
@@ -134,23 +134,23 @@ public class Enemy : MonoBehaviour
     IEnumerator StunEnemy(float waitTime)
     {
         agent.speed = 0;
+        GetComponent<Collider>().enabled = false;
         anim.SetBool("Stunned", true);
         rend.material.color = Color.blue;
         for (int i = 0; i < eyelights.Length; i++)
         {
             eyelights[i].color = Color.white;
         }
-        GetComponent<Collider>().enabled = false;
         yield return new WaitForSeconds(waitTime);
 
         agent.speed = oldSpeed;
-        GetComponent<Collider>().enabled = true;
         rend.material.color = Color.white;
         for (int i = 0; i < eyelights.Length; i++)
         {
             eyelights[i].color = Color.red;
         }
         anim.SetBool("Stunned", false);
+        GetComponent<Collider>().enabled = true;
         stunDuration -= 0.5f;
         StunRoutine = null;
     }
@@ -173,6 +173,7 @@ public class Enemy : MonoBehaviour
     IEnumerator Scare(float waitTime)
     {
         scared = true;
+        GetComponent<Collider>().enabled = false;
         agent.SetDestination(new Vector3(0, 0, 0));
         anim.SetBool("Stunned", true);
         rend.material.color = new Color(1, 0, 1);
@@ -180,16 +181,36 @@ public class Enemy : MonoBehaviour
         {
             eyelights[i].color = new Color(1, 0.5f, 0);
         }
-        GetComponent<Collider>().enabled = false;
         yield return new WaitForSeconds(waitTime);
-
         scared = false;
-        GetComponent<Collider>().enabled = true;
         rend.material.color = Color.white;
         for (int i = 0; i < eyelights.Length; i++)
         {
             eyelights[i].color = Color.red;
         }
         anim.SetBool("Stunned", false);
+        GetComponent<Collider>().enabled = true;
+    }
+
+    public IEnumerator SaviorScare(Vector3 destination)
+    {
+        scared = true;
+        GetComponent<Collider>().enabled = false;
+        agent.SetDestination(destination);
+        anim.SetBool("Stunned", true);
+        rend.material.color = new Color(1, 0, 1);
+        for (int i = 0; i < eyelights.Length; i++)
+        {
+            eyelights[i].color = new Color(1, 0.5f, 0);
+        }
+        yield return new WaitForSeconds(6);
+        scared = false;
+        rend.material.color = Color.white;
+        for (int i = 0; i < eyelights.Length; i++)
+        {
+            eyelights[i].color = Color.red;
+        }
+        anim.SetBool("Stunned", false);
+        GetComponent<Collider>().enabled = true;
     }
 }
