@@ -31,6 +31,7 @@ public class LifeSaver : MonoBehaviour
     {
         PlayerController.Player.frozen = true;
         enemy.agent.speed = 0;
+        enemy.GetComponent<Collider>().enabled = false;
         Vector3 runPoint = enemy.PickSpawnPoint().position;
         enemy.anim.SetBool("Stunned", true);
         //enemy.agent.Warp(enemy.PickSpawnPoint().position);
