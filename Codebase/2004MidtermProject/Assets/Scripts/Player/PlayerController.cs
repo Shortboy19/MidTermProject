@@ -215,9 +215,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Vector3.Distance(enemy.transform.position, transform.position) < 100)
+        if (Vector3.Distance(enemy.transform.position, transform.position) < 15)
         {
-            float distancemod = Vector3.Distance(enemy.transform.position, transform.position) * 0.5f;
+            float distancemod = Vector3.Distance(enemy.transform.position, transform.position) * 0.25f;
             if(HeartbeatRoutine == null)
             {
                 HeartbeatRoutine = Heartbeat(distancemod);
@@ -496,8 +496,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Heartbeat(float waitTime)
     {
+        SoundManager.Instance.PlayHeartBeatEffect(SoundManager.Instance.Heartbeat);
         yield return new WaitForSeconds(waitTime);
-        SoundManager.Instance.PlayHeartBeatEffect(SoundManager.Instance.HeartBeat, 1);
-        HeartbeatRoutine = null; 
+        HeartbeatRoutine = null;
     }
 }
