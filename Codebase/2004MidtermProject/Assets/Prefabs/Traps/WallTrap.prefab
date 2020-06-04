@@ -44,8 +44,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 2.9898713}
-  m_Center: {x: 0, y: 0, z: 0.99493575}
+  m_Size: {x: 1, y: 1, z: 3.934432}
+  m_Center: {x: 0, y: 0, z: 0.52265537}
 --- !u!114 &8690039811720081325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,9 +62,11 @@ MonoBehaviour:
   trapObj: {fileID: 723269349142320939}
   button: {fileID: 566630970903632086}
   button1: {fileID: 723269349957835683}
+  enemy: {fileID: 0}
   armedMat: {fileID: 2100000, guid: b4ae177bd96468f4eb3790b620d914f0, type: 2}
   unarmedMat: {fileID: 2100000, guid: 7f49548ade8152249823f295afa0a867, type: 2}
   duration: 3
+  fakeGhosts: []
 --- !u!1 &566630970730376655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,8 +1093,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 3.0007164}
-  m_Center: {x: 0, y: 0, z: -1.0003583}
+  m_Size: {x: 1, y: 1, z: 3.987052}
+  m_Center: {x: 0, y: 0, z: -0.5071906}
 --- !u!114 &8452618042408168664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1109,6 +1111,8 @@ MonoBehaviour:
   trapObj: {fileID: 723269349142320939}
   button: {fileID: 723269349957835683}
   button1: {fileID: 566630970903632086}
+  enemy: {fileID: 0}
   armedMat: {fileID: 2100000, guid: b4ae177bd96468f4eb3790b620d914f0, type: 2}
   unarmedMat: {fileID: 2100000, guid: 7f49548ade8152249823f295afa0a867, type: 2}
   duration: 3
+  fakeGhosts: []
