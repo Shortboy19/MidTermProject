@@ -5044,6 +5044,7 @@ GameObject:
   - component: {fileID: 7601403310338777608}
   - component: {fileID: 1461203167}
   - component: {fileID: 5292797210885002467}
+  - component: {fileID: 472400166}
   m_Layer: 13
   m_Name: Monolith
   m_TagString: Monolith
@@ -5160,6 +5161,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.35, y: 0.15, z: 2.35}
   m_Center: {x: 0, y: -0.55, z: 0}
+--- !u!114 &472400166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7601403310338777609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc14b87accc3fd441b265ce9b967ab1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  savior: {fileID: 9140375149981588843, guid: 348cbdb4509a1754fba8005a6bef07d5, type: 3}
+  enemy: {fileID: 0}
+  keySpawner: {fileID: 0}
+  map: {fileID: 0}
 --- !u!1 &8251384476858652146
 GameObject:
   m_ObjectHideFlags: 0

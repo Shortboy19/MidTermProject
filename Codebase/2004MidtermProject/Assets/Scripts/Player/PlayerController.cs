@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
     [Space(10)]
     public GameObject flashlight;
     [SerializeField] MiniMap minimap;
-    [SerializeField] ObjectiveTracker objective;
+    public ObjectiveTracker objective;
     #endregion
 
     #region Private Variables

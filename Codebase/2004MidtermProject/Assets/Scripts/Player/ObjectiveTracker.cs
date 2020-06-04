@@ -38,4 +38,29 @@ public class ObjectiveTracker : MonoBehaviour
             yield return new WaitForSeconds(0.025f);
         }
     }
+
+    public void DisplayOldObjective(string objective, float delay = 1.5f)
+    {
+        StartCoroutine(OldObjective(objective, delay));
+    }
+
+    IEnumerator OldObjective(string message, float delay = 1.5f)
+    {
+        text.color = Color.red;
+        yield return new WaitForSeconds(delay);
+        string oldObj = text.text;
+        while (oldObj != string.Empty)
+        {
+            oldObj = oldObj.Remove(oldObj.Length - 1);
+            text.text = oldObj;
+            yield return new WaitForSeconds(0.025f);
+        }
+
+        text.color = Color.white;
+        for (int i = 0; i < message.Length; i++)
+        {
+            text.text += message[i];
+            yield return new WaitForSeconds(0.025f);
+        }
+    }
 }

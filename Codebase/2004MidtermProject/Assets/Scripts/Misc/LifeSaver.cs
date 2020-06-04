@@ -96,6 +96,8 @@ public class LifeSaver : MonoBehaviour
         keySpawner.Start();
         map.ShowKey();
 
+        PlayerController.Player.objective.DisplayOldObjective("Find the key");
+
         PlayerController.Player.frozen = false;
         enemy.scared = false;
     }

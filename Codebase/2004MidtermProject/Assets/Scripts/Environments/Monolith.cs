@@ -43,7 +43,7 @@ public class Monolith : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if(PlayerController.Player.hasShard && PlayerController.Player.hasKey)
+            if(PlayerController.Player.hasShard)
             {
                 textObj.SetActive(true);
                 playerCanActivate = true;
@@ -63,8 +63,6 @@ public class Monolith : MonoBehaviour
     {
         StartCoroutine(Spin());
         textObj.SetActive(false);
-        playerCanActivate = false;
-        PlayerController.Player.hasShard = false;
 
         //activate shard here
         switch (shardCharge)
@@ -85,6 +83,9 @@ public class Monolith : MonoBehaviour
                 //Do nothing
                 break;
         }
+
+        playerCanActivate = false;
+        PlayerController.Player.hasShard = false;
     }
 
     void Bounce()
@@ -108,6 +109,12 @@ public class Monolith : MonoBehaviour
 
     void YellowShard()
     {
+        if(!PlayerController.Player.hasKey)
+        {
+            DialogBox.ShowWindow("Unavailable", "You need the <color=yellow>key</color> to activate this shard. \n\nHeads towards the <color=yellow>indicator<yellow> on you minimap to find it.");
+            return;
+        }
+
         SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.MonolithActivate, PlayerController.Player.transform.position);
         string message = "You just activated the <color=yellow>Yellow Monolith Shard</color>. Your <color=yellow>minimap</color> will now display the quickest possible path to the exit. \n\nBut be warned, the monster has now become <color=red>aggrivated</color> and will chase after you at accelerated speeds.";
         DialogBox.ShowWindow("Shard Activated", message);
@@ -161,7 +168,7 @@ public class Monolith : MonoBehaviour
     void BlueShard()
     {
         SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.MonolithActivate, PlayerController.Player.transform.position);
-        string message = "You just activated the <color=#00D6FF>Blue Monolith Shard</color>. You now have a <color=#00D6FF>savior</color> watching over you that will <color=#00D6FF>protect</color> you from death. \n\nBut be warned, it can only protect you <color=red>once</color> and doing so will cause you to <color=red>lose</color> the key and have to go back for it.";
+        string message = "You just activated the <color=#00D6FF>Blue Monolith Shard</color>. You now have a <color=#00D6FF>savior</color> watching over you that will <color=#00D6FF>protect</color> you from the monster's gaze. \n\nBut be warned, it can only protect you <color=red>once</color> and doing so will cause you to <color=red>drop</color> the key and have to go back for it.";
         DialogBox.ShowWindow("Shard Activated", message);
         //put trail activation here
         for (int i = 0; i < lights.Length; i++)

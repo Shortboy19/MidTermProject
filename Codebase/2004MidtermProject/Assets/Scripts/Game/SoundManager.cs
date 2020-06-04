@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public static float MusicVolume = 1;
-    public static float EffectsVolume = 1;
-    public static float AmbientVolume = 1;
+    public static float MusicVolume = 0.75f;
+    public static float EffectsVolume = 0.75f;
+    public static float AmbientVolume = 0.75f;
 
     //audio players component.
     [SerializeField] AudioSource EffectSound;
