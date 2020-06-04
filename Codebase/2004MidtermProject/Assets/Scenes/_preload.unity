@@ -232,16 +232,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
-    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
-        type: 3}
-      propertyPath: Shard
-      value: 
-      objectReference: {fileID: 8300000, guid: 62e6646ab7e52be4b96d00828e9bba26, type: 3}
-    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
-        type: 3}
-      propertyPath: Battery
-      value: 
-      objectReference: {fileID: 8300000, guid: ca0487de2378e8d4bb2bfa815db59375, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ce8838aa0ddbc94cb44657c92360764, type: 3}
 --- !u!4 &1122038648 stripped

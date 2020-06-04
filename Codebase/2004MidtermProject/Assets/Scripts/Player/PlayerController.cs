@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     [Range(1, 200)]
     public float LookSenstivity = 100f;
     [Tooltip("The speed at which the player moves. (Defaults to 3.5)")]
-    [Range(0,10)]
+    [Range(0, 10)]
     [Space(10)]
     public float walkSpeed = 3.5f;
     [Tooltip("The multiplier to the players speed while sprinting. (Defaults to 2)")]
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         //singleton management
-        if ( Player == null) { Player = this; } else { if (Player != this) Debug.LogWarning("Multiple " + this + " in the scene. There should only be 1 player."); }
+        if (Player == null) { Player = this; } else { if (Player != this) Debug.LogWarning("Multiple " + this + " in the scene. There should only be 1 player."); }
     }
 
     void Start()
@@ -110,13 +110,13 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(3);
         SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.GhostBreath);
     }
-    
+
     void Update()
     {
         if (GameState.gamePaused)
             return;
 
-        if(!frozen)
+        if (!frozen)
         {
             MouseLook();
             Movement();
@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
         {
             currStamina += staminaRegenRate * Time.deltaTime;
         }
-        if(!canSprint && currStamina > 0.5f)
+        if (!canSprint && currStamina > 0.5f)
         {
             canSprint = true;
         }
@@ -169,9 +169,9 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if(enemySeen)
+            if (enemySeen)
             {
-                if(sightDelay == null)
+                if (sightDelay == null)
                 {
                     sightDelay = DelayedSightRefresh();
                     StartCoroutine(sightDelay);
@@ -200,9 +200,9 @@ public class PlayerController : MonoBehaviour
         }
 
         //sliding
-        if(isSliding)
+        if (isSliding)
         {
-            if(slideTimer > 0)
+            if (slideTimer > 0)
                 Slide();
             else
             {
@@ -214,12 +214,23 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
+        if (Vector3.Distance(enemy.transform.position, transform.position) < 100)
+        {
+            float distancemod = Vector3.Distance(enemy.transform.position, transform.position) * 0.5f;
+            if(HeartbeatRoutine == null)
+            {
+                HeartbeatRoutine = Heartbeat(distancemod);
+                StartCoroutine(HeartbeatRoutine); 
+            }
+        }
     }
+    IEnumerator HeartbeatRoutine;
 
     bool flashlightOn = false;
     void FlashLight(bool val)
     {
-        if(val == true)
+        if (val == true)
         {
             if (flashlightOn)
                 return;
@@ -268,7 +279,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else { isSprinting = false; moveSound.clip = null; }
             }
-            else { isSprinting = false;}
+            else { isSprinting = false; }
 
             moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
@@ -281,7 +292,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown("Slide"))
             {
-                if(!isSliding)
+                if (!isSliding)
                 {
                     if (currStamina > 0)
                     {
@@ -294,7 +305,7 @@ public class PlayerController : MonoBehaviour
                         slideDirection = transform.TransformDirection(slideDirection);
                         slideDirection *= slideDistance / slideDuration;
                         currStamina -= slideStaminaCost;
-                        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.PlayerSliding, transform.position, 2); 
+                        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.PlayerSliding, transform.position, 2);
                     }
                 }
             }
@@ -306,7 +317,7 @@ public class PlayerController : MonoBehaviour
 
         cc.Move((isSliding ? slideDirection : moveDirection) * Time.deltaTime);
 
-        if(!moveSoundPlaying)
+        if (!moveSoundPlaying)
         {
             StartCoroutine(PlayMoveSound());
         }
@@ -333,13 +344,13 @@ public class PlayerController : MonoBehaviour
         moveSoundPlaying = true;
         float delay = isSprinting ? 0.3225f : 0.3805f;
 
-        if(moveSound == null)
+        if (moveSound == null)
         {
             moveSound = GetComponent<AudioSource>();
         }
         moveSound.volume = 0.125f * SoundManager.EffectsVolume;
 
-        if(cc.isGrounded && !isSliding)
+        if (cc.isGrounded && !isSliding)
             moveSound.Play();
 
         yield return new WaitForSeconds(delay);
@@ -373,7 +384,7 @@ public class PlayerController : MonoBehaviour
         }
         moveDirection.y = jumpHeight * 2;
     }
-    
+
     float slideTimer;
     float oldSpeed;
     void Slide()
@@ -383,8 +394,8 @@ public class PlayerController : MonoBehaviour
         {
             slideTimer -= Time.deltaTime;
             walkSpeed = slideDistance / slideDuration;
-            
-            if(!Physics.Raycast(transform.position, transform.up, 1f))
+
+            if (!Physics.Raycast(transform.position, transform.up, 1f))
             {
                 if (slideTimer <= 0)
                 {
@@ -416,13 +427,13 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Battery"))
         {
-            if(currBattery < maxBattery)
+            if (currBattery < maxBattery)
             {
                 Destroy(other.gameObject);
                 currBattery += batteryChargeAmount;
                 if (currBattery > maxBattery)
                     currBattery = maxBattery;
-                SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Battery, transform.position); 
+                SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Battery, transform.position);
             }
         }
         if (other.gameObject.CompareTag("Entrance"))
@@ -433,13 +444,13 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("YellowShard"))
         {
-            for(int i = 0; i < shards.Length; i++)
+            for (int i = 0; i < shards.Length; i++)
             {
                 Destroy(shards[i]);
             }
             hasShard = true;
             Monolith.shardCharge = 1;
-            SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Shard, transform.position); 
+            SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Shard, transform.position);
         }
         if (other.gameObject.CompareTag("GreenShard"))
         {
@@ -479,5 +490,14 @@ public class PlayerController : MonoBehaviour
         {
             other.isTrigger = false;
         }
+    }
+
+
+
+    IEnumerator Heartbeat(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        SoundManager.Instance.PlayHeartBeatEffect(SoundManager.Instance.HeartBeat, 1);
+        HeartbeatRoutine = null; 
     }
 }
