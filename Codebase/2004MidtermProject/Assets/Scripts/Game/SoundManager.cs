@@ -14,6 +14,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource RainSound;
     [SerializeField] AudioSource NightSound;
     [SerializeField] AudioSource ThunderSound;
+    [SerializeField] AudioSource Heartbeat;
 
     public AudioClip[] ThunderClap;
     public AudioClip[] PlayerWalking;
@@ -31,6 +32,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip MonolithActivate;
     public AudioClip Shard;
     public AudioClip Battery;
+    public AudioClip HeartBeat;
 
     public AudioClip[] effects;
 
@@ -119,6 +121,7 @@ public class SoundManager : MonoBehaviour
     float RainSoundVol;
     float NightSoundVol;
     float ThunderSoundVol;
+    float HeartbeatVol;
 
     public void StopAllSounds()
     {
@@ -129,6 +132,7 @@ public class SoundManager : MonoBehaviour
         RainSound.volume = 0;
         NightSound.volume = 0;
         ThunderSound.volume = 0;
+        Heartbeat.volume = 0; 
     }
 
     public void ResumeAllSounds()
@@ -138,6 +142,7 @@ public class SoundManager : MonoBehaviour
         RainSound.volume = RainSoundVol;
         NightSound.volume = NightSoundVol;
         ThunderSound.volume = ThunderSoundVol;
+        Heartbeat.volume = HeartbeatVol; 
     }
 
     void GetSoundVolumes()
@@ -147,6 +152,7 @@ public class SoundManager : MonoBehaviour
         RainSoundVol = RainSound.volume;
         NightSoundVol = NightSound.volume;
         ThunderSoundVol = ThunderSound.volume;
+        HeartbeatVol = Heartbeat.volume; 
     }
 
     public void UpdateMusicSoundVolume()
@@ -160,5 +166,13 @@ public class SoundManager : MonoBehaviour
         RainSoundVol = 0.15f * AmbientVolume;
         NightSoundVol = 0.15f * AmbientVolume;
 
+    }
+
+    public void PlayHeartBeatEffect(AudioClip clip, float volume)
+    {
+        Heartbeat.volume = volume * EffectsVolume;
+        Heartbeat.clip = clip;
+        if(!Heartbeat.isPlaying) 
+        Heartbeat.Play();
     }
 }
