@@ -15,6 +15,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource NightSound;
     [SerializeField] AudioSource ThunderSound;
     [SerializeField] AudioSource HeartBeatSound;
+     public AudioSource BreathSound;
 
     public AudioClip[] ThunderClap;
     public AudioClip[] PlayerWalking;
@@ -33,6 +34,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip Shard;
     public AudioClip Battery;
     public AudioClip Heartbeat;
+    public AudioClip OutOfBreath; 
 
     public AudioClip[] effects;
 
@@ -122,6 +124,7 @@ public class SoundManager : MonoBehaviour
     float NightSoundVol;
     float ThunderSoundVol;
     float HeartbeatSoundVol;
+    float BreathVol;
 
     public void StopAllSounds()
     {
@@ -133,6 +136,7 @@ public class SoundManager : MonoBehaviour
         NightSound.volume = 0;
         ThunderSound.volume = 0;
         HeartBeatSound.volume = 0;
+        BreathSound.volume = 0;
     }
 
     public void ResumeAllSounds()
@@ -142,7 +146,8 @@ public class SoundManager : MonoBehaviour
         RainSound.volume = RainSoundVol;
         NightSound.volume = NightSoundVol;
         ThunderSound.volume = ThunderSoundVol;
-        HeartBeatSound.volume = HeartbeatSoundVol; 
+        HeartBeatSound.volume = HeartbeatSoundVol;
+        BreathSound.volume = BreathVol; 
     }
 
     void GetSoundVolumes()
@@ -152,7 +157,8 @@ public class SoundManager : MonoBehaviour
         RainSoundVol = RainSound.volume;
         NightSoundVol = NightSound.volume;
         ThunderSoundVol = ThunderSound.volume;
-        HeartbeatSoundVol = HeartBeatSound.volume; 
+        HeartbeatSoundVol = HeartBeatSound.volume;
+        BreathVol = BreathSound.volume; 
     }
 
     public void UpdateMusicSoundVolume()
@@ -172,5 +178,12 @@ public class SoundManager : MonoBehaviour
         HeartBeatSound.volume = 1 * EffectsVolume;
         HeartBeatSound.clip = clip;
         HeartBeatSound.Play();
+    }
+
+    public void PlayBreath(AudioClip clip)
+    {
+        BreathSound.volume = 1 * EffectsVolume;
+        BreathSound.clip = clip;
+        BreathSound.Play();
     }
 }

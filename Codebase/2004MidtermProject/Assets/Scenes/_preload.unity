@@ -234,14 +234,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
         type: 3}
-      propertyPath: Heartbeat
+      propertyPath: BreathSound
       value: 
-      objectReference: {fileID: 8300000, guid: ff2a3c9a58730934ca11e222e9b7afa6, type: 3}
+      objectReference: {fileID: 1122038649}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ce8838aa0ddbc94cb44657c92360764, type: 3}
 --- !u!4 &1122038648 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9222068833634799772, guid: 0ce8838aa0ddbc94cb44657c92360764,
+    type: 3}
+  m_PrefabInstance: {fileID: 1122038647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1122038649 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 957753684, guid: 0ce8838aa0ddbc94cb44657c92360764,
     type: 3}
   m_PrefabInstance: {fileID: 1122038647}
   m_PrefabAsset: {fileID: 0}
