@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Trap : MonoBehaviour
 {
@@ -55,7 +56,7 @@ public class Trap : MonoBehaviour
     {
         if (enemy)
         {
-            enemy.transform.position = telePoints[Random.Range(0, telePoints.Length-1)];
+            enemy.GetComponent<NavMeshAgent>().Warp(telePoints[Random.Range(0, telePoints.Length - 1)]);
         }
         if (trapObj)
         {

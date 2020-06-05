@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
 
     public Transform PickSpawnPoint()
     {
-        SpawnLocationNumber = Random.Range(1, spawnPoints.Length);
+        SpawnLocationNumber = Random.Range(0, spawnPoints.Length);
         return spawnPoints[SpawnLocationNumber];
     }
 

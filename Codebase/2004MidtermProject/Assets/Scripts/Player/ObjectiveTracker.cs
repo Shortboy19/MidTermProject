@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObjectiveTracker : MonoBehaviour
 {
     public TextMeshProUGUI text;
-
     void Start()
     {
         text = GetComponentInChildren<TextMeshProUGUI>();
         text.text = string.Empty;
-        DisplayNewObjective("Find the key", 1.5f);
+        if (SceneManager.GetActiveScene().name== "ProtoypeMilestoneScene")
+        {
+            DisplayNewObjective("Find the key", 1.5f);
+        }
     }
 
     public void DisplayNewObjective(string objective, float delay = 1.5f)
