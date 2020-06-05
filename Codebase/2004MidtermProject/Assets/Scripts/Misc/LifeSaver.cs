@@ -91,15 +91,15 @@ public class LifeSaver : MonoBehaviour
         enemy.agent.Warp(runPoint);
         Destroy(saviorOBJ);
         yield return new WaitForEndOfFrame();
-        DialogBox.ShowWindow("You've Been Saved", "A savior has <color=#00D6FF>protected</color> you from death. In doing so you have <color=red>dropped</color> the key. You'll have to go back for it. \n\nBe carful, as you will not be saved again.");
 
         PlayerController.Player.hasKey = false;
         keySpawner.Start();
         map.ShowKey();
 
-        PlayerController.Player.objective.DisplayOldObjective("Find the key");
-
         PlayerController.Player.frozen = false;
+        DialogBox.ShowWindow("You've Been Saved", "A savior has <color=#00D6FF>protected</color> you from death. In doing so you have <color=red>dropped</color> the key. You'll have to go back for it. \n\nBe carful, as you will not be saved again.");
+
+        PlayerController.Player.objective.DisplayOldObjective("Find the key");
         enemy.scared = false;
     }
 }

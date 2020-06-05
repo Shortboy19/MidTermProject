@@ -256,11 +256,13 @@ MonoBehaviour:
   flashlight: {fileID: 7596025566471299199}
   minimap: {fileID: 0}
   objective: {fileID: 0}
-  hasKey: 1
+  hasKey: 0
   enemy: {fileID: 0}
   enemyComp: {fileID: 0}
   frozen: 0
   hasShard: 0
+  UVFlashlight: 0
+  hasBlueLife: 0
   shards:
   - {fileID: 0}
   - {fileID: 0}
@@ -529,7 +531,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 31745
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
