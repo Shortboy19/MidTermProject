@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0007200191, g: 0.0018433576, b: 0.05432608, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6697,6 +6697,25 @@ PrefabInstance:
       propertyPath: trailMaker
       value: 
       objectReference: {fileID: 1740351322}
+    - target: {fileID: 1461203167, guid: bc1da8d2068506c4ea93557e061f7001, type: 3}
+      propertyPath: Whispers
+      value: 
+      objectReference: {fileID: 1411850547}
+    - target: {fileID: 4841763845953525127, guid: bc1da8d2068506c4ea93557e061f7001,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841763845953525127, guid: bc1da8d2068506c4ea93557e061f7001,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841763845953525127, guid: bc1da8d2068506c4ea93557e061f7001,
+        type: 3}
+      propertyPath: BypassEffects
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7601403310338777609, guid: bc1da8d2068506c4ea93557e061f7001,
         type: 3}
       propertyPath: m_Name
@@ -7040,6 +7059,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1411850547 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4841763845953525127, guid: bc1da8d2068506c4ea93557e061f7001,
+    type: 3}
+  m_PrefabInstance: {fileID: 1304262530}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1416951811
 GameObject:
   m_ObjectHideFlags: 0

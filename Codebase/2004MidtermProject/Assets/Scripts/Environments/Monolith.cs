@@ -10,6 +10,7 @@ public class Monolith : MonoBehaviour
     float rotSpeed = 0.035f;
     [Range(0, 1)]
     [SerializeField] float floatAmount = 0.05f;
+    [SerializeField] AudioSource Whispers;
 
     [SerializeField] GameObject textObj;
     [SerializeField] GameObject trailMaker;
@@ -43,11 +44,13 @@ public class Monolith : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if(PlayerController.Player.hasShard)
+            if (PlayerController.Player.hasShard)
             {
                 textObj.SetActive(true);
                 playerCanActivate = true;
             }
+            Whispers.volume = 1;
+            Whispers.Play();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -56,6 +59,8 @@ public class Monolith : MonoBehaviour
         {
             textObj.SetActive(false);
             playerCanActivate = false;
+            Whispers.volume = 0;
+            Whispers.Stop();
         }
     }
 
@@ -90,7 +95,7 @@ public class Monolith : MonoBehaviour
 
     void Bounce()
     {
-        transform.position = Vector3.Lerp(floatVec, new Vector3(0, floatVec.y * (1+floatAmount), 0), floatSpeed);
+        transform.position = Vector3.Lerp(floatVec, new Vector3(0, floatVec.y * (1 + floatAmount), 0), floatSpeed);
 
         floatSpeed = Mathf.PingPong(Time.time * 0.5f, 1);
     }
@@ -103,13 +108,12 @@ public class Monolith : MonoBehaviour
             rotSpeed = Mathf.Lerp(0.035f, 5, rotSpeedMod);
             yield return new WaitForEndOfFrame();
             rotSpeedMod -= 0.005f;
-            Debug.Log(rotSpeedMod);
         };
     }
 
     void YellowShard()
     {
-        if(!PlayerController.Player.hasKey)
+        if (!PlayerController.Player.hasKey)
         {
             DialogBox.ShowWindow("Unavailable", "You need the <color=yellow>key</color> to activate this shard. \n\nHeads towards the <color=yellow>indicator</color> on you minimap to find it.");
             return;
