@@ -25,6 +25,7 @@ public class GameState : MonoBehaviour
         deathMenu.SetActive(false);
         winMenu.SetActive(false);
         gameWon = false;
+       // SoundManager.Instance.ResumeAllSounds(); 
     }
 
     public void TogglePause()
@@ -73,11 +74,11 @@ public class GameState : MonoBehaviour
 
     public static void ShowDeathMenu()
     {
-        //SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt);
+        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.PlayerHurt, PlayerController.Player.transform.position);
         gamePaused = true;
         Instance.deathMenu.SetActive(true);
         GameTimer.Instance.AttemptFailed();
-        AudioListener.pause = true;
+        SoundManager.Instance.StopAllSounds(); 
     }
 
     public static void ShowWinMenu()
@@ -96,6 +97,7 @@ public class GameState : MonoBehaviour
     {
         gamePaused = false;
         Time.timeScale = 1;
+        SoundManager.Instance.ResumeAllSounds(); 
     }
 
     public GameObject optionsMenu;

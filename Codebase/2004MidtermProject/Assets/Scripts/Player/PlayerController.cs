@@ -218,12 +218,21 @@ public class PlayerController : MonoBehaviour
         if (Vector3.Distance(enemy.transform.position, transform.position) < 15)
         {
             float distancemod = Vector3.Distance(enemy.transform.position, transform.position) * 0.25f;
-            if(HeartbeatRoutine == null)
+            if (HeartbeatRoutine == null)
             {
                 HeartbeatRoutine = Heartbeat(distancemod);
-                StartCoroutine(HeartbeatRoutine); 
+                StartCoroutine(HeartbeatRoutine);
             }
         }
+
+        if (currStamina <= 0)
+        {
+            if (!SoundManager.Instance.BreathSound.isPlaying)
+            {
+                SoundManager.Instance.PlayBreath(SoundManager.Instance.OutOfBreath); 
+            }
+        }
+
     }
     IEnumerator HeartbeatRoutine;
 
