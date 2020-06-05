@@ -18,6 +18,7 @@ TagManager:
   - BlueShard
   - PurpleShard
   - Capsule
+  - TExit
   layers:
   - Default
   - TransparentFX
