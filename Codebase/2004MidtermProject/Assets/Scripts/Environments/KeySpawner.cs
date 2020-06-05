@@ -6,7 +6,7 @@ public class KeySpawner : MonoBehaviour
 {
     public GameObject Key;
     [SerializeField] GameObject shard;
-    ObjectiveTracker objective;
+    [SerializeField] ObjectiveTracker objective;
     #region Spawn Points
     private int SpawnPoint;
     public Transform[] SpawnPoints;

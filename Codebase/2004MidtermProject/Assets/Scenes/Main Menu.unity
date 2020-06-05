@@ -3982,6 +3982,8 @@ MonoBehaviour:
   - {fileID: 0}
   rend: {fileID: 0}
   anim: {fileID: 0}
+  stunned: 0
+  scared: 0
   oldSpeed: 0
   eyes: {fileID: 6174312121465125288}
 --- !u!4 &8338826498409891652
