@@ -108,7 +108,6 @@ public class Monolith : MonoBehaviour
             rotSpeed = Mathf.Lerp(0.035f, 5, rotSpeedMod);
             yield return new WaitForEndOfFrame();
             rotSpeedMod -= 0.005f;
-            Debug.Log(rotSpeedMod);
         };
     }
 
