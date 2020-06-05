@@ -10,15 +10,16 @@ public class TrapTutorial : MonoBehaviour
     public ObjectiveTracker objective;
     public GameObject audiosource;
     public GameObject invisableWall;
-    bool triggered = false;
+    bool triggered;
     void Start()
     {
         objective.DisplayNewObjective("Turn on the hallway lights");
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player")&& !triggered)
         {
+            triggered = true;
             objective.DisplayNewObjective("Press the button to arm the wall trap");
             SoundManager.Instance.PlayThunderEffect(audiosource.GetComponent<AudioSource>().clip, 100);
             enemy.GetComponent<NavMeshAgent>().Warp(warpPoint.transform.position);
