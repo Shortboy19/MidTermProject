@@ -10,6 +10,7 @@ public class GameState : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject deathMenu;
     public GameObject winMenu;
+    public GameObject tutorialExit;
     [SerializeField] OptionsMenu options;
 
     public static bool gameWon = false;
@@ -25,6 +26,7 @@ public class GameState : MonoBehaviour
         deathMenu.SetActive(false);
         winMenu.SetActive(false);
         gameWon = false;
+        tutorialExit.SetActive(false);
        // SoundManager.Instance.ResumeAllSounds(); 
     }
 
@@ -90,6 +92,16 @@ public class GameState : MonoBehaviour
             Instance.winMenu.SetActive(true);
             GameTimer.isCounting = false;
             GameTimer.Instance.GetTime();
+        }
+    }
+
+    public static void ShowTutorialExit()
+    {
+        if(PlayerController.Player.hitExit)
+        {
+            gameWon = true;
+            gamePaused = true;
+            Instance.tutorialExit.SetActive(true);
         }
     }
 

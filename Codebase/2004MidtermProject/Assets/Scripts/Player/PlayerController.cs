@@ -434,6 +434,13 @@ public class PlayerController : MonoBehaviour
             hitExit = true;
             GameState.ShowWinMenu();
         }
+        if (other.gameObject.CompareTag("TExit"))
+        {
+            SoundManager.Instance.PlayEffectAtPoint(other.GetComponent<AudioSource>().clip, transform.position, 0.25f);
+            other.GetComponent<Animation>().Play();
+            hitExit = true;
+            GameState.ShowTutorialExit();
+        }
         if (other.gameObject.CompareTag("Battery"))
         {
             if (currBattery < maxBattery)
