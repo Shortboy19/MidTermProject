@@ -84,6 +84,9 @@ public class Monolith : MonoBehaviour
             case 4:
                 BlueShard();
                 break;
+            case 5:
+                CapsuleMode();
+                break;
             default:
                 //Do nothing
                 break;
@@ -181,5 +184,11 @@ public class Monolith : MonoBehaviour
         }
 
         PlayerController.Player.hasBlueLife = true;
+    }
+
+    [SerializeField] GameObject capsule;
+    void CapsuleMode()
+    {
+        capsule.SetActive(true);
     }
 }

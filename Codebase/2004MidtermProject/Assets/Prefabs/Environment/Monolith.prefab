@@ -5277,6 +5277,7 @@ MonoBehaviour:
   Whispers: {fileID: 4841763845953525127}
   textObj: {fileID: 0}
   trailMaker: {fileID: 0}
+  capsule: {fileID: 0}
 --- !u!114 &472400166
 MonoBehaviour:
   m_ObjectHideFlags: 0
