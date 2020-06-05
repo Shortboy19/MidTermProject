@@ -375,6 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Key: {fileID: 170560, guid: cc5de5e674870ca479a40105f80555ad, type: 3}
   shard: {fileID: 0}
+  objective: {fileID: 0}
   SpawnPoints:
   - {fileID: 8597820461660894427}
   - {fileID: 8597820461468469840}

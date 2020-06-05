@@ -5108,6 +5108,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 1202680046126994782}
   deathMenu: {fileID: 6850525554491422750}
   winMenu: {fileID: 8286380443709966677}
+  tutorialExit: {fileID: 8511668567920463836}
   options: {fileID: 0}
   timer: {fileID: 0}
   optionsMenu: {fileID: 0}
