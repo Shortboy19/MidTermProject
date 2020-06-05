@@ -6,6 +6,7 @@ public class KeySpawner : MonoBehaviour
 {
     public GameObject Key;
     [SerializeField] GameObject shard;
+    ObjectiveTracker objective;
     #region Spawn Points
     private int SpawnPoint;
     public Transform[] SpawnPoints;
@@ -16,6 +17,7 @@ public class KeySpawner : MonoBehaviour
         {
             KeySpawn(Key);
         }
+        objective.DisplayNewObjective("Find the key");
     }
 
     void KeySpawn(GameObject Key)

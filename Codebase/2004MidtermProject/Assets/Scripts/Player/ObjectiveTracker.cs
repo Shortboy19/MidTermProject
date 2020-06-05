@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ObjectiveTracker : MonoBehaviour
 {
@@ -11,16 +10,24 @@ public class ObjectiveTracker : MonoBehaviour
     {
         text = GetComponentInChildren<TextMeshProUGUI>();
         text.text = string.Empty;
-        if (SceneManager.GetActiveScene().name== "ProtoypeMilestoneScene")
-        {
-            DisplayNewObjective("Find the key", 1.5f);
-        }
     }
 
     public void DisplayNewObjective(string objective, float delay = 1.5f)
     {
-        StartCoroutine(NewObjective(objective, delay));
+        if(objectiveRoutine == null)
+        {
+            objectiveRoutine = NewObjective(objective, delay);
+            StartCoroutine(objectiveRoutine);
+        }
+        else
+        {
+            StopCoroutine(objectiveRoutine);
+            objectiveRoutine = NewObjective(objective, delay);
+            StartCoroutine(objectiveRoutine);
+        }
     }
+
+    IEnumerator objectiveRoutine;
 
     IEnumerator NewObjective(string message, float delay = 1.5f)
     {
@@ -44,7 +51,17 @@ public class ObjectiveTracker : MonoBehaviour
 
     public void DisplayOldObjective(string objective, float delay = 1.5f)
     {
-        StartCoroutine(OldObjective(objective, delay));
+        if (objectiveRoutine == null)
+        {
+            objectiveRoutine = OldObjective(objective, delay);
+            StartCoroutine(objectiveRoutine);
+        }
+        else
+        {
+            StopCoroutine(objectiveRoutine);
+            objectiveRoutine = OldObjective(objective, delay);
+            StartCoroutine(objectiveRoutine);
+        }
     }
 
     IEnumerator OldObjective(string message, float delay = 1.5f)
