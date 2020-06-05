@@ -41,6 +41,7 @@ public class GameState : MonoBehaviour
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
         gamePaused = true;
+        AudioListener.pause = true; 
     }
     public void Unpause()
     {
@@ -48,6 +49,7 @@ public class GameState : MonoBehaviour
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
         gamePaused = false;
+        AudioListener.pause = false; 
     }
 
     private void Update()
@@ -75,6 +77,7 @@ public class GameState : MonoBehaviour
         gamePaused = true;
         Instance.deathMenu.SetActive(true);
         GameTimer.Instance.AttemptFailed();
+        AudioListener.pause = true;
     }
 
     public static void ShowWinMenu()
