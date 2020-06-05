@@ -491,6 +491,13 @@ public class PlayerController : MonoBehaviour
             Monolith.shardCharge = 4;
             SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Shard, transform.position);
         }
+        if (other.gameObject.CompareTag("Capsule"))
+        {
+            Destroy(other.gameObject);
+            hasShard = true;
+            Monolith.shardCharge = 5;
+            SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Shard, transform.position);
+        }
     }
 
     private void OnTriggerExit(Collider other)

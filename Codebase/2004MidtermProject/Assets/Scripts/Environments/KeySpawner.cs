@@ -5,6 +5,7 @@ using UnityEngine;
 public class KeySpawner : MonoBehaviour
 {
     public GameObject Key;
+    [SerializeField] GameObject shard;
     #region Spawn Points
     private int SpawnPoint;
     public Transform[] SpawnPoints;
@@ -21,5 +22,16 @@ public class KeySpawner : MonoBehaviour
     {
         SpawnPoint = Random.Range(1, SpawnPoints.Length);
         Instantiate(Key, SpawnPoints[SpawnPoint].position, Quaternion.identity);
+    }
+
+    private void Update()
+    {
+        if (shard == null)
+            return;
+
+        if(PlayerController.Player.hasKey)
+        {
+            Destroy(shard);
+        }
     }
 }
