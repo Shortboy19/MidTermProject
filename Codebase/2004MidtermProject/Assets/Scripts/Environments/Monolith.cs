@@ -133,8 +133,9 @@ public class Monolith : MonoBehaviour
         }
         Enemy enemy = FindObjectOfType<Enemy>();
         StartCoroutine(YellowShardDelayedWarp(enemy));
-        enemy.agent.speed = 6.5f;
-        enemy.oldSpeed = 6.5f;
+        enemy.agent.speed = 6.75f;
+        enemy.oldSpeed = 6.75f;
+        enemy.agent.angularSpeed = 180;
     }
 
     IEnumerator YellowShardDelayedWarp(Enemy enemy)
