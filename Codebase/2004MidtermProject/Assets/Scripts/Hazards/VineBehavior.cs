@@ -14,10 +14,10 @@ public class VineBehavior : MonoBehaviour
     void Start()
     {
         originalVineLoc = transform.position;
-        originalVineLoc.y = -0.5f;
+        originalVineLoc.y = -1.8f;
 
         finalVineLoc = transform.position;
-        finalVineLoc.y = 2;
+        finalVineLoc.y = 1.7f;
 
         transform.position = finalVineLoc;
     }
