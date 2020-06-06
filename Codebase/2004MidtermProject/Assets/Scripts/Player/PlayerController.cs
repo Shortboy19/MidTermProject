@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool hasShard = false;
     [HideInInspector] public bool UVFlashlight = false;
     [HideInInspector] public bool hasBlueLife = false;
-    [SerializeField] GameObject[] shards;
+    [SerializeField] GameObject shards;
     public static bool enemySeen = false;
 
     #endregion
@@ -460,40 +460,28 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("YellowShard"))
         {
-            for (int i = 0; i < shards.Length; i++)
-            {
-                Destroy(shards[i]);
-            }
+            Destroy(shards);
             hasShard = true;
             Monolith.shardCharge = 1;
             SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Shard, transform.position);
         }
         if (other.gameObject.CompareTag("GreenShard"))
         {
-            for (int i = 0; i < shards.Length; i++)
-            {
-                Destroy(shards[i]);
-            }
+            Destroy(shards);
             hasShard = true;
             Monolith.shardCharge = 2;
             SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Shard, transform.position);
         }
         if (other.gameObject.CompareTag("PurpleShard"))
         {
-            for (int i = 0; i < shards.Length; i++)
-            {
-                Destroy(shards[i]);
-            }
+            Destroy(shards);
             hasShard = true;
             Monolith.shardCharge = 3;
             SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Shard, transform.position);
         }
         if (other.gameObject.CompareTag("BlueShard"))
         {
-            for (int i = 0; i < shards.Length; i++)
-            {
-                Destroy(shards[i]);
-            }
+            Destroy(shards);
             hasShard = true;
             Monolith.shardCharge = 4;
             SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Shard, transform.position);
