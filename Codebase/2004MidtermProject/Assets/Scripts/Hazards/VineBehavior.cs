@@ -28,8 +28,6 @@ public class VineBehavior : MonoBehaviour
     }
     private void Update()
     {
-        //    float distCovered = (Time.time - startTime) * speed;
-        //    float distCoveredFraction = distCovered / journeyLength;
         if (flashLightOnIt == true)
         {
             transform.position = Vector3.Lerp(originalVineLoc, finalVineLoc, Time.deltaTime * speed);
@@ -48,19 +46,6 @@ public class VineBehavior : MonoBehaviour
         if (other.gameObject.CompareTag("FlashLight"))
         {
             flashLightOnIt = true;
-            //currVineLoc = vineObj.transform.position;
-            //speed = 0;
-        }
-
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("FlashLight"))
-        {
-            flashLightOnIt = false;
-            //currVineLoc = vineObj.transform.position;
-            //speed = 1;
         }
 
     }
