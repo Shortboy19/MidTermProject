@@ -11,6 +11,7 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] Slider effectsVol;
     [SerializeField] Slider ambientVol;
     [SerializeField] Slider sensitivitySlider;
+    string toWrite;
 
     [SerializeField] TextMeshProUGUI musicVolText;
     [SerializeField] TextMeshProUGUI meffectsVolText;
@@ -52,6 +53,7 @@ public class OptionsMenu : MonoBehaviour
 
     public void Apply()
     {
+        Debug.Log("Written");
         SoundManager.MusicVolume = musicVol.value;
         SoundManager.EffectsVolume = effectsVol.value;
         SoundManager.AmbientVolume = ambientVol.value;
@@ -59,10 +61,10 @@ public class OptionsMenu : MonoBehaviour
 
         SoundManager.Instance.UpdateAmbientSoundVolume();
         SoundManager.Instance.UpdateMusicSoundVolume();
-        PlayerPrefs.SetFloat("Music Volume", musicVol.value);
-        PlayerPrefs.SetFloat("Effects Volume", effectsVol.value);
-        PlayerPrefs.SetFloat("Ambient Volume", ambientVol.value);
-        PlayerPrefs.SetFloat("Sensitivity", sensitivitySlider.value * 200);
+        PlayerPrefs.SetFloat("Music Volume", SoundManager.MusicVolume);
+        PlayerPrefs.SetFloat("Effects Volume", SoundManager.EffectsVolume);
+        PlayerPrefs.SetFloat("Ambient Volume", SoundManager.AmbientVolume);
+        PlayerPrefs.SetFloat("Sensitivity", PlayerController.Player.LookSenstivity);
     }
 
     private void OnEnable()
