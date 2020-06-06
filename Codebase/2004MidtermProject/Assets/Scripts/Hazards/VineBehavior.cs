@@ -5,64 +5,69 @@ using UnityEngine;
 
 public class VineBehavior : MonoBehaviour
 {
-    public GameObject vineObj;
     public Vector3 originalVineLoc;
     public Vector3 finalVineLoc;
-    public float slowPlayerAmount = 1.3F;
-    public float speed = 1.0F;
-    private bool flashLightOnIt = false;
+    public Vector3 currVineLoc;
+    public float slowPlayerAmount = 1.3f;
+    public float speed = 1.0f;
 
     void Start()
     {
-        //currVineLoc = transform.position;
         originalVineLoc = transform.position;
-        originalVineLoc.y = -0.5f;
+        originalVineLoc.y = -1.8f;
+
         finalVineLoc = transform.position;
-        finalVineLoc.y = 10;
-        transform.position = originalVineLoc;
+        finalVineLoc.y = 1.7f;
+
+        transform.position = finalVineLoc;
     }
 
-    private void FixedUpdate()
-    {
-        flashLightOnIt = false;
-    }
     private void Update()
     {
-        //    float distCovered = (Time.time - startTime) * speed;
-        //    float distCoveredFraction = distCovered / journeyLength;
-        if (flashLightOnIt == true)
-        {
-            transform.position = Vector3.Lerp(originalVineLoc, finalVineLoc, Time.deltaTime * speed);
-            speed += 0.05f;
-        }
-        else if (flashLightOnIt == false)
-        {
-            transform.position = Vector3.Lerp(originalVineLoc, finalVineLoc, Time.deltaTime * speed);
-            speed -= 0.05f;
-        }
         speed = Mathf.Clamp01(speed);
-
     }
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("FlashLight"))
         {
-            flashLightOnIt = true;
-            //currVineLoc = vineObj.transform.position;
-            //speed = 0;
+            if (LerpRoutine == null)
+            {
+                LerpRoutine = VineLerpDown();
+                StartCoroutine(LerpRoutine);
+            }
+            else
+            {
+                StopCoroutine(LerpRoutine);
+                LerpRoutine = VineLerpDown();
+                StartCoroutine(LerpRoutine);
+            }
         }
-
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("FlashLight"))
-        {
-            flashLightOnIt = false;
-            //currVineLoc = vineObj.transform.position;
-            //speed = 1;
-        }
+    IEnumerator LerpRoutine;
 
+    IEnumerator VineLerpUp()
+    {
+        while(transform.position != finalVineLoc)
+        {
+            transform.position = Vector3.Lerp(originalVineLoc, finalVineLoc, speed);
+            speed += 1f * Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        LerpRoutine = null;
+    }
+
+    IEnumerator VineLerpDown()
+    {
+        while (transform.position != originalVineLoc)
+        {
+            transform.position = Vector3.Lerp(originalVineLoc, finalVineLoc, speed);
+            speed -= 1f * Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        yield return new WaitForSeconds(1);
+        LerpRoutine = VineLerpUp();
+        StartCoroutine(LerpRoutine);
     }
 }
 

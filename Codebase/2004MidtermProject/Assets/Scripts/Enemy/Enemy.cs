@@ -96,6 +96,7 @@ public class Enemy : MonoBehaviour
                     stunned = true;
                     PlayerController.Player.frozen = true;
                     SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt);
+                    agent.Warp(PlayerController.Player.transform.position + playerCam.transform.forward);
                     Quaternion targetRot = Quaternion.LookRotation(playerCam.transform.position - transform.position);
                     targetRot.x = targetRot.z = 0;
                     transform.rotation = targetRot;

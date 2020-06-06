@@ -1332,7 +1332,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 4.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1366,6 +1366,8 @@ MonoBehaviour:
   - {fileID: 0}
   rend: {fileID: 0}
   anim: {fileID: 0}
+  stunned: 0
+  scared: 0
   oldSpeed: 0
   eyes: {fileID: 7783690267376550266}
 --- !u!54 &1533846134

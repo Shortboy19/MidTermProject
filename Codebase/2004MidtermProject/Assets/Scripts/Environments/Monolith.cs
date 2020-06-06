@@ -132,8 +132,16 @@ public class Monolith : MonoBehaviour
             lights[i].color = Color.yellow;
         }
         Enemy enemy = FindObjectOfType<Enemy>();
-        enemy.agent.speed = 6.25f;
-        enemy.oldSpeed = 6.25f;
+        StartCoroutine(YellowShardDelayedWarp(enemy));
+        enemy.agent.speed = 6.75f;
+        enemy.oldSpeed = 6.75f;
+        enemy.agent.angularSpeed = 180;
+    }
+
+    IEnumerator YellowShardDelayedWarp(Enemy enemy)
+    {
+        yield return new WaitForSeconds(1.5f);
+        enemy.agent.Warp(Vector3.zero);
     }
 
     void GreenShard()
