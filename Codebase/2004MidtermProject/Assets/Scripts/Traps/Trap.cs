@@ -16,9 +16,10 @@ public class Trap : MonoBehaviour
     public GameObject[] fakeGhosts;
     Vector3[] telePoints;
 
-    bool activated = false;
+   
     bool playerInRange = false;
-    bool armed = false;
+
+    public bool armed = false;
 
     void Start()
     {
@@ -62,7 +63,6 @@ public class Trap : MonoBehaviour
         {
             trapObj.SetActive(true);
         }
-        activated = true;
     }
     void TurnOff()
     {
@@ -70,7 +70,6 @@ public class Trap : MonoBehaviour
         {
             trapObj.SetActive(false);
         }
-        activated = false;
         armed = false;
         button.GetComponent<MeshRenderer>().material = unarmedMat;
         if (button1 != null)
