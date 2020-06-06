@@ -43,7 +43,8 @@ public class GameTimer : MonoBehaviour
                 timerText = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
         }
         timerText.text = $" in {hours}:{minutes}:{seconds} \n with {attempts} attempts";
-        Debug.Log($" in {hours}:{minutes}:{seconds} \n with {attempts} attempts");
+        Save.WriteString(hours + ":" + minutes + ":" + seconds + "/" + attempts);
+        Debug.Log(Save.ReadString());
     }
     public void AttemptFailed()
     {

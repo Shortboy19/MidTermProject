@@ -10,7 +10,7 @@ public class Save : MonoBehaviour
     {
         string path = "Assets/SaveText.txt";
 
-        using (StreamWriter writer = new StreamWriter(path, false))
+        using (StreamWriter writer = new StreamWriter(path, true))
         {
             writer.WriteLine(thingToWrite);
         }
