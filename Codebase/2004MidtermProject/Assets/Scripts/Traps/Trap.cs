@@ -51,6 +51,11 @@ public class Trap : MonoBehaviour
         button.GetComponent<MeshRenderer>().material = armedMat;
         if(button1!=null)
             button1.GetComponent<MeshRenderer>().material = armedMat;
+
+        if(isTutorialTrap)
+        {
+            
+        }
     }
     void TurnOn()
     {
@@ -104,4 +109,12 @@ public class Trap : MonoBehaviour
             playerInRange = false;
         }
     }
+
+    public bool isTutorialTrap = false;
+
+    IEnumerator TutorialAnim()
+    {
+
+    }
+
 }

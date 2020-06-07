@@ -15,7 +15,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource NightSound;
     [SerializeField] AudioSource ThunderSound;
     [SerializeField] AudioSource HeartBeatSound;
-     public AudioSource BreathSound;
+    public AudioSource BreathSound;
+    [SerializeField] AudioSource VoiceLineSound;
 
     public AudioClip[] ThunderClap;
     public AudioClip[] PlayerWalking;
@@ -37,6 +38,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip OutOfBreath; 
 
     public AudioClip[] effects;
+    public AudioClip[] voiceLines;
 
     //singleton instance
     public static SoundManager Instance;
@@ -185,5 +187,12 @@ public class SoundManager : MonoBehaviour
         BreathSound.volume = 1 * EffectsVolume;
         BreathSound.clip = clip;
         BreathSound.Play();
+    }
+
+    public void PlayVoiceLine(int i)
+    {
+        VoiceLineSound.volume = 1;
+        VoiceLineSound.clip = voiceLines[i];
+        VoiceLineSound.Play();
     }
 }
