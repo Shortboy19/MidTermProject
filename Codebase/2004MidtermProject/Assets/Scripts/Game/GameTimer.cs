@@ -55,7 +55,7 @@ public class GameTimer : MonoBehaviour
         }
 
         timerText.text = $" in {timeCounter.Hours}:{timeCounter.Minutes}:{timeCounter.Seconds} with {attempts} attempts";
-        Save.WriteString(timeCounter.Hours + ":" + timeCounter.Minutes + ":" + timeCounter.Seconds + "/" + attempts);
+        Save.WriteString(timeCounter.Hours.ToString("00") + ":" + timeCounter.Minutes.ToString("00") + ":" + timeCounter.Seconds.ToString("00") + "/" + attempts);
         Debug.Log(Save.ReadString());
     }
     public void AttemptFailed()
