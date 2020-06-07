@@ -22,7 +22,11 @@ public class SlowTrap : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
-        {          
+        {
+            if (!GetComponentInParent<Trap>().armed)
+            {
+                return;
+            }
             enemyObj.agent.speed = enemyObj.oldSpeed;
         }
     }
