@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool UVFlashlight = false;
     [HideInInspector] public bool hasBlueLife = false;
     [HideInInspector] public bool firstTimeSeen = false;
+    public static bool firstTimeIntro = false;
     [SerializeField] GameObject shards;
     public static bool enemySeen = false;
 
@@ -106,9 +107,10 @@ public class PlayerController : MonoBehaviour
         defaultPosY = cam.transform.localPosition.y;
         frozen = false;
 
-        if (SceneManager.GetActiveScene().name == "ProtoypeMilestoneScene")
+        if (!firstTimeIntro && SceneManager.GetActiveScene().name == "ProtoypeMilestoneScene")
         {
             SoundManager.Instance.PlayVoiceLine(12);
+            firstTimeIntro = true;
         }
     }
 
