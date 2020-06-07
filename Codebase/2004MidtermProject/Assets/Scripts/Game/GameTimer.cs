@@ -33,6 +33,9 @@ public class GameTimer : MonoBehaviour
 
     IEnumerator CalculateTime()
     {
+        if (!isCounting)
+            yield return null;
+
         bool bRun = true;
 
         while (bRun)

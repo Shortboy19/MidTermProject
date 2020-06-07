@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 0}
+  updateFrequency: 0.1
 --- !u!4 &152065615
 Transform:
   m_ObjectHideFlags: 0
@@ -232,22 +233,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
-    - target: {fileID: 9222068833634799775, guid: 0ce8838aa0ddbc94cb44657c92360764,
-        type: 3}
-      propertyPath: BreathSound
-      value: 
-      objectReference: {fileID: 1122038649}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ce8838aa0ddbc94cb44657c92360764, type: 3}
 --- !u!4 &1122038648 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9222068833634799772, guid: 0ce8838aa0ddbc94cb44657c92360764,
-    type: 3}
-  m_PrefabInstance: {fileID: 1122038647}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1122038649 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 957753684, guid: 0ce8838aa0ddbc94cb44657c92360764,
     type: 3}
   m_PrefabInstance: {fileID: 1122038647}
   m_PrefabAsset: {fileID: 0}

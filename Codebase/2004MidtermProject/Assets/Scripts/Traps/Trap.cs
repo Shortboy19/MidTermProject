@@ -52,11 +52,22 @@ public class Trap : MonoBehaviour
         button.GetComponent<MeshRenderer>().material = armedMat;
         if(button1!=null)
             button1.GetComponent<MeshRenderer>().material = armedMat;
+
+        if(isTutorialTrap)
+        {
+            StartCoroutine(TutorialAnim1());
+        }
     }
     void TurnOn()
     {
         if (enemy)
         {
+            if (isTutorialTrap)
+            {
+                StartCoroutine(TutorialAnim2());
+                trapObj.SetActive(true);
+                return;
+            }
             enemy.GetComponent<NavMeshAgent>().Warp(telePoints[Random.Range(0, telePoints.Length - 1)]);
         }
         if (trapObj)
@@ -68,6 +79,7 @@ public class Trap : MonoBehaviour
     {
         if (trapObj)
         {
+            if(!isTutorialTrap)
             trapObj.SetActive(false);
         }
         armed = false;
@@ -102,5 +114,65 @@ public class Trap : MonoBehaviour
             interactableCanvas.SetActive(false);
             playerInRange = false;
         }
+    }
+
+    public bool isTutorialTrap = false;
+
+    IEnumerator TutorialAnim1()
+    {
+        Camera playerCam = Camera.main;
+        float speed = 1;
+        Enemy enemyComp = enemy.GetComponent<Enemy>();
+        enemyComp.agent.speed = 0;
+        enemyComp.agent.Warp(new Vector3(4.5f, 2.14f, -29.1f));
+        PlayerController.Player.frozen = true;
+
+        SoundManager.Instance.PlayVoiceLine(10);
+
+        Quaternion targetRot = Quaternion.LookRotation(enemy.transform.position - playerCam.transform.position);
+        while (speed < 1.2f)
+        {
+            targetRot = Quaternion.LookRotation(enemy.transform.position - playerCam.transform.position);
+            playerCam.transform.rotation = Quaternion.Lerp(playerCam.transform.rotation, targetRot, Time.deltaTime * speed);
+            speed += 0.05f * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        while(SoundManager.Instance.VoiceLineSound.isPlaying)
+        {
+            yield return null;
+        }
+        PlayerController.Player.objective.DisplayNewObjective("Run!");
+        enemyComp.agent.speed = enemyComp.oldSpeed;
+        PlayerController.Player.frozen = false;
+    }
+
+    IEnumerator TutorialAnim2()
+    {
+        Camera playerCam = Camera.main;
+        float speed = 1;
+        Enemy enemyComp = enemy.GetComponent<Enemy>();
+        enemyComp.agent.speed = 0;
+        PlayerController.Player.frozen = true;
+
+        SoundManager.Instance.PlayVoiceLine(11);
+
+        Quaternion targetRot = Quaternion.LookRotation(enemy.transform.position - playerCam.transform.position);
+        while (speed < 1.2f)
+        {
+            targetRot = Quaternion.LookRotation(enemy.transform.position - playerCam.transform.position);
+            playerCam.transform.rotation = Quaternion.Lerp(playerCam.transform.rotation, targetRot, Time.deltaTime * speed);
+            speed += 0.05f * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        while (SoundManager.Instance.VoiceLineSound.isPlaying)
+        {
+            yield return null;
+        }
+
+        PlayerController.Player.objective.DisplayNewObjective("Get to the exit");
+        enemyComp.agent.Warp(enemyComp.PickSpawnPoint().position);
+        PlayerController.Player.frozen = false;
     }
 }
