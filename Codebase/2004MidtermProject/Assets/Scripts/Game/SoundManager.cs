@@ -16,7 +16,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource ThunderSound;
     [SerializeField] AudioSource HeartBeatSound;
     public AudioSource BreathSound;
-    [SerializeField] AudioSource VoiceLineSound;
+    public AudioSource VoiceLineSound;
 
     public AudioClip[] ThunderClap;
     public AudioClip[] PlayerWalking;
