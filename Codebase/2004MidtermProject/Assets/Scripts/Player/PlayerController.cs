@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //AUTHOR: Griffin DesBles 5/6/2020
 
@@ -79,6 +80,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool hasShard = false;
     [HideInInspector] public bool UVFlashlight = false;
     [HideInInspector] public bool hasBlueLife = false;
+    [HideInInspector] public bool firstTimeSeen = false;
+    public static bool firstTimeIntro = false;
     [SerializeField] GameObject shards;
     public static bool enemySeen = false;
 
@@ -103,6 +106,12 @@ public class PlayerController : MonoBehaviour
         enemyComp = enemy.GetComponent<Enemy>();
         defaultPosY = cam.transform.localPosition.y;
         frozen = false;
+
+        if (!firstTimeIntro && SceneManager.GetActiveScene().name == "ProtoypeMilestoneScene")
+        {
+            SoundManager.Instance.PlayVoiceLine(12);
+            firstTimeIntro = true;
+        }
     }
 
     IEnumerator AlertMonster()
@@ -161,8 +170,23 @@ public class PlayerController : MonoBehaviour
                     if (hit.collider.gameObject == enemy.gameObject)
                     {
                         enemySeen = true;
-                        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.effects[0], transform.position, 0.6f);
-                        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.effects[2], transform.position);
+                        if(!firstTimeSeen && SceneManager.GetActiveScene().name == "ProtoypeMilestoneScene")
+                        {
+                            if(hasKey)
+                            {
+                                SoundManager.Instance.PlayVoiceLine(15);
+                            }
+                            else
+                            {
+                                SoundManager.Instance.PlayVoiceLine(13);
+                            }
+                            firstTimeSeen = true;
+                        }
+                        else
+                        {
+                            SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.effects[0], transform.position, 0.6f);
+                            SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.effects[2], transform.position);
+                        }
                     }
                 }
             }
@@ -422,6 +446,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Key")
         {
             SoundManager.Instance.PlayEffectAtPoint(other.GetComponent<AudioSource>().clip, transform.position, 0.25f);
+            SoundManager.Instance.PlayVoiceLine(14);
             Destroy(other.gameObject);
             hasKey = true;
             objective.DisplayNewObjective("Get to the exit");
