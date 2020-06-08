@@ -1,15 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class VineBehavior : MonoBehaviour
 {
+   
     public Vector3 originalVineLoc;
     public Vector3 finalVineLoc;
     public Vector3 currVineLoc;
-    public float slowPlayerAmount = 1.3f;
+    //public float slowPlayerAmount = 1.3f;
     public float speed = 1.0f;
+    public float durationOfEffect = 5;
 
     void Start()
     {
@@ -28,6 +32,20 @@ public class VineBehavior : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player"))
+        {
+            if (playerSlowRoutine == null)
+            {
+                playerSlowRoutine = TurnOn();
+                StartCoroutine(playerSlowRoutine);
+            }
+            else
+            {
+                StopCoroutine(playerSlowRoutine);
+                playerSlowRoutine = TurnOn();
+                StartCoroutine(playerSlowRoutine);
+            }    
+        }
         if (other.gameObject.CompareTag("FlashLight"))
         {
             if (LerpRoutine == null)
@@ -44,6 +62,17 @@ public class VineBehavior : MonoBehaviour
         }
     }
 
+    IEnumerator TurnOn()
+    {
+        PlayerController.Player.walkSpeed = 1.5f;
+        yield return new WaitForSeconds(durationOfEffect);
+        PlayerController.Player.walkSpeed = 3.5f;
+        playerSlowRoutine = null;
+    }
+    
+    
+    
+    IEnumerator playerSlowRoutine;
     IEnumerator LerpRoutine;
 
     IEnumerator VineLerpUp()
