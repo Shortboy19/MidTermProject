@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FlashLight_Tutorial : MonoBehaviour
 {
-    [SerializeField] Light[] tutorialLights;
+    public Light[] tutorialLights;
     [SerializeField] bool trigger = false;
     private void OnTriggerEnter(Collider other)
     {

@@ -553,6 +553,6 @@ public class PlayerController : MonoBehaviour
         {
             yield return null;
         }
-        DialogBox.ShowWindow("Flashlight", "Activate the flashlight by holding <color=yellow>Left Mouse Button</color>.");
+        DialogBox.ShowWindow("Flashlight", "Activate the flashlight by holding <color=yellow>Left Mouse Button</color>.", false);
     }
 }
