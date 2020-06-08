@@ -6877,6 +6877,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vines
       objectReference: {fileID: 0}
+    - target: {fileID: 4786867484640004532, guid: be308876f1b17ac48b1a400bff98f1fc,
+        type: 3}
+      propertyPath: vineObj
+      value: 
+      objectReference: {fileID: 1782188012}
     - target: {fileID: 4786867484640004534, guid: be308876f1b17ac48b1a400bff98f1fc,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -11661,6 +11666,12 @@ Transform:
   m_Father: {fileID: 1885619223}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1782188012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4786867484640004531, guid: be308876f1b17ac48b1a400bff98f1fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1022235626}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1785635038
 GameObject:
   m_ObjectHideFlags: 0
