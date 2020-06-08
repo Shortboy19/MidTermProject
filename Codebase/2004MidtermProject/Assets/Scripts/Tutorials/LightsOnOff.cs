@@ -52,6 +52,6 @@ public class LightsOnOff : MonoBehaviour
 
         RedLightActive = true;
         PlayerController.Player.frozen = false;
-        DialogBox.ShowWindow("Interaction", "The flashlight can be used on all <color=red>glowing red objects</color> to trigger interactions."); 
+       // DialogBox.ShowWindow("Interaction", "The flashlight can be used on all <color=red>glowing red objects</color> to trigger interactions."); 
     }
 }
