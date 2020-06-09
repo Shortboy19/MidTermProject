@@ -6,7 +6,6 @@ public class GameState : MonoBehaviour
 {
     public static GameState Instance;
     public static bool gamePaused = false;
-    public static bool tutorialComplete = false;
 
     public GameObject pauseMenu;
     public GameObject deathMenu;
@@ -103,7 +102,7 @@ public class GameState : MonoBehaviour
             gameWon = true;
             gamePaused = true;
             Instance.tutorialExit.SetActive(true);
-            tutorialComplete = true;
+            PlayerPrefs.SetString("TutorialState","Complete");
         }
     }
 

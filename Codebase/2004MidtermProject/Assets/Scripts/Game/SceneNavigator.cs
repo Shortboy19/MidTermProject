@@ -30,7 +30,7 @@ public class SceneNavigator : MonoBehaviour
 
     public void TutorialLoadScene(string name)
     {
-        if(!GameState.tutorialComplete)
+        if(PlayerPrefs.GetString("TutorialState") != "Complete")
         {
             StartCoroutine(FadeOutScene("TutorialScene"));
         }
