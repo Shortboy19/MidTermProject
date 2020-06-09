@@ -12,6 +12,8 @@ public class MovementTutorial : MonoBehaviour
     private void Start()
     {
         PlayerController.Player.currBattery = 0;
+        SoundManager.Instance.VoiceLineSound.Stop();
+        StopAllCoroutines();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,6 +49,8 @@ public class MovementTutorial : MonoBehaviour
         }
         SoundManager.Instance.PlayVoiceLine(1);
         DialogBox.ShowWindow("Movement", "Use <color=yellow>WASD</color> to move around. Hold <color=yellow>SHIFT</color> to sprint.", false);
+        SoundManager.Instance.VoiceLineSound.Stop();
+        StopAllCoroutines();
     }
 
     IEnumerator SlideLine()
@@ -57,5 +61,7 @@ public class MovementTutorial : MonoBehaviour
             yield return null;
         }
         DialogBox.ShowWindow("Sliding", "Use <color=yellow>LEFT CTRL</color> to slide forward. Sliding allows you to move under and trough small spaces.", false);
+        SoundManager.Instance.VoiceLineSound.Stop();
+        StopAllCoroutines();
     }
 }

@@ -14,7 +14,12 @@ public class DeathZone : MonoBehaviour
             if (showMenu)
                 GameState.ShowDeathMenu();
             else
+            {
+                SoundManager.Instance.VoiceLineSound.Stop();
+                SoundManager.Instance.VoiceLineSound.volume = 0;
+                SoundManager.Instance.VoiceLineSound.clip = null;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         }
     }
 }

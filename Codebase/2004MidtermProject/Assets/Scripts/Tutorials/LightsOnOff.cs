@@ -6,7 +6,6 @@ public class LightsOnOff : MonoBehaviour
 {
     public Light[] tutorailLights;
     [SerializeField] Light RedLight;
-    bool RedLightActive = false;
     bool triggered = false;
     FlashLight_Tutorial tut;
 
@@ -18,7 +17,7 @@ public class LightsOnOff : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("FlashLight"))
+        if (other.gameObject.CompareTag("FlashLight") && !triggered)
         {
             for (int i = 0; i < tutorailLights.Length; i++)
             {
@@ -27,16 +26,8 @@ public class LightsOnOff : MonoBehaviour
             }
             RedLight.enabled = false;
             SoundManager.Instance.PlayVoiceLine(7);
+            triggered = true;
             StartCoroutine(Voiceline());
-        }
-
-        if (other.gameObject.CompareTag("Player"))
-        {
-            if (RedLightActive && !triggered)
-            {
-                SoundManager.Instance.PlayVoiceLine(8);
-                triggered = true;
-            }
         }
     }
 
@@ -47,9 +38,8 @@ public class LightsOnOff : MonoBehaviour
         {
             yield return null;
         }
-
-        RedLightActive = true;
+        SoundManager.Instance.PlayVoiceLine(8);
         //PlayerController.Player.frozen = false;
-        DialogBox.ShowWindow("Interaction", "The flashlight can be used on all <color=red>glowing red objects</color> to trigger interactions.", false); 
+        DialogBox.ShowWindow("Interaction", "The flashlight can be used on all <color=red>glowing red objects</color> to trigger interactions.", false);
     }
 }
