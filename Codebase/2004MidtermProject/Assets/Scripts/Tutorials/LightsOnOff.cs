@@ -8,9 +8,12 @@ public class LightsOnOff : MonoBehaviour
     [SerializeField] Light RedLight;
     bool RedLightActive = false;
     bool triggered = false;
+    FlashLight_Tutorial tut;
 
     private void Start()
     {
+        tut = FindObjectOfType<FlashLight_Tutorial>();
+        tutorailLights = tut.tutorialLights;
     }
 
     private void OnTriggerEnter(Collider other)

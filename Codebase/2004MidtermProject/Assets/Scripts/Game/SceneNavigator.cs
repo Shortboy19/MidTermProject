@@ -28,6 +28,18 @@ public class SceneNavigator : MonoBehaviour
         SceneManager.LoadScene(name);
     }
 
+    public void TutorialLoadScene(string name)
+    {
+        if(GameState.tutorialComplete)
+        {
+            StartCoroutine(FadeOutScene("TutorialScene"));
+        }
+        else
+        {
+            StartCoroutine(FadeOutScene(name));
+        }
+    }
+
     public void LoadSceneWithFade(int index)
     {
         GameState.ResetState();
