@@ -26,10 +26,12 @@ public class TrapTutorial : MonoBehaviour
 
     IEnumerator TrapPrompt()
     {
+        PlayerController.Player.frozen = true;
         while (SoundManager.Instance.VoiceLineSound.isPlaying)
         {
             yield return null;
         }
+        PlayerController.Player.frozen = false;
         DialogBox.ShowWindow("Traps", "Activate traps by walking up to it and pressing <color=yellow>E</color> when the prompt appears. Traps will arm when activate and automatically trigger when the monster gets close to it.", false);
     }
 

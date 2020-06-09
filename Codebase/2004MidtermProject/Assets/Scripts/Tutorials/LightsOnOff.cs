@@ -22,7 +22,6 @@ public class LightsOnOff : MonoBehaviour
             for (int i = 0; i < tutorailLights.Length; i++)
             {
                 tutorailLights[i].gameObject.SetActive(true);
-                //PlayerController.Player.frozen = true;
             }
             RedLight.enabled = false;
             SoundManager.Instance.PlayVoiceLine(7);
@@ -33,13 +32,23 @@ public class LightsOnOff : MonoBehaviour
 
     IEnumerator Voiceline()
     {
-        //PlayerController.Player.frozen = true;
+        PlayerController.Player.frozen = true;
         while(SoundManager.Instance.VoiceLineSound.isPlaying)
         {
             yield return null;
         }
         SoundManager.Instance.PlayVoiceLine(8);
-        //PlayerController.Player.frozen = false;
+        PlayerController.Player.frozen = false;
         DialogBox.ShowWindow("Interaction", "The flashlight can be used on all <color=red>glowing red objects</color> to trigger interactions.", false);
+    }
+
+    IEnumerator VoiceLine2()
+    {
+        PlayerController.Player.frozen = true;
+        while (SoundManager.Instance.VoiceLineSound.isPlaying)
+        {
+            yield return null;
+        }
+        PlayerController.Player.frozen = false;
     }
 }

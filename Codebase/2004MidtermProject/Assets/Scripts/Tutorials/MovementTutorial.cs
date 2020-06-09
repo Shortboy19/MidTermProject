@@ -42,12 +42,18 @@ public class MovementTutorial : MonoBehaviour
 
     IEnumerator StartLine()
     {
+        PlayerController.Player.frozen = true;
         SoundManager.Instance.PlayVoiceLine(0);
         while (SoundManager.Instance.VoiceLineSound.isPlaying)
         {
             yield return null;
         }
         SoundManager.Instance.PlayVoiceLine(1);
+        while (SoundManager.Instance.VoiceLineSound.isPlaying)
+        {
+            yield return null;
+        }
+        PlayerController.Player.frozen = false;
         DialogBox.ShowWindow("Movement", "Use <color=yellow>WASD</color> to move around. Hold <color=yellow>SHIFT</color> to sprint.", false);
         SoundManager.Instance.VoiceLineSound.Stop();
         StopAllCoroutines();
@@ -55,11 +61,13 @@ public class MovementTutorial : MonoBehaviour
 
     IEnumerator SlideLine()
     {
+        PlayerController.Player.frozen = true;
         SoundManager.Instance.PlayVoiceLine(2);
         while (SoundManager.Instance.VoiceLineSound.isPlaying)
         {
             yield return null;
         }
+        PlayerController.Player.frozen = false;
         DialogBox.ShowWindow("Sliding", "Use <color=yellow>LEFT CTRL</color> to slide forward. Sliding allows you to move under and trough small spaces.", false);
         SoundManager.Instance.VoiceLineSound.Stop();
         StopAllCoroutines();
