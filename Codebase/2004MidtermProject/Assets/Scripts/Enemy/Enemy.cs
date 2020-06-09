@@ -22,9 +22,10 @@ public class Enemy : MonoBehaviour
     Camera playerCam;
 
     GameObject lifeSaver;
-    
-    
-    // Start is called before the first frame update
+
+    //Add a serialized material here for normal
+    //Add a serialized material here for transparent & assign it in the inspector to FC_04_mat_2 located under models/ghost/materials
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -38,6 +39,7 @@ public class Enemy : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
 
         lifeSaver = GameObject.Find("Monolith");
+        //set the normal material to the current materail
     }
 
     public Transform PickSpawnPoint()
@@ -46,7 +48,6 @@ public class Enemy : MonoBehaviour
         return spawnPoints[SpawnLocationNumber];
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (GameState.gamePaused)
@@ -138,6 +139,7 @@ public class Enemy : MonoBehaviour
         GetComponent<Collider>().enabled = false;
         anim.SetBool("Stunned", true);
         rend.material.color = Color.blue;
+        //set material to tranparent here
         for (int i = 0; i < eyelights.Length; i++)
         {
             eyelights[i].color = Color.white;
@@ -146,6 +148,7 @@ public class Enemy : MonoBehaviour
 
         agent.speed = oldSpeed;
         rend.material.color = Color.white;
+        //set material to normal here
         for (int i = 0; i < eyelights.Length; i++)
         {
             eyelights[i].color = Color.red;
@@ -178,6 +181,7 @@ public class Enemy : MonoBehaviour
         agent.SetDestination(new Vector3(0, 0, 0));
         anim.SetBool("Stunned", true);
         rend.material.color = new Color(1, 0, 1);
+        //set material to tranparent here
         for (int i = 0; i < eyelights.Length; i++)
         {
             eyelights[i].color = new Color(1, 0.5f, 0);
@@ -185,6 +189,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         scared = false;
         rend.material.color = Color.white;
+        //set material to normal here
         for (int i = 0; i < eyelights.Length; i++)
         {
             eyelights[i].color = Color.red;
@@ -200,6 +205,7 @@ public class Enemy : MonoBehaviour
         agent.SetDestination(destination);
         anim.SetBool("Stunned", true);
         rend.material.color = new Color(1, 0, 1);
+        //set material to normal here
         for (int i = 0; i < eyelights.Length; i++)
         {
             eyelights[i].color = new Color(1, 0.5f, 0);
@@ -207,6 +213,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(6);
         scared = false;
         rend.material.color = Color.white;
+        //set material to normal here
         for (int i = 0; i < eyelights.Length; i++)
         {
             eyelights[i].color = Color.red;
