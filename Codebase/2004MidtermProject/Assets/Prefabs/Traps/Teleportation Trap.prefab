@@ -180,7 +180,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905506855000763401}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10.01, y: 1.75, z: -23.3}
   m_LocalScale: {x: 2.5, y: 4, z: 0.5000001}
   m_Children:
@@ -234,6 +234,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  armed: 0
+  isTutorialTrap: 0
 --- !u!1 &1846255457024962877
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,7 +549,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6264562849607848515}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.38719997, y: -0.18, z: 0}
+  m_LocalPosition: {x: -0.38719997, y: -0.087, z: 0}
   m_LocalScale: {x: 0.4999999, y: 0.125, z: 0.060000002}
   m_Children:
   - {fileID: 179083919351300688}

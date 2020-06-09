@@ -54,7 +54,7 @@ public class MovementTutorial : MonoBehaviour
             yield return null;
         }
         PlayerController.Player.frozen = false;
-        DialogBox.ShowWindow("Movement", "Use <color=yellow>WASD</color> to move around. Hold <color=yellow>SHIFT</color> to sprint.", false);
+        DialogBox.ShowWindow("Movement", "Use <color=yellow>WASD</color> to move around. Holding <color=yellow>SHIFT</color> causes you to sprint. Press <color=yellow>SPACEBAR</color> to jump.", false);
         SoundManager.Instance.VoiceLineSound.Stop();
         StopAllCoroutines();
     }

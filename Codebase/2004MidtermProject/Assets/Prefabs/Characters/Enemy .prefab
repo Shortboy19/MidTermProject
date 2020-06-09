@@ -1365,11 +1365,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   rend: {fileID: 0}
+  StunRend: {fileID: 7158288977177876780}
   anim: {fileID: 0}
   stunned: 0
   scared: 0
   oldSpeed: 0
   eyes: {fileID: 7783690267376550266}
+  transMat: {fileID: 2100000, guid: e1b5ae290a9ba1a42ae0a0ca2809e265, type: 2}
 --- !u!54 &1533846134
 Rigidbody:
   m_ObjectHideFlags: 0
