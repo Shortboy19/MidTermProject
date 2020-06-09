@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool UVFlashlight = false;
     [HideInInspector] public bool hasBlueLife = false;
     [HideInInspector] public bool firstTimeSeen = false;
+    public static bool tutorialBattery = false;
     public static bool firstTimeIntro = false;
     [SerializeField] GameObject shards;
     public static bool enemySeen = false;
@@ -468,6 +469,15 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Battery"))
         {
+            if(tutorialBattery)
+            {
+                Destroy(other.gameObject);
+                SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Battery, transform.position);
+                currBattery = maxBattery;
+                SoundManager.Instance.PlayVoiceLine(5);
+                tutorialBattery = false;
+                StartCoroutine(FlashLightPrompt());
+            }
             if (currBattery < maxBattery)
             {
                 Destroy(other.gameObject);
@@ -535,5 +545,14 @@ public class PlayerController : MonoBehaviour
         SoundManager.Instance.PlayHeartBeatEffect(SoundManager.Instance.Heartbeat);
         yield return new WaitForSeconds(waitTime);
         HeartbeatRoutine = null;
+    }
+
+    IEnumerator FlashLightPrompt()
+    {
+        while(SoundManager.Instance.VoiceLineSound.isPlaying)
+        {
+            yield return null;
+        }
+        DialogBox.ShowWindow("Flashlight", "Activate the flashlight by holding <color=yellow>Left Mouse Button</color>.", false);
     }
 }

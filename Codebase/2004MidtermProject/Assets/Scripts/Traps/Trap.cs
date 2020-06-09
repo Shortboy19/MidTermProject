@@ -124,7 +124,7 @@ public class Trap : MonoBehaviour
         float speed = 1;
         Enemy enemyComp = enemy.GetComponent<Enemy>();
         enemyComp.agent.speed = 0;
-        enemyComp.agent.Warp(new Vector3(4.5f, 2.14f, -29.1f));
+        enemyComp.agent.Warp(new Vector3(0f, 1.15f, 4.25f));
         PlayerController.Player.frozen = true;
 
         SoundManager.Instance.PlayVoiceLine(10);
@@ -133,7 +133,7 @@ public class Trap : MonoBehaviour
         while (speed < 1.2f)
         {
             targetRot = Quaternion.LookRotation(enemy.transform.position - playerCam.transform.position);
-            playerCam.transform.rotation = Quaternion.Lerp(playerCam.transform.rotation, targetRot, Time.deltaTime * speed);
+            playerCam.transform.rotation = Quaternion.Lerp(playerCam.transform.rotation, targetRot, Time.deltaTime * speed * 3);
             speed += 0.05f * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
@@ -142,7 +142,6 @@ public class Trap : MonoBehaviour
         {
             yield return null;
         }
-        PlayerController.Player.objective.DisplayNewObjective("Run!");
         enemyComp.agent.speed = enemyComp.oldSpeed;
         PlayerController.Player.frozen = false;
     }
@@ -161,7 +160,7 @@ public class Trap : MonoBehaviour
         while (speed < 1.2f)
         {
             targetRot = Quaternion.LookRotation(enemy.transform.position - playerCam.transform.position);
-            playerCam.transform.rotation = Quaternion.Lerp(playerCam.transform.rotation, targetRot, Time.deltaTime * speed);
+            playerCam.transform.rotation = Quaternion.Lerp(playerCam.transform.rotation, targetRot, Time.deltaTime * speed * 3);
             speed += 0.05f * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
@@ -170,8 +169,6 @@ public class Trap : MonoBehaviour
         {
             yield return null;
         }
-
-        PlayerController.Player.objective.DisplayNewObjective("Get to the exit");
         enemyComp.agent.Warp(enemyComp.PickSpawnPoint().position);
         PlayerController.Player.frozen = false;
     }

@@ -34,17 +34,7 @@ public class VineBehavior : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (playerSlowRoutine == null)
-            {
-                playerSlowRoutine = TurnOn();
-                StartCoroutine(playerSlowRoutine);
-            }
-            else
-            {
-                StopCoroutine(playerSlowRoutine);
-                playerSlowRoutine = TurnOn();
-                StartCoroutine(playerSlowRoutine);
-            }    
+            PlayerController.Player.walkSpeed = 1.5f;    
         }
         if (other.gameObject.CompareTag("FlashLight"))
         {
@@ -62,17 +52,10 @@ public class VineBehavior : MonoBehaviour
         }
     }
 
-    IEnumerator TurnOn()
+    private void OnTriggerExit(Collider other)
     {
-        PlayerController.Player.walkSpeed = 1.5f;
-        yield return new WaitForSeconds(durationOfEffect);
         PlayerController.Player.walkSpeed = 3.5f;
-        playerSlowRoutine = null;
     }
-    
-    
-    
-    IEnumerator playerSlowRoutine;
     IEnumerator LerpRoutine;
 
     IEnumerator VineLerpUp()
