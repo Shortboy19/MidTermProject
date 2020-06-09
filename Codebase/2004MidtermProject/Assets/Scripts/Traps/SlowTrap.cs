@@ -5,7 +5,7 @@ using UnityEngine;
 public class SlowTrap : MonoBehaviour
 {
     Enemy enemyObj;
-    
+   
     private void OnTriggerEnter(Collider other)
     {
 
@@ -15,6 +15,9 @@ public class SlowTrap : MonoBehaviour
             {
                 return;
             }
+            
+            gameObject.GetComponent<Light>().enabled = true;
+            
             enemyObj = other.gameObject.GetComponent<Enemy>();
             enemyObj.agent.speed = 2;
         }
@@ -27,6 +30,7 @@ public class SlowTrap : MonoBehaviour
             {
                 return;
             }
+            gameObject.GetComponent<Light>().enabled = false;
             enemyObj.agent.speed = enemyObj.oldSpeed;
         }
     }
