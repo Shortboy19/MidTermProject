@@ -13,7 +13,7 @@ public class Save : MonoBehaviour
 
         using (StreamWriter writer = new StreamWriter(path, true))
         {
-            writer.WriteLine(thingToWrite+"\n");
+            writer.WriteLine(thingToWrite);
         }
         AssetDatabase.ImportAsset(path);
     }

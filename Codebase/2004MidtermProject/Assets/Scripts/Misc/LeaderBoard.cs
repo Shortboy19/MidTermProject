@@ -12,12 +12,19 @@ public class LeaderBoard : MonoBehaviour
         string finalText="";
         for (int i = 0; i < 11; i++)
         {
-            if (i<sortedList.Count&&i>0)
+            if (i<sortedList.Count)
             {
-                finalText = finalText + (i) + ": "+ sortedList[i] + "\n";
+                finalText = finalText + (i+1) + ": "+ sortedList[i] + "\n";
             }
         }
-        leaderboardText.text = finalText;
+        if (finalText=="")
+        {
+            leaderboardText.text = "You need to win first to be on the leaderboard...";
+        }
+        else
+        {
+            leaderboardText.text = finalText;
+        }
     }
     private static List<string> BubbleSort(List<string> titles)
     {
