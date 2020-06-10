@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEditor;
 using UnityEngine;
 
@@ -15,7 +13,7 @@ public class Save : MonoBehaviour
         {
             writer.WriteLine(thingToWrite);
         }
-        AssetDatabase.ImportAsset(path);
+        //AssetDatabase.ImportAsset(path);
     }
     public static List<string> ReadString()
     {
