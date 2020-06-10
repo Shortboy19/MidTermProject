@@ -529,6 +529,12 @@ Transform:
   m_Father: {fileID: 1885619223}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &50727194 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5424791866911700606, guid: e0cf66170f0c957458b5f61c219d997c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1002686125}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &50816372
 GameObject:
   m_ObjectHideFlags: 0
@@ -12672,7 +12678,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1002686125}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 50727194}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 696cb6840b41eea4e918ea719777c32f, type: 3}
@@ -32080,6 +32086,11 @@ PrefabInstance:
       propertyPath: fakeGhosts.Array.data[10]
       value: 
       objectReference: {fileID: 1130905685}
+    - target: {fileID: 2504901376307363368, guid: 7875d8245e41f1d4b8263ca803f8c2b3,
+        type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 50727194}
     - target: {fileID: 4841832486161017307, guid: 7875d8245e41f1d4b8263ca803f8c2b3,
         type: 3}
       propertyPath: m_LocalPosition.x
