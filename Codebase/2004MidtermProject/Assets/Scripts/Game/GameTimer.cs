@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class GameTimer : MonoBehaviour
 {
-    float timer=0;
     int attempts=1;
 
     public static bool isCounting = false;

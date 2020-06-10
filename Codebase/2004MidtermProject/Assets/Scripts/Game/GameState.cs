@@ -108,9 +108,12 @@ public class GameState : MonoBehaviour
 
     public static void ResetState()
     {
-        gamePaused = false;
+        SoundManager.Instance.ResumeAllSounds();
         Time.timeScale = 1;
-        SoundManager.Instance.ResumeAllSounds(); 
+        if(Instance != null)
+            Instance.pauseMenu.SetActive(false);
+        gamePaused = false;
+        AudioListener.pause = false;
     }
 
     public GameObject optionsMenu;
