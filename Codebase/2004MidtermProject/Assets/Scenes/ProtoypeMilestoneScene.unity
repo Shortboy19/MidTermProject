@@ -7418,6 +7418,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be308876f1b17ac48b1a400bff98f1fc, type: 3}
+--- !u!1 &1023911190 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1717235322814563174, guid: b032f61f0d613ec42b0c40453cbb8fa9,
+    type: 3}
+  m_PrefabInstance: {fileID: 3563778200746254175}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1030701693
 GameObject:
   m_ObjectHideFlags: 0
@@ -26465,6 +26471,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightTrap
       objectReference: {fileID: 0}
+    - target: {fileID: 7481695649369457521, guid: b032f61f0d613ec42b0c40453cbb8fa9,
+        type: 3}
+      propertyPath: interactableCanvas
+      value: 
+      objectReference: {fileID: 1023911190}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b032f61f0d613ec42b0c40453cbb8fa9, type: 3}
 --- !u!4 &3563778200746254176 stripped

@@ -97,6 +97,10 @@ public class Trap : MonoBehaviour
     {
         if (trapObj)
         {
+            if (trapName== "Wall Trap")
+            {
+                trapObj.GetComponent<Animator>().SetBool("isOff", true);
+            }
             if(!isTutorialTrap)
             trapObj.SetActive(false);
         }
