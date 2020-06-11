@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,6 +16,7 @@ public class Trap : MonoBehaviour
     public float duration = 5;
     public GameObject[] fakeGhosts;
     Vector3[] telePoints;
+    string trapName="";
 
    
     bool playerInRange = false;
@@ -27,11 +29,27 @@ public class Trap : MonoBehaviour
         if (trapObj)
         {
             trapObj.SetActive(false);
+            if (button1 != null)
+            {
+                trapName = "Wall Trap";
+            }
+            else
+            {
+                trapName = "Light Trap";
+            }
         }
-        telePoints = new Vector3[fakeGhosts.Length];
-        for (int i = 0; i < fakeGhosts.Length; i++)
+        if (fakeGhosts.Length>0)
         {
-            telePoints[i] = fakeGhosts[i].transform.position;
+            trapName = "Tele Trap";
+            telePoints = new Vector3[fakeGhosts.Length];
+            for (int i = 0; i < fakeGhosts.Length; i++)
+            {
+                telePoints[i] = fakeGhosts[i].transform.position;
+            }
+        }
+        else if (trapName =="")
+        {
+            trapName = "Slow Trap";
         }
     }
 
@@ -100,6 +118,7 @@ public class Trap : MonoBehaviour
         if (other.CompareTag("Player")&& !armed)
         {
             interactableCanvas.SetActive(true);
+            interactableCanvas.GetComponentInChildren<TextMeshProUGUI>().text = "Press E to Activate " + trapName;
             playerInRange = true;
         }
         if (other.CompareTag("Enemy")&&armed)
