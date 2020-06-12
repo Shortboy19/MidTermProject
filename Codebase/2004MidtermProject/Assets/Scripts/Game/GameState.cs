@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameState : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameState : MonoBehaviour
     public GameObject deathMenu;
     public GameObject winMenu;
     public GameObject tutorialExit;
+    public Image fadeImg;
     [SerializeField] OptionsMenu options;
 
     public static bool gameWon = false;
@@ -57,7 +59,7 @@ public class GameState : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Pause") && !OptionsMenu.isOpen)
+        if (Input.GetButtonDown("Pause") && !OptionsMenu.isOpen && !deathMenu.activeSelf && !winMenu.activeSelf && (fadeImg.color.a==0))
         {
             TogglePause();
         }
