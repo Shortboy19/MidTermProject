@@ -178,6 +178,7 @@ public class Monolith : MonoBehaviour
         PlayerController.Player.flashlight.GetComponentInChildren<Light>().color = new Color(0.9f, 0, 0.9f);
 
         PlayerController.Player.UVFlashlight = true;
+        PlayerController.tutorialBattery = false;
     }
 
     void BlueShard()

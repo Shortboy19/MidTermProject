@@ -22,54 +22,27 @@ public class MovementTutorial : MonoBehaviour
         {
             if (start)
             {
-                StartCoroutine("StartLine");
+                if(!TutorialManager.pitDeath)
+                {
+                    TutorialManager.PlayVoiceLine(0);
+                    TutorialManager.PlayVoiceLine(1, true, "Movement", "Use <color=yellow>WASD</color> to move around. Holding <color=yellow>SHIFT</color> causes you to sprint. Press <color=yellow>SPACEBAR</color> to jump. Sprinting requires stamina and using sprint will drain a portion of you stamina. Don't worry though, as long as your not using it, stamina will regenerate over time.");
+                }
+                else
+                {
+                    TutorialManager.PlayVoiceLine(17);
+                }
                 triggered = true;
             }
             if(ledge)
             {
-                StopCoroutine("StartLine");
-                StartCoroutine("SlideLine");
+                TutorialManager.PlayVoiceLine(2, true, "Sliding", "Use <color=yellow>LEFT CTRL</color> to slide forward. Sliding allows you to move under and through small spaces. Sliding requires stamina and using a slide will drain a portion of you stamina.");
                 triggered = true;
             }
             if(slide)
             {
-                StopCoroutine("SlideLine");
-                SoundManager.Instance.PlayVoiceLine(3);
+                TutorialManager.PlayVoiceLine(3);
                 triggered = true;
             }
         }
-    }
-
-    IEnumerator StartLine()
-    {
-        PlayerController.Player.frozen = true;
-        SoundManager.Instance.PlayVoiceLine(0);
-        while (SoundManager.Instance.VoiceLineSound.isPlaying)
-        {
-            yield return null;
-        }
-        SoundManager.Instance.PlayVoiceLine(1);
-        while (SoundManager.Instance.VoiceLineSound.isPlaying)
-        {
-            yield return null;
-        }
-        PlayerController.Player.frozen = false;
-        DialogBox.ShowWindow("Movement", "Use <color=yellow>WASD</color> to move around. Holding <color=yellow>SHIFT</color> causes you to sprint. Press <color=yellow>SPACEBAR</color> to jump.", false);
-        SoundManager.Instance.VoiceLineSound.Stop();
-        StopAllCoroutines();
-    }
-
-    IEnumerator SlideLine()
-    {
-        PlayerController.Player.frozen = true;
-        SoundManager.Instance.PlayVoiceLine(2);
-        while (SoundManager.Instance.VoiceLineSound.isPlaying)
-        {
-            yield return null;
-        }
-        PlayerController.Player.frozen = false;
-        DialogBox.ShowWindow("Sliding", "Use <color=yellow>LEFT CTRL</color> to slide forward. Sliding allows you to move under and trough small spaces.", false);
-        SoundManager.Instance.VoiceLineSound.Stop();
-        StopAllCoroutines();
     }
 }

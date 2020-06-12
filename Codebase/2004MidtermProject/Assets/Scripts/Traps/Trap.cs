@@ -60,26 +60,24 @@ public class Trap : MonoBehaviour
     }
     void TurnOn()
     {
-        if (enemy)
+        if (trapObj != null)
         {
             if (isTutorialTrap)
             {
                 StartCoroutine(TutorialAnim2());
-                trapObj.SetActive(true);
-                return;
             }
-            enemy.GetComponent<NavMeshAgent>().Warp(telePoints[Random.Range(0, telePoints.Length - 1)]);
-        }
-        if (trapObj)
-        {
             trapObj.SetActive(true);
         }
+        else if (enemy != null)
+        {
+            enemy.GetComponent<NavMeshAgent>().Warp(telePoints[Random.Range(0, telePoints.Length - 1)]);
+        }
+
     }
     void TurnOff()
     {
         if (trapObj)
         {
-            if(!isTutorialTrap)
             trapObj.SetActive(false);
         }
         armed = false;
@@ -97,12 +95,12 @@ public class Trap : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")&& !armed)
+        if (other.CompareTag("Player") && !armed)
         {
             interactableCanvas.SetActive(true);
             playerInRange = true;
         }
-        if (other.CompareTag("Enemy")&&armed)
+        if (other.CompareTag("Enemy") && armed)
         {
             StartCoroutine(Activate());
         }
@@ -123,8 +121,8 @@ public class Trap : MonoBehaviour
         Camera playerCam = Camera.main;
         float speed = 1;
         Enemy enemyComp = enemy.GetComponent<Enemy>();
-        enemyComp.agent.speed = 0;
-        enemyComp.agent.Warp(new Vector3(0f, 1.15f, 4.25f));
+        enemyComp.agent.speed = 1f;
+        enemyComp.agent.Warp(new Vector3(0, 1.5f, 6.5f));
         PlayerController.Player.frozen = true;
 
         SoundManager.Instance.PlayVoiceLine(10);

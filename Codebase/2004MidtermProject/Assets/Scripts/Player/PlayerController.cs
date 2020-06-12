@@ -474,7 +474,7 @@ public class PlayerController : MonoBehaviour
                 Destroy(other.gameObject);
                 SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Battery, transform.position);
                 currBattery = maxBattery;
-                SoundManager.Instance.PlayVoiceLine(5);
+                TutorialManager.PlayVoiceLine(5);
                 tutorialBattery = false;
                 StartCoroutine(FlashLightPrompt());
             }

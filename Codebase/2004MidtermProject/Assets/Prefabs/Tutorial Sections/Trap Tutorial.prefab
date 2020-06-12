@@ -505,7 +505,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 7156331903212426161}
-  objective: {fileID: 0}
   audiosource: {fileID: 0}
   invisableWall: {fileID: 2889303825699738577}
 --- !u!1 &2889303824442937326
@@ -2768,17 +2767,17 @@ PrefabInstance:
     - target: {fileID: 5424791866911700592, guid: e0cf66170f0c957458b5f61c219d997c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5424791866911700592, guid: e0cf66170f0c957458b5f61c219d997c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.19
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5424791866911700592, guid: e0cf66170f0c957458b5f61c219d997c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.6
+      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 5424791866911700592, guid: e0cf66170f0c957458b5f61c219d997c,
         type: 3}
@@ -2823,7 +2822,7 @@ PrefabInstance:
     - target: {fileID: 5424791866911700604, guid: e0cf66170f0c957458b5f61c219d997c,
         type: 3}
       propertyPath: m_Speed
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5424791866911700605, guid: e0cf66170f0c957458b5f61c219d997c,
         type: 3}
@@ -2849,6 +2848,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605510423849246535, guid: e0cf66170f0c957458b5f61c219d997c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0cf66170f0c957458b5f61c219d997c, type: 3}

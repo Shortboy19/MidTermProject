@@ -18,21 +18,7 @@ public class TrapTutorial : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && !triggered)
         {
             triggered = true;
-            SoundManager.Instance.PlayVoiceLine(9);
-            //PlayerController.Player.objective.DisplayNewObjective("Press the button to arm the wall trap");
-            StartCoroutine(TrapPrompt());
+            TutorialManager.PlayVoiceLine(9, true, "Traps", "Arm traps by walking up to it and pressing <color=yellow>E</color> when the prompt appears. Traps will arm and automatically trigger when the monster gets close to it, making it a useful tool to protect yourself with. If you see a trap, you should probably arm it.");
         }
     }
-
-    IEnumerator TrapPrompt()
-    {
-        PlayerController.Player.frozen = true;
-        while (SoundManager.Instance.VoiceLineSound.isPlaying)
-        {
-            yield return null;
-        }
-        PlayerController.Player.frozen = false;
-        DialogBox.ShowWindow("Traps", "Activate traps by walking up to it and pressing <color=yellow>E</color> when the prompt appears. Traps will arm when activate and automatically trigger when the monster gets close to it.", false);
-    }
-
 }

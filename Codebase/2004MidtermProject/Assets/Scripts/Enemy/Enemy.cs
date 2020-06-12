@@ -157,6 +157,7 @@ public class Enemy : MonoBehaviour
         anim.SetBool("Stunned", false);
         GetComponent<Collider>().enabled = true;
         stunDuration -= 0.5f;
+        stunned = false;
         StunRoutine = null;
     }
 
