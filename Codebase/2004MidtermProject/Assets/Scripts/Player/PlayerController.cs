@@ -477,6 +477,7 @@ public class PlayerController : MonoBehaviour
                 TutorialManager.PlayVoiceLine(5);
                 tutorialBattery = false;
                 StartCoroutine(FlashLightPrompt());
+                objective.DisplayNewObjective(string.Empty);
             }
             if (currBattery < maxBattery)
             {
