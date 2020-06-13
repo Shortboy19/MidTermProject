@@ -19,7 +19,7 @@ public class Thunder : MonoBehaviour
         InvokeRepeating("PlayThunderEffect", 3 , Random.Range(20, 61));
     }
 
-    void PlayThunderEffect()
+    public void PlayThunderEffect()
     {
         int i = Random.Range(0, SoundManager.Instance.ThunderClap.Length);
         SoundManager.Instance.PlayThunderEffect(SoundManager.Instance.ThunderClap[i], 0.9f);
