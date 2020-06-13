@@ -12,7 +12,7 @@ public class ObjectiveTracker : MonoBehaviour
         text.text = string.Empty;
     }
 
-    public void DisplayNewObjective(string objective, float delay = 1.5f)
+    public void DisplayNewObjective(string objective, float delay = 1f)
     {
         if(objectiveRoutine == null)
         {
@@ -29,7 +29,7 @@ public class ObjectiveTracker : MonoBehaviour
 
     IEnumerator objectiveRoutine;
 
-    IEnumerator NewObjective(string message, float delay = 1.5f)
+    IEnumerator NewObjective(string message, float delay)
     {
         text.color = Color.green;
         yield return new WaitForSeconds(delay);
@@ -49,7 +49,7 @@ public class ObjectiveTracker : MonoBehaviour
         }
     }
 
-    public void DisplayOldObjective(string objective, float delay = 1.5f)
+    public void DisplayOldObjective(string objective, float delay = 1f)
     {
         if (objectiveRoutine == null)
         {
@@ -64,7 +64,7 @@ public class ObjectiveTracker : MonoBehaviour
         }
     }
 
-    IEnumerator OldObjective(string message, float delay = 1.5f)
+    IEnumerator OldObjective(string message, float delay)
     {
         text.color = Color.red;
         yield return new WaitForSeconds(delay);

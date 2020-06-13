@@ -150,6 +150,7 @@ public class Trap : MonoBehaviour
         PlayerController.Player.frozen = true;
 
         SoundManager.Instance.PlayVoiceLine(10);
+        PlayerController.Player.objective.DisplayNewObjective("RUN!!!");
 
         Quaternion targetRot = Quaternion.LookRotation(enemy.transform.position - playerCam.transform.position);
         while (speed < 1.2f)
@@ -174,9 +175,11 @@ public class Trap : MonoBehaviour
         float speed = 1;
         Enemy enemyComp = enemy.GetComponent<Enemy>();
         enemyComp.agent.speed = 0;
+        enemyComp.anim.SetBool("Stunned", true);
         PlayerController.Player.frozen = true;
 
         SoundManager.Instance.PlayVoiceLine(11);
+        PlayerController.Player.objective.DisplayNewObjective("Leave the tutorial");
 
         Quaternion targetRot = Quaternion.LookRotation(enemy.transform.position - playerCam.transform.position);
         while (speed < 1.2f)
