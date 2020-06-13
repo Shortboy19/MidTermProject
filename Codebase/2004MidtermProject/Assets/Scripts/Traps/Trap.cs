@@ -89,6 +89,7 @@ public class Trap : MonoBehaviour
         else if (enemy != null)
         {
             enemy.GetComponent<NavMeshAgent>().Warp(telePoints[Random.Range(0, telePoints.Length - 1)]);
+            SoundManager.Instance.PlayEffectAtPoint(GetComponent<AudioSource>().clip, this.transform.position, 10);
         }
 
     }
