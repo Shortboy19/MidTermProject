@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,6 +18,8 @@ public class Trap : MonoBehaviour
     public GameObject[] fakeGhosts;
     Vector3[] telePoints;
     string trapName="";
+    Thunder thunder;
+    [SerializeField] GameObject lightning;
 
    
     bool playerInRange = false;
@@ -25,6 +28,7 @@ public class Trap : MonoBehaviour
 
     void Start()
     {
+        thunder = FindObjectOfType<Thunder>();
         interactableCanvas.SetActive(false);
         if (trapObj)
         {
@@ -89,7 +93,8 @@ public class Trap : MonoBehaviour
         else if (enemy != null)
         {
             enemy.GetComponent<NavMeshAgent>().Warp(telePoints[Random.Range(0, telePoints.Length - 1)]);
-            SoundManager.Instance.PlayEffectAtPoint(GetComponent<AudioSource>().clip, this.transform.position, 10);
+            SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.TeleportTrap, transform.position, 10);
+            StartCoroutine(Lightning());
         }
 
     }
@@ -197,5 +202,21 @@ public class Trap : MonoBehaviour
         }
         enemyComp.agent.Warp(enemyComp.PickSpawnPoint().position);
         PlayerController.Player.frozen = false;
+    }
+
+    IEnumerator Lightning()
+    {
+        if (thunder)
+        {
+            thunder.PlayThunderEffect();
+            if (lightning)
+            {
+                GameObject temp = Instantiate(lightning, new Vector3(transform.position.x, 85, transform.position.z), Quaternion.identity);
+                yield return new WaitForSeconds(0.03f);
+                Destroy(temp);
+            }
+        }
+        else
+            yield break;
     }
 }
