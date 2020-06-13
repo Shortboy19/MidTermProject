@@ -8,16 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/_preload.unity
     guid: 803e0e5648e57c74ca8f316b42a957ca
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 9d2bf07f2fa8a08449efbebac1283c4d
   - enabled: 1
     path: Assets/Scenes/TutorialScene.unity
     guid: fd8b0de8886ae1345b297d38aa91176e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/ProtoypeMilestoneScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: 8c7e3d6211ef0f040aba7db8a1951559
   - enabled: 0
@@ -26,7 +26,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Testing_Scenes/Matt's_Scene.unity
     guid: 598c0a7d4652be448859f7f8c4fb228d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/LeaderBoard.unity
     guid: 0cef3e529d277e5438f01066ba443b20
   m_configObjects: {}
