@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     public GameObject flashlight;
     [SerializeField] MiniMap minimap;
     public ObjectiveTracker objective;
+    [HideInInspector]public Animator anim;
     #endregion
 
     #region Private Variables
@@ -106,6 +107,7 @@ public class PlayerController : MonoBehaviour
         enemy = GameObject.FindGameObjectWithTag("Enemy");
         enemyComp = enemy.GetComponent<Enemy>();
         defaultPosY = cam.transform.localPosition.y;
+        anim = GetComponent<Animator>(); 
         frozen = false;
 
         if (!firstTimeIntro && SceneManager.GetActiveScene().name == "ProtoypeMilestoneScene")
@@ -258,6 +260,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (Mathf.Abs(cc.velocity.x) > 0 || Mathf.Abs(cc.velocity.z) > 0)
+        {
+            anim.SetBool("IsMoving", true);
+        }
+        else
+            anim.SetBool("IsMoving", false);
+
     }
     IEnumerator HeartbeatRoutine;
 
@@ -308,12 +317,13 @@ public class PlayerController : MonoBehaviour
                     {
                         isSprinting = true;
                         currStamina -= sprintStaminaCost * Time.deltaTime;
+                        anim.SetFloat("Speed", 1); 
                     }
-                    else { isSprinting = false; canSprint = false; }
+                    else { isSprinting = false; canSprint = false; anim.SetFloat("Speed", 0); }
                 }
-                else { isSprinting = false; moveSound.clip = null; }
+                else { isSprinting = false; moveSound.clip = null; anim.SetFloat("Speed", 0); }
             }
-            else { isSprinting = false; }
+            else { isSprinting = false; anim.SetFloat("Speed", 0); }
 
             moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
@@ -321,7 +331,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown("Jump"))
             {
-                Jump();
+                Jump(); 
             }
 
             if (Input.GetButtonDown("Slide"))
@@ -417,6 +427,7 @@ public class PlayerController : MonoBehaviour
             moveDirection += 0.75f * transform.forward;
         }
         moveDirection.y = jumpHeight * 2;
+        anim.SetTrigger("Jump"); 
     }
 
     float slideTimer;
@@ -424,6 +435,7 @@ public class PlayerController : MonoBehaviour
     void Slide()
     {
         cc.height = 0.5f;
+        anim.SetTrigger("Silde"); 
         if (isSliding)
         {
             slideTimer -= Time.deltaTime;
