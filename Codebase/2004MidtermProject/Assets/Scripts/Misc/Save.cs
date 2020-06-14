@@ -6,7 +6,7 @@ public class Save : MonoBehaviour
 {
     public static void WriteString(string thingToWrite)
     {
-#if !UNITY_EDITOR
+#if !UNITY_WEBGL
         string path = Application.dataPath + "/SaveData.txt";
         using (StreamWriter writer = new StreamWriter(path, true))
         {
