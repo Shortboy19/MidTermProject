@@ -146,6 +146,7 @@ public class Trap : MonoBehaviour
 
     IEnumerator TutorialAnim1()
     {
+        GameState.canPause = false;
         Camera playerCam = Camera.main;
         float speed = 1;
         Enemy enemyComp = enemy.GetComponent<Enemy>();
@@ -171,10 +172,12 @@ public class Trap : MonoBehaviour
         }
         enemyComp.agent.speed = enemyComp.oldSpeed;
         PlayerController.Player.frozen = false;
+        GameState.canPause = true;
     }
 
     IEnumerator TutorialAnim2()
     {
+        GameState.canPause = false;
         Camera playerCam = Camera.main;
         float speed = 1;
         Enemy enemyComp = enemy.GetComponent<Enemy>();
@@ -200,6 +203,7 @@ public class Trap : MonoBehaviour
         }
         enemyComp.agent.Warp(enemyComp.PickSpawnPoint().position);
         PlayerController.Player.frozen = false;
+        GameState.canPause = true;
     }
 
     IEnumerator Lightning()

@@ -228,6 +228,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator CapturePlayer()
     {
+        GameState.canPause = false;
         PlayerController.Player.frozen = true;
         if (TutorialManager.Instance != null)
         {
@@ -273,5 +274,6 @@ public class Enemy : MonoBehaviour
         }
         SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt);
         GameState.ShowDeathMenu();
+        GameState.canPause = false;
     }
 }

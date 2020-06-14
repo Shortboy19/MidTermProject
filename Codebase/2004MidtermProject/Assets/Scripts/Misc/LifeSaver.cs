@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 
 using UnityEngine;
 
@@ -27,6 +26,7 @@ public class LifeSaver : MonoBehaviour
     
     IEnumerator PlaySaveAnim()
     {
+        GameState.canPause = false;
         PlayerController.Player.frozen = true;
         enemy.agent.speed = 0;
         enemy.GetComponent<Collider>().enabled = false;
@@ -99,5 +99,6 @@ public class LifeSaver : MonoBehaviour
 
         PlayerController.Player.objective.DisplayOldObjective("Find the key");
         enemy.scared = false;
+        GameState.canPause = true;
     }
 }

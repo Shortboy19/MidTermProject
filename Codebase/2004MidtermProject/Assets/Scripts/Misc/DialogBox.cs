@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using TMPro;
 using UnityEngine;
 
@@ -22,10 +21,12 @@ public class DialogBox : MonoBehaviour
         SoundManager.Instance.ResumeAllSounds();
         GameState.gamePaused = false;
         window.SetActive(false);
+        GameState.canPause = true;
     }
 
     public static void ShowWindow(string TITLE, string MESSAGE, bool muteSounds = true)
     {
+        GameState.canPause = false;
         Time.timeScale = 0;
         if (muteSounds) { SoundManager.Instance.StopAllSounds(); }
         GameState.gamePaused = true;

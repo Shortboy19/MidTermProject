@@ -34,12 +34,17 @@ public class OptionsMenu : MonoBehaviour
         }
         if (PlayerPrefs.HasKey("Sensitivity"))
         {
-            PlayerController.Player.LookSenstivity = PlayerPrefs.GetFloat("Sensitivity");
+            if (PlayerController.Player != null)
+            {
+                PlayerController.Player.LookSenstivity = PlayerPrefs.GetFloat("Sensitivity");
+            }
         }
         musicVol.value = SoundManager.MusicVolume;
         effectsVol.value = SoundManager.EffectsVolume;
         ambientVol.value = SoundManager.AmbientVolume;
-        sensitivitySlider.value = PlayerController.Player.LookSenstivity/200;
+
+        if (PlayerController.Player != null)
+            sensitivitySlider.value = PlayerController.Player.LookSenstivity/200;
     }
 
     // Update is called once per frame
@@ -57,14 +62,18 @@ public class OptionsMenu : MonoBehaviour
         SoundManager.MusicVolume = musicVol.value;
         SoundManager.EffectsVolume = effectsVol.value;
         SoundManager.AmbientVolume = ambientVol.value;
-        PlayerController.Player.LookSenstivity = sensitivitySlider.value * 200;
+
+        if (PlayerController.Player != null)
+            PlayerController.Player.LookSenstivity = sensitivitySlider.value * 200;
 
         SoundManager.Instance.UpdateAmbientSoundVolume();
         SoundManager.Instance.UpdateMusicSoundVolume();
         PlayerPrefs.SetFloat("Music Volume", SoundManager.MusicVolume);
         PlayerPrefs.SetFloat("Effects Volume", SoundManager.EffectsVolume);
         PlayerPrefs.SetFloat("Ambient Volume", SoundManager.AmbientVolume);
-        PlayerPrefs.SetFloat("Sensitivity", PlayerController.Player.LookSenstivity);
+
+        if (PlayerController.Player != null)
+            PlayerPrefs.SetFloat("Sensitivity", PlayerController.Player.LookSenstivity);
     }
 
     private void OnEnable()

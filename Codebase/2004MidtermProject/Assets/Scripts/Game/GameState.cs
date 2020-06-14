@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +6,7 @@ public class GameState : MonoBehaviour
 {
     public static GameState Instance;
     public static bool gamePaused = false;
+    public static bool canPause = true;
 
     public GameObject pauseMenu;
     public GameObject deathMenu;
@@ -18,6 +18,7 @@ public class GameState : MonoBehaviour
     public static bool gameWon = false;
 
     public GameTimer timer;
+    public bool isMainMenu = false;
 
     private void Awake()
     {
@@ -25,10 +26,13 @@ public class GameState : MonoBehaviour
 
         Time.timeScale = 1;
         gamePaused = false;
-        deathMenu.SetActive(false);
-        winMenu.SetActive(false);
-        gameWon = false;
-        tutorialExit.SetActive(false);
+        if(!isMainMenu)
+        {
+            deathMenu.SetActive(false);
+            winMenu.SetActive(false);
+            gameWon = false;
+            tutorialExit.SetActive(false);
+        }
        // SoundManager.Instance.ResumeAllSounds(); 
     }
 
@@ -42,6 +46,9 @@ public class GameState : MonoBehaviour
 
     public void Pause()
     {
+        if (!canPause)
+            return;
+
         SoundManager.Instance.StopAllSounds();
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
@@ -59,6 +66,9 @@ public class GameState : MonoBehaviour
 
     private void Update()
     {
+        if (isMainMenu)
+            return;
+
         if (Input.GetButtonDown("Pause") && !OptionsMenu.isOpen && !deathMenu.activeSelf && !winMenu.activeSelf && (fadeImg.color.a==0))
         {
             TogglePause();
