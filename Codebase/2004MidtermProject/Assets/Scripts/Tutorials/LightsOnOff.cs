@@ -25,6 +25,7 @@ public class LightsOnOff : MonoBehaviour
             }
             RedLight.enabled = false;
             TutorialManager.PlayVoiceLine(7);
+            PlayerController.Player.objective.DisplayNewObjective(string.Empty);
             triggered = true;
             TutorialManager.PlayVoiceLine(8, true, "Interaction", "The flashlight can be used on all <color=red>glowing red objects</color> to trigger interactions.");
         }

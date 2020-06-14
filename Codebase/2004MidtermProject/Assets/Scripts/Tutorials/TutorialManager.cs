@@ -6,6 +6,7 @@ public class TutorialManager : MonoBehaviour
 {
     public static TutorialManager Instance;
     public static bool pitDeath = false;
+    public static bool skippedSetup = false;
     Collider[] blockers;
 
     private void Awake()
@@ -67,10 +68,21 @@ public class TutorialManager : MonoBehaviour
     {
         Instance.StopAllCoroutines();
         Instance.queuedRoutines.Clear();
+
         SoundManager.Instance.VoiceLineSound.Stop();
-        SoundManager.Instance.PlayVoiceLine(16);
         Instance.voiceRoutine = null;
 
+        if(!skippedSetup)
+        {
+            Instance.StartCoroutine(Instance.QueueRoutine(Instance.VoiceLine(16, false, string.Empty, string.Empty, true)));
+            skippedSetup = true;
+        }
+        else
+        {
+            Instance.StartCoroutine(Instance.QueueRoutine(Instance.VoiceLine(16, false, string.Empty, string.Empty, true)));
+        }
+
+        PlayerController.Player.objective.DisplayNewObjective("Continue forward", 0);
     }
 
 }

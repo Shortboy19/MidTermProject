@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,6 +18,8 @@ public class Trap : MonoBehaviour
     public GameObject[] fakeGhosts;
     Vector3[] telePoints;
     string trapName="";
+    Thunder thunder;
+    [SerializeField] GameObject lightning;
 
    
     bool playerInRange = false;
@@ -25,6 +28,7 @@ public class Trap : MonoBehaviour
 
     void Start()
     {
+        thunder = FindObjectOfType<Thunder>();
         interactableCanvas.SetActive(false);
         if (trapObj)
         {
@@ -89,6 +93,8 @@ public class Trap : MonoBehaviour
         else if (enemy != null)
         {
             enemy.GetComponent<NavMeshAgent>().Warp(telePoints[Random.Range(0, telePoints.Length - 1)]);
+            SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.TeleportTrap, transform.position, 10);
+            StartCoroutine(Lightning());
         }
 
     }
@@ -121,7 +127,7 @@ public class Trap : MonoBehaviour
         if (other.CompareTag("Player") && !armed)
         {
             interactableCanvas.SetActive(true);
-            interactableCanvas.GetComponentInChildren<TextMeshProUGUI>().text = "Press E to Activate " + trapName;
+            interactableCanvas.GetComponentInChildren<TextMeshProUGUI>().text = "Press E to Arm " + trapName;
             playerInRange = true;
         }
         if (other.CompareTag("Enemy") && armed)
@@ -150,6 +156,7 @@ public class Trap : MonoBehaviour
         PlayerController.Player.frozen = true;
 
         SoundManager.Instance.PlayVoiceLine(10);
+        PlayerController.Player.objective.DisplayNewObjective("RUN!!!");
 
         Quaternion targetRot = Quaternion.LookRotation(enemy.transform.position - playerCam.transform.position);
         while (speed < 1.2f)
@@ -174,9 +181,11 @@ public class Trap : MonoBehaviour
         float speed = 1;
         Enemy enemyComp = enemy.GetComponent<Enemy>();
         enemyComp.agent.speed = 0;
+        enemyComp.anim.SetBool("Stunned", true);
         PlayerController.Player.frozen = true;
 
         SoundManager.Instance.PlayVoiceLine(11);
+        PlayerController.Player.objective.DisplayNewObjective("Leave the tutorial");
 
         Quaternion targetRot = Quaternion.LookRotation(enemy.transform.position - playerCam.transform.position);
         while (speed < 1.2f)
@@ -193,5 +202,21 @@ public class Trap : MonoBehaviour
         }
         enemyComp.agent.Warp(enemyComp.PickSpawnPoint().position);
         PlayerController.Player.frozen = false;
+    }
+
+    IEnumerator Lightning()
+    {
+        if (thunder)
+        {
+            thunder.PlayThunderEffect();
+            if (lightning)
+            {
+                GameObject temp = Instantiate(lightning, new Vector3(transform.position.x, 85, transform.position.z), Quaternion.identity);
+                yield return new WaitForSeconds(0.03f);
+                Destroy(temp);
+            }
+        }
+        else
+            yield break;
     }
 }

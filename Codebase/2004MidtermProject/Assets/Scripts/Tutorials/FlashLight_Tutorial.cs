@@ -22,6 +22,7 @@ public class FlashLight_Tutorial : MonoBehaviour
                     tutorialLights[i].gameObject.SetActive(false);
                 }
                 TutorialManager.PlayVoiceLine(4);
+                PlayerController.Player.objective.DisplayNewObjective("Pickup the battery");
                 PlayerController.tutorialBattery = true;
                 battery.SetActive(true);
                 triggered = true;
@@ -29,6 +30,7 @@ public class FlashLight_Tutorial : MonoBehaviour
             else
             {
                 TutorialManager.PlayVoiceLine(6);
+                PlayerController.Player.objective.DisplayNewObjective("Turn on the lights");
                 triggered = true;
             }
         }
