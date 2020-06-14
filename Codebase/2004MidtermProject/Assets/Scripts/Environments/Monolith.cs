@@ -91,9 +91,6 @@ public class Monolith : MonoBehaviour
                 //Do nothing
                 break;
         }
-
-        playerCanActivate = false;
-        PlayerController.Player.hasShard = false;
     }
 
     void Bounce()
@@ -136,6 +133,8 @@ public class Monolith : MonoBehaviour
         enemy.agent.speed = 6.75f;
         enemy.oldSpeed = 6.75f;
         enemy.agent.angularSpeed = 180;
+        playerCanActivate = false;
+        PlayerController.Player.hasShard = false;
     }
 
     IEnumerator YellowShardDelayedWarp(Enemy enemy)
@@ -162,6 +161,8 @@ public class Monolith : MonoBehaviour
         PlayerController.Player.currBattery *= PlayerController.Player.maxBattery;
 
         PlayerController.Player.staminaRegenRate *= 0.5f;
+        playerCanActivate = false;
+        PlayerController.Player.hasShard = false;
     }
 
     void PurpleShard()
@@ -179,6 +180,8 @@ public class Monolith : MonoBehaviour
 
         PlayerController.Player.UVFlashlight = true;
         PlayerController.tutorialBattery = false;
+        playerCanActivate = false;
+        PlayerController.Player.hasShard = false;
     }
 
     void BlueShard()
@@ -193,6 +196,8 @@ public class Monolith : MonoBehaviour
         }
 
         PlayerController.Player.hasBlueLife = true;
+        playerCanActivate = false;
+        PlayerController.Player.hasShard = false;
     }
 
     [SerializeField] GameObject capsule;

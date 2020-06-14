@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public float oldSpeed;
     public Transform eyes;
 
+    Light[] lights; 
     Light[] eyelights; 
 
     Camera playerCam;
@@ -35,7 +36,8 @@ public class Enemy : MonoBehaviour
         oldSpeed = agent.speed;
         playerCam = Camera.main;
         rend = GetComponent<Renderer>();
-        eyelights = GetComponentsInChildren<Light>();
+        lights = GetComponentsInChildren<Light>();
+        eyelights = eyes.GetComponentsInChildren<Light>();
         agent.updateRotation = false;
         anim = GetComponentInChildren<Animator>();
 
@@ -91,17 +93,18 @@ public class Enemy : MonoBehaviour
             {
                 if(!kill)
                 {
-                    StartCoroutine(WaitForDeath());
-                    kill = true;
+                    //StartCoroutine(WaitForDeath());
                     anim.SetBool("Stunned", true);
                     agent.SetDestination(transform.position);
                     stunned = true;
-                    PlayerController.Player.frozen = true;
-                    SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt);
-                    agent.Warp(PlayerController.Player.transform.position + playerCam.transform.forward);
+                    //PlayerController.Player.frozen = true;
+                    //SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt);
+                    agent.Warp(PlayerController.Player.transform.position - playerCam.transform.forward);
                     Quaternion targetRot = Quaternion.LookRotation(playerCam.transform.position - transform.position);
                     targetRot.x = targetRot.z = 0;
                     transform.rotation = targetRot;
+                    kill = true;
+                    StartCoroutine(CapturePlayer());
                 }
             }
             else
@@ -141,18 +144,18 @@ public class Enemy : MonoBehaviour
         anim.SetBool("Stunned", true);
         rend.material.color = Color.blue;
         StunRend.material = transMat;
-        for (int i = 0; i < eyelights.Length; i++)
+        for (int i = 0; i < lights.Length; i++)
         {
-            eyelights[i].color = Color.white;
+            lights[i].color = Color.white;
         }
         yield return new WaitForSeconds(waitTime);
 
         agent.speed = oldSpeed;
         rend.material.color = Color.white;
         StunRend.material = normalMat;
-        for (int i = 0; i < eyelights.Length; i++)
+        for (int i = 0; i < lights.Length; i++)
         {
-            eyelights[i].color = Color.red;
+            lights[i].color = Color.red;
         }
         anim.SetBool("Stunned", false);
         GetComponent<Collider>().enabled = true;
@@ -184,17 +187,17 @@ public class Enemy : MonoBehaviour
         anim.SetBool("Stunned", true);
         rend.material.color = new Color(1, 0, 1);
         StunRend.material = transMat;
-        for (int i = 0; i < eyelights.Length; i++)
+        for (int i = 0; i < lights.Length; i++)
         {
-            eyelights[i].color = new Color(1, 0.5f, 0);
+            lights[i].color = new Color(1, 0.5f, 0);
         }
         yield return new WaitForSeconds(waitTime);
         scared = false;
         rend.material.color = Color.white;
         StunRend.material = normalMat;
-        for (int i = 0; i < eyelights.Length; i++)
+        for (int i = 0; i < lights.Length; i++)
         {
-            eyelights[i].color = Color.red;
+            lights[i].color = Color.red;
         }
         anim.SetBool("Stunned", false);
         GetComponent<Collider>().enabled = true;
@@ -208,17 +211,17 @@ public class Enemy : MonoBehaviour
         anim.SetBool("Stunned", true);
         rend.material.color = new Color(1, 0, 1);
         StunRend.material = transMat;
-        for (int i = 0; i < eyelights.Length; i++)
+        for (int i = 0; i < lights.Length; i++)
         {
-            eyelights[i].color = new Color(1, 0.5f, 0);
+            lights[i].color = new Color(1, 0.5f, 0);
         }
         yield return new WaitForSeconds(6);
         scared = false;
         rend.material.color = Color.white;
         StunRend.material = normalMat;
-        for (int i = 0; i < eyelights.Length; i++)
+        for (int i = 0; i < lights.Length; i++)
         {
-            eyelights[i].color = Color.red;
+            lights[i].color = Color.red;
         }
         anim.SetBool("Stunned", false);
         GetComponent<Collider>().enabled = true;
@@ -233,33 +236,24 @@ public class Enemy : MonoBehaviour
         }
         SoundManager.Instance.VoiceLineSound.Stop();
         speed = 0;
-        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.MonsterKill, transform.position);
+        SoundManager.Instance.PlayGaze();
 
-        normalLight = GetComponentInChildren<Light>();
-        normalLight.intensity = 0;
         for (int i = 0; i < eyelights.Length; i++)
         {
             eyelights[i].intensity = 5;
             eyelights[i].range = 0;
         }
 
-        Quaternion targPlayerRot = PlayerController.Player.transform.rotation;
-        targPlayerRot.y *= -1;
+        Vector3 targVec = eyes.transform.position - playerCam.transform.position;
 
-        while (speed < 1)
+        Quaternion targRot = Quaternion.LookRotation(targVec);
+        float t = 0;
+        speed = 0.9f;
+        while(t < 1)
         {
-            PlayerController.Player.transform.rotation = Quaternion.Lerp(PlayerController.Player.transform.rotation, targPlayerRot, Time.time * speed);
-            speed += 0.1f;
-            yield return new WaitForSeconds(0.01f);
-        }
-
-        Quaternion targCamRot = Quaternion.Euler(-15, 0, 0);
-        speed = 0;
-        while (speed < 1)
-        {
-            playerCam.transform.localRotation = Quaternion.Lerp(playerCam.transform.localRotation, targCamRot, Time.time * speed);
-            speed += 0.1f;
-            yield return new WaitForSeconds(0.01f);
+            playerCam.transform.rotation = Quaternion.Lerp(playerCam.transform.rotation, targRot, t);
+            t += speed * Time.deltaTime;
+            yield return null;
         }
 
         speed = 0;
@@ -274,6 +268,10 @@ public class Enemy : MonoBehaviour
             yield return null;
         }
 
+        while (SoundManager.Instance.GazeSound.isPlaying)
+        {
+            yield return null;
+        }
         SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt);
         GameState.ShowDeathMenu();
     }

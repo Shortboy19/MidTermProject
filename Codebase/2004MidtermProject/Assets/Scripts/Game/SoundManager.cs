@@ -17,6 +17,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource HeartBeatSound;
     public AudioSource BreathSound;
     public AudioSource VoiceLineSound;
+    public AudioSource GazeSound;
 
     public AudioClip[] ThunderClap;
     public AudioClip[] PlayerWalking;
@@ -81,6 +82,11 @@ public class SoundManager : MonoBehaviour
         source.volume = 1 * EffectsVolume;
         source.clip = clip;
         source.Play();
+    }
+    public void PlayGaze()
+    {
+        GazeSound.volume = 1 * EffectsVolume;
+        GazeSound.Play();
     }
 
     //Play a single Clip through the music source.
