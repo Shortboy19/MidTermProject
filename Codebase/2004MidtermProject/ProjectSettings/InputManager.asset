@@ -345,7 +345,7 @@ InputManager:
     m_Name: Interact
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: mouse 1
     positiveButton: 
     altNegativeButton: e
     altPositiveButton: 
