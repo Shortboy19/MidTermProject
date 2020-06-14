@@ -361,7 +361,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722532126889696904}
   m_LocalRotation: {x: 0.2164396, y: 0, z: 0, w: 0.97629607}
-  m_LocalPosition: {x: -0.05, y: 0.123, z: -0.043}
+  m_LocalPosition: {x: -0.05, y: 0.1359, z: -0.043}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7783690267376550266}
@@ -379,8 +379,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 20
-  m_Range: 0.2
+  m_Intensity: 0
+  m_Range: 0.15
   m_SpotAngle: 7
   m_InnerSpotAngle: 7
   m_CookieSize: 10
@@ -1109,7 +1109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5239696797079013708}
   m_LocalRotation: {x: 0.2164396, y: 0, z: 0, w: 0.97629607}
-  m_LocalPosition: {x: 0.045, y: 0.119, z: -0.034}
+  m_LocalPosition: {x: 0.045, y: 0.1319, z: -0.034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7783690267376550266}
@@ -1127,8 +1127,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 20
-  m_Range: 0.2
+  m_Intensity: 0
+  m_Range: 0.15
   m_SpotAngle: 7
   m_InnerSpotAngle: 7
   m_CookieSize: 10
@@ -1357,12 +1357,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 5424791866911700604}
-  player: {fileID: 1430072984192380014, guid: 494c6dd555a4b7a489dcee7e7f6c1c78, type: 3}
+  player: {fileID: 0}
   SpawnLocationNumber: 0
   spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   rend: {fileID: 0}
   StunRend: {fileID: 7158288977177876780}
@@ -1371,6 +1368,9 @@ MonoBehaviour:
   scared: 0
   oldSpeed: 0
   eyes: {fileID: 7783690267376550266}
+  eyelights:
+  - {fileID: 3643867087220411704}
+  - {fileID: 7294528641583458327}
   transMat: {fileID: 2100000, guid: e1b5ae290a9ba1a42ae0a0ca2809e265, type: 2}
 --- !u!54 &1533846134
 Rigidbody:

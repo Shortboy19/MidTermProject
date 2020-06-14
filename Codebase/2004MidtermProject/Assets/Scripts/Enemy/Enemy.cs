@@ -223,4 +223,58 @@ public class Enemy : MonoBehaviour
         anim.SetBool("Stunned", false);
         GetComponent<Collider>().enabled = true;
     }
+
+    IEnumerator CapturePlayer()
+    {
+        PlayerController.Player.frozen = true;
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.StopAllCoroutines();
+        }
+        SoundManager.Instance.VoiceLineSound.Stop();
+        speed = 0;
+        SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.MonsterKill, transform.position);
+
+        normalLight = GetComponentInChildren<Light>();
+        normalLight.intensity = 0;
+        for (int i = 0; i < eyelights.Length; i++)
+        {
+            eyelights[i].intensity = 5;
+            eyelights[i].range = 0;
+        }
+
+        Quaternion targPlayerRot = PlayerController.Player.transform.rotation;
+        targPlayerRot.y *= -1;
+
+        while (speed < 1)
+        {
+            PlayerController.Player.transform.rotation = Quaternion.Lerp(PlayerController.Player.transform.rotation, targPlayerRot, Time.time * speed);
+            speed += 0.1f;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        Quaternion targCamRot = Quaternion.Euler(-15, 0, 0);
+        speed = 0;
+        while (speed < 1)
+        {
+            playerCam.transform.localRotation = Quaternion.Lerp(playerCam.transform.localRotation, targCamRot, Time.time * speed);
+            speed += 0.1f;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        speed = 0;
+        while (eyelights[0].intensity < 20)
+        {
+            for (int i = 0; i < eyelights.Length; i++)
+            {
+                eyelights[i].intensity = Mathf.Lerp(5, 20, Time.deltaTime * speed);
+                eyelights[i].range = Mathf.Lerp(0, 0.15f, Time.deltaTime * speed);
+            }
+            speed += 0.15f;
+            yield return null;
+        }
+
+        SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt);
+        GameState.ShowDeathMenu();
+    }
 }

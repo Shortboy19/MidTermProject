@@ -1106,6 +1106,7 @@ MonoBehaviour:
   Heartbeat: {fileID: 8300000, guid: ff2a3c9a58730934ca11e222e9b7afa6, type: 3}
   OutOfBreath: {fileID: 8300000, guid: aca7c76baf67ca64da0071f75b9cc090, type: 3}
   TeleportTrap: {fileID: 8300000, guid: fa52d89f1e2ecce43ae35f76df7f02ca, type: 3}
+  MonsterKill: {fileID: 8300000, guid: 2a192c730bb1bb24399f143f7912634d, type: 3}
   effects:
   - {fileID: 8300000, guid: 5b8d898c415e4b74f91bc6981f22f8f5, type: 3}
   - {fileID: 8300000, guid: 351501cacc90923438c7b5c2042663b9, type: 3}

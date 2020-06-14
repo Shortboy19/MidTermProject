@@ -8428,9 +8428,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5424791866911700605, guid: e0cf66170f0c957458b5f61c219d997c,
         type: 3}
-      propertyPath: spawnPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 1194580317}
+      propertyPath: spawnPoints.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5424791866911700605, guid: e0cf66170f0c957458b5f61c219d997c,
         type: 3}
       propertyPath: spawnPoints.Array.data[1]
@@ -8446,15 +8446,20 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[3]
       value: 
       objectReference: {fileID: 987984704}
+    - target: {fileID: 5424791866911700605, guid: e0cf66170f0c957458b5f61c219d997c,
+        type: 3}
+      propertyPath: spawnPoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 987984704}
+    - target: {fileID: 5424791866911700605, guid: e0cf66170f0c957458b5f61c219d997c,
+        type: 3}
+      propertyPath: spawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1194580317}
     - target: {fileID: 5424791866911700606, guid: e0cf66170f0c957458b5f61c219d997c,
         type: 3}
       propertyPath: m_Name
       value: 'Enemy '
-      objectReference: {fileID: 0}
-    - target: {fileID: 8605510423849246535, guid: e0cf66170f0c957458b5f61c219d997c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0cf66170f0c957458b5f61c219d997c, type: 3}

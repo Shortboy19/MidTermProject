@@ -37,6 +37,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip Heartbeat;
     public AudioClip OutOfBreath; 
     public AudioClip TeleportTrap; 
+    public AudioClip MonsterKill; 
 
     public AudioClip[] effects;
     public AudioClip[] voiceLines;
