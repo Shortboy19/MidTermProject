@@ -12506,15 +12506,6 @@ MonoBehaviour:
   objective: {fileID: 221376701}
   SpawnPoints:
   - {fileID: 5790005207148394977}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &5790005208389310657
 GameObject:
   m_ObjectHideFlags: 0

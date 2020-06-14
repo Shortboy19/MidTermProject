@@ -1,17 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
 
 public class Save : MonoBehaviour
 {
     public static void WriteString(string thingToWrite)
     {
+#if !UNITY_EDITOR
         string path = Application.dataPath + "/SaveData.txt";
         using (StreamWriter writer = new StreamWriter(path, true))
         {
             writer.WriteLine(thingToWrite);
         }
+#endif
+        Debug.Log("Score Saved");
         //AssetDatabase.ImportAsset(path);
     }
     public static List<string> ReadString()
