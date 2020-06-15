@@ -6,7 +6,8 @@ using UnityEngine.UI;
     [RequireComponent(typeof (Button))]
 public class ButtonSounds : MonoBehaviour
 {
-        public AudioClip sound; 
+    public AudioClip sound;
+    public AudioClip sound2;
         
     private Button button { get { return GetComponent<Button>(); } }
     private AudioSource source { get { return GetComponent<AudioSource>(); } } 
@@ -14,9 +15,9 @@ public class ButtonSounds : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.AddComponent<AudioSource>(); 
-        source.clip = sound;
+        gameObject.AddComponent<AudioSource>();
         source.playOnAwake = false;
+        source.priority = 256; 
 
        // button.onClick.AddListener(() => PlayButton()); 
 
@@ -25,7 +26,14 @@ public class ButtonSounds : MonoBehaviour
      public void PlayButton()
      {
         //SoundManager.Instance.PlayEffectAtPoint(source.clip, transform.position, 1);
+        source.PlayOneShot(sound, 1);
+     } 
 
-        source.PlayOneShot(sound); 
-     }
+    public void PlaySecondSound()
+    {
+        source.PlayOneShot(sound2, 1); 
+    }
+    
+
+   
 }

@@ -276,6 +276,6 @@ public class Enemy : MonoBehaviour
         }
         SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt);
         GameState.ShowDeathMenu();
-        GameState.canPause = false;
+        GameState.canPause = true;
     }
 }
