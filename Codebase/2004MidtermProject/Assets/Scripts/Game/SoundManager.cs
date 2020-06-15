@@ -57,10 +57,11 @@ public class SoundManager : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(sound, point, 1 * EffectsVolume);
     }
-    public void PlayEffectAtPoint(AudioClip sound, Vector3 point, float volume = 1)
+    public void PlayEffectAtPoint(AudioClip sound, Vector3 point, float volume)
     {
-        AudioSource.PlayClipAtPoint(sound, point, volume);
+        AudioSource.PlayClipAtPoint(sound, point, volume * EffectsVolume);
     }
+
 
     public void PlayGlobalEffect(AudioClip clip)
     {
