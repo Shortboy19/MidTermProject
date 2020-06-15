@@ -16,10 +16,8 @@ public class ButtonSounds : MonoBehaviour
     void Start()
     {
         gameObject.AddComponent<AudioSource>();
-        source.clip = sound;
         source.playOnAwake = false;
         source.priority = 256; 
-        source.clip = sound2;
 
        // button.onClick.AddListener(() => PlayButton()); 
 
