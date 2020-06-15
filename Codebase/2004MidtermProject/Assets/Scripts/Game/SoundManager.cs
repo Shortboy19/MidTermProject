@@ -62,6 +62,7 @@ public class SoundManager : MonoBehaviour
         AudioSource.PlayClipAtPoint(sound, point, volume * EffectsVolume);
     }
 
+
     public void PlayGlobalEffect(AudioClip clip)
     {
         EffectSound.volume = 1 * EffectsVolume;
