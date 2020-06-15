@@ -58,7 +58,7 @@ public class OptionsMenu : MonoBehaviour
 
     public void Apply()
     {
-        Debug.Log("Written");
+        //Debug.Log("Written");
         SoundManager.MusicVolume = musicVol.value;
         SoundManager.EffectsVolume = effectsVol.value;
         SoundManager.AmbientVolume = ambientVol.value;

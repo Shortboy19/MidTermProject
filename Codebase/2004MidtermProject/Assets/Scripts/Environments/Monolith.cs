@@ -35,6 +35,15 @@ public class Monolith : MonoBehaviour
         transform.Rotate(new Vector3(0, rotSpeed, 0));
 
         Bounce();
+
+        if (GameState.gamePaused)
+        {
+            Whispers.volume = 0;
+        }
+        else
+        {
+            Whispers.volume = 1;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,8 +55,8 @@ public class Monolith : MonoBehaviour
                 textObj.SetActive(true);
                 playerCanActivate = true;
             }
-            Whispers.volume = 1;
-            Whispers.Play();
+            //Whispers.volume = 1;
+            //Whispers.Play();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -56,8 +65,8 @@ public class Monolith : MonoBehaviour
         {
             textObj.SetActive(false);
             playerCanActivate = false;
-            Whispers.volume = 0;
-            Whispers.Stop();
+            //Whispers.volume = 0;
+            //Whispers.Stop();
         }
     }
 

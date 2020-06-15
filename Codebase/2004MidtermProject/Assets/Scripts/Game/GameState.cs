@@ -49,19 +49,17 @@ public class GameState : MonoBehaviour
         if (!canPause)
             return;
 
-        SoundManager.Instance.StopAllSounds();
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
         gamePaused = true;
-        AudioListener.pause = true; 
+        SoundManager.Instance.StopAllSounds();
     }
     public void Unpause()
     {
-        SoundManager.Instance.ResumeAllSounds();
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
         gamePaused = false;
-        AudioListener.pause = false; 
+        SoundManager.Instance.ResumeAllSounds();
     }
 
     private void Update()

@@ -6,7 +6,7 @@ using UnityEngine.UI;
     [RequireComponent(typeof (Button))]
 public class ButtonSounds : MonoBehaviour
 {
-        public AudioClip sound; 
+    public AudioClip sound; 
         
     private Button button { get { return GetComponent<Button>(); } }
     private AudioSource source { get { return GetComponent<AudioSource>(); } } 
@@ -25,7 +25,6 @@ public class ButtonSounds : MonoBehaviour
      public void PlayButton()
      {
         //SoundManager.Instance.PlayEffectAtPoint(source.clip, transform.position, 1);
-
-        source.PlayOneShot(sound); 
+        source.PlayOneShot(sound, 1);
      }
 }
