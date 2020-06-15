@@ -126,6 +126,7 @@ public class GameState : MonoBehaviour
             Instance.pauseMenu.SetActive(false);
         gamePaused = false;
         AudioListener.pause = false;
+        canPause = true;
     }
 
     public GameObject optionsMenu;

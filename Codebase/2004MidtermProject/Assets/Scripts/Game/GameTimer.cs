@@ -56,7 +56,7 @@ public class GameTimer : MonoBehaviour
                 timerText = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
         }
 
-        timerText.text = $" in {timeCounter.Hours}:{timeCounter.Minutes}:{timeCounter.Seconds} with {attempts} attempts";
+        timerText.text = $" in {timeCounter.Hours.ToString("00")}:{timeCounter.Minutes.ToString("00")}:{timeCounter.Seconds.ToString("00")} with {attempts} attempts";
         Save.WriteString(timeCounter.Hours.ToString("00") + ":" + timeCounter.Minutes.ToString("00") + ":" + timeCounter.Seconds.ToString("00") + "/" + attempts);
         Debug.Log(Save.ReadString());
     }
