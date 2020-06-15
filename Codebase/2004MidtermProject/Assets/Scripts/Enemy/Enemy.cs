@@ -65,6 +65,7 @@ public class Enemy : MonoBehaviour
 
         if (kill)
             KillPlayerAnim();
+            
     }
 
     private void LateUpdate()
@@ -163,7 +164,7 @@ public class Enemy : MonoBehaviour
         StunRoutine = null;
     }
 
-    bool kill = false;
+    public bool kill = false;
     float speed = 1;
     void KillPlayerAnim()
     {
@@ -230,6 +231,7 @@ public class Enemy : MonoBehaviour
     {
         GameState.canPause = false;
         PlayerController.Player.frozen = true;
+        PlayerController.Player.inDeathAnim = true;
         if (TutorialManager.Instance != null)
         {
             TutorialManager.Instance.StopAllCoroutines();

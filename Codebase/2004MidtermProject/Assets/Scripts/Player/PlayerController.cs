@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
     public float batteryChargeAmount = 2f;
 
     [Header("Other/Misc")]
+    [HideInInspector] public bool inDeathAnim;
     [Space(10)]
     public GameObject flashlight;
     [SerializeField] MiniMap minimap;
@@ -82,6 +83,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool UVFlashlight = false;
     [HideInInspector] public bool hasBlueLife = false;
     [HideInInspector] public bool firstTimeSeen = false;
+
     public static bool tutorialBattery = false;
     public static bool firstTimeIntro = false;
     [SerializeField] GameObject shards;
@@ -109,6 +111,7 @@ public class PlayerController : MonoBehaviour
         defaultPosY = cam.transform.localPosition.y;
         anim = GetComponent<Animator>(); 
         frozen = false;
+        inDeathAnim = false;
 
         if (!firstTimeIntro && SceneManager.GetActiveScene().name == "ProtoypeMilestoneScene")
         {
@@ -173,9 +176,9 @@ public class PlayerController : MonoBehaviour
                     if (hit.collider.gameObject == enemy.gameObject)
                     {
                         enemySeen = true;
-                        if(!firstTimeSeen && SceneManager.GetActiveScene().name == "ProtoypeMilestoneScene")
+                        if (!firstTimeSeen && SceneManager.GetActiveScene().name == "ProtoypeMilestoneScene")
                         {
-                            if(hasKey)
+                            if (hasKey)
                             {
                                 SoundManager.Instance.PlayVoiceLine(15);
                             }
@@ -209,7 +212,8 @@ public class PlayerController : MonoBehaviour
         }
 
         //Flashlight
-        if (currBattery > 0)
+
+        if (currBattery > 0 && inDeathAnim == false)
         {
             if (Input.GetMouseButton(0))
             {
@@ -225,7 +229,8 @@ public class PlayerController : MonoBehaviour
         {
             FlashLight(false);
         }
-
+    
+    
         //sliding
         if (isSliding)
         {
@@ -273,22 +278,30 @@ public class PlayerController : MonoBehaviour
     bool flashlightOn = false;
     void FlashLight(bool val)
     {
-        if (val == true)
+        if (inDeathAnim == false)
         {
-            if (flashlightOn)
-                return;
+            if (val == true)
+            {
+                if (flashlightOn)
+                    return;
 
-            flashlight.SetActive(true);
-            flashlightOn = true;
-            SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.FlashLightClick, transform.position);
+                flashlight.SetActive(true);
+                flashlightOn = true;
+                SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.FlashLightClick, transform.position);
+            }
+            else
+            {
+                if (!flashlightOn)
+                    return;
+                flashlightOn = false;
+                flashlight.SetActive(false);
+                SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.FlashLightClick, transform.position);
+            }
         }
-        else
+        else if (inDeathAnim == true)
         {
-            if (!flashlightOn)
-                return;
-            flashlightOn = false;
             flashlight.SetActive(false);
-            SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.FlashLightClick, transform.position);
+
         }
     }
 
