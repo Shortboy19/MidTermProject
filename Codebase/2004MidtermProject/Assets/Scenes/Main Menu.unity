@@ -2901,6 +2901,7 @@ GameObject:
   - component: {fileID: 1943610477}
   - component: {fileID: 1943610476}
   - component: {fileID: 1943610479}
+  - component: {fileID: 1943610481}
   - component: {fileID: 1943610480}
   m_Layer: 5
   m_Name: Play Button
@@ -2971,18 +2972,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1376494705}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1004934920}
-        m_MethodName: TutorialLoadScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: ProtoypeMilestoneScene
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1943610477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3057,9 +3047,71 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 
+            m_StringArgument: ProtoypeMilestoneScene
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1943610481}
+          m_MethodName: Play
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: ProtoypeMilestoneScene
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1943610481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943610474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaea5baf61d6a84ba75bf0c06c22200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - {fileID: 1806242206}
+  - {fileID: 1248648370}
+  button:
+  - {fileID: 1943610476}
+  - {fileID: 1853981155}
+  - {fileID: 631225897}
+  - {fileID: 282033997}
+  - {fileID: 1138169275}
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  endpoint: {fileID: 2145425526}
+  sound: {fileID: 8300000, guid: 3a81582cc12bc464ebcf03342df16d33, type: 3}
 --- !u!1 &2002012318
 GameObject:
   m_ObjectHideFlags: 0
@@ -3562,6 +3614,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2106345563}
   m_CullTransparentMesh: 0
+--- !u!1 &2145425525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2145425526}
+  m_Layer: 0
+  m_Name: EndPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2145425526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145425525}
+  m_LocalRotation: {x: 0.049496587, y: -0.5015846, z: -0.034664378, w: -0.8629956}
+  m_LocalPosition: {x: 3.676, y: 1.891, z: -27.271}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: -6.9040003, y: 60.296, z: 0.587}
 --- !u!1 &185832826227904615
 GameObject:
   m_ObjectHideFlags: 0
@@ -5455,6 +5537,7 @@ MonoBehaviour:
   oldSpeed: 0
   eyes: {fileID: 6174312121465125288}
   transMat: {fileID: 0}
+  kill: 0
 --- !u!4 &8338826498409891652
 Transform:
   m_ObjectHideFlags: 0

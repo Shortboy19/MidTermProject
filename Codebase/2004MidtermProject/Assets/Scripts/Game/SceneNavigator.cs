@@ -27,15 +27,15 @@ public class SceneNavigator : MonoBehaviour
         SceneManager.LoadScene(name);
     }
 
-    public void TutorialLoadScene(string name)
+    public void TutorialLoadScene(string name, AudioSource source)
     {
         if(PlayerPrefs.GetString("TutorialState") != "Complete")
         {
-            StartCoroutine(FadeOutScene("TutorialScene"));
+            StartCoroutine(WaitToLoad("TutorialScene", source));
         }
         else
         {
-            StartCoroutine(FadeOutScene(name));
+            StartCoroutine(WaitToLoad(name, source));
         }
     }
 
@@ -142,4 +142,23 @@ public class SceneNavigator : MonoBehaviour
         SceneManager.LoadScene(index);
     }
     #endregion
+
+    IEnumerator WaitToLoad(string name, AudioSource source)
+    {
+        float _delta = 0f;
+        while (_delta < 1f)
+        {
+            _delta += Time.deltaTime * 0.5f;
+            fadeImg.color = new Color(0f, 0f, 0f, curve.Evaluate(_delta));
+            yield return 0;
+        }
+        while (source.time < 4)
+        {
+            _delta -= Time.deltaTime;
+            source.volume = Mathf.Lerp(0, 1, curve.Evaluate(_delta));
+            yield return null;
+        }
+
+        SceneManager.LoadScene(name);
+    }
 }
