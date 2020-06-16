@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class CreditManager : MonoBehaviour
 {
-    [SerializeField] Vector3 start, End;
+    [SerializeField] Vector3 start = Vector3.zero, End = Vector3.zero;
     private float T = 0;
-    public TextMeshProUGUI Text;
+    public TextMeshProUGUI Text = null;
     void Start()
     {
         StartCoroutine("Animate");

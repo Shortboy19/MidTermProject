@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TutorialBlocker : MonoBehaviour
 {
-    Collider col;
-    [SerializeField] Collider prevCol;
+    Collider col = null;
+    [SerializeField] Collider prevCol = null;
     [SerializeField] bool triggered = false;
     [SerializeField] bool playVoiceLine = true;
     void Start()

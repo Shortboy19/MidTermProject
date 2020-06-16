@@ -8,16 +8,16 @@ public class GameState : MonoBehaviour
     public static bool gamePaused = false;
     public static bool canPause = true;
 
-    public GameObject pauseMenu;
-    public GameObject deathMenu;
-    public GameObject winMenu;
-    public GameObject tutorialExit;
-    public Image fadeImg;
-    [SerializeField] OptionsMenu options;
+    public GameObject pauseMenu = null;
+    public GameObject deathMenu = null;
+    public GameObject winMenu = null;
+    public GameObject tutorialExit = null;
+    public Image fadeImg = null;
+    [SerializeField] OptionsMenu options = null;
 
     public static bool gameWon = false;
 
-    public GameTimer timer;
+    public GameTimer timer = null;
     public bool isMainMenu = false;
 
     private void Awake()

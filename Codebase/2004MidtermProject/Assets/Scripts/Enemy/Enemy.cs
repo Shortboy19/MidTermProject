@@ -7,25 +7,25 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent agent = null;
     public GameObject player = null;
     public int SpawnLocationNumber = -1;
-    public Transform[] spawnPoints;
-    [HideInInspector] public Renderer rend; 
-    public Renderer StunRend;
-    [HideInInspector] public Animator anim;
+    public Transform[] spawnPoints = null;
+    [HideInInspector] public Renderer rend = null; 
+    public Renderer StunRend = null;
+    [HideInInspector] public Animator anim = null;
 
     [HideInInspector] public bool stunned = false;
     [HideInInspector] public bool scared = false;
-    [HideInInspector] public float oldSpeed;
-    public Transform eyes;
+    [HideInInspector] public float oldSpeed = 0;
+    public Transform eyes = null;
 
-    Light[] lights; 
-    Light[] eyelights; 
+    Light[] lights = null; 
+    Light[] eyelights = null; 
 
-    Camera playerCam;
+    Camera playerCam = null;
 
-    GameObject lifeSaver;
+    GameObject lifeSaver = null;
 
-    Material normalMat;
-    [SerializeField] Material transMat;
+    Material normalMat = null;
+    [SerializeField] Material transMat = null;
 
     void Start()
     {

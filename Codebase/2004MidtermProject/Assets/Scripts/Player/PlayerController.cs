@@ -58,16 +58,16 @@ public class PlayerController : MonoBehaviour
     public float batteryChargeAmount = 2f;
 
     [Header("Other/Misc")]
-    [HideInInspector] public bool inDeathAnim;
+    [HideInInspector] public bool inDeathAnim = false;
     [Space(10)]
-    public GameObject flashlight;
-    [SerializeField] MiniMap minimap;
-    public ObjectiveTracker objective;
-    [HideInInspector]public Animator anim;
+    public GameObject flashlight = null;
+    [SerializeField] MiniMap minimap = null;
+    public ObjectiveTracker objective = null;
+    [HideInInspector]public Animator anim = null;
     #endregion
 
     #region Private Variables
-    Camera cam;//the players camera
+    Camera cam = null;//the players camera
     float gravity = 20;
     Vector3 moveDirection = Vector3.zero;
     Vector3 slideDirection = Vector3.zero;
@@ -76,8 +76,8 @@ public class PlayerController : MonoBehaviour
     bool isSprinting = false;
     bool isSliding = false;
 
-    [HideInInspector] public GameObject enemy;
-    [HideInInspector] public Enemy enemyComp;
+    [HideInInspector] public GameObject enemy = null;
+    [HideInInspector] public Enemy enemyComp = null;
     [HideInInspector] public bool frozen = false;
     [HideInInspector] public bool hasShard = false;
     [HideInInspector] public bool UVFlashlight = false;
@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
     public static bool tutorialBattery = false;
     public static bool firstTimeIntro = false;
-    [SerializeField] GameObject shards;
+    [SerializeField] GameObject shards = null;
     public static bool enemySeen = false;
 
     #endregion

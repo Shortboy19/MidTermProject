@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class LightsOnOff : MonoBehaviour
 {
-    public Light[] tutorailLights;
-    [SerializeField] Light RedLight;
+    public Light[] tutorailLights = null;
+    [SerializeField] Light RedLight = null;
     bool triggered = false;
-    FlashLight_Tutorial tut;
+    FlashLight_Tutorial tut = null;
 
     private void Start()
     {

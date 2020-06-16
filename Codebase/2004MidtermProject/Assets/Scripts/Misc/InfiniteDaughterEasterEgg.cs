@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InfiniteDaughterEasterEgg : MonoBehaviour
 {
-    [SerializeField] GameObject egg;
+    [SerializeField] GameObject egg = null;
 
     private void OnTriggerEnter(Collider other)
     {

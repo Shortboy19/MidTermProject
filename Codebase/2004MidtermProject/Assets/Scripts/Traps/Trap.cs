@@ -5,19 +5,19 @@ using UnityEngine.AI;
 
 public class Trap : MonoBehaviour
 {
-    [SerializeField] GameObject interactableCanvas;
-    public GameObject trapObj;
-    public GameObject button;
-    public GameObject button1;
-    public GameObject enemy;
-    public Material armedMat;
-    public Material unarmedMat;
+    [SerializeField] GameObject interactableCanvas = null;
+    public GameObject trapObj = null;
+    public GameObject button = null;
+    public GameObject button1 = null;
+    public GameObject enemy = null;
+    public Material armedMat = null;
+    public Material unarmedMat = null;
     public float duration = 5;
-    public GameObject[] fakeGhosts;
-    Vector3[] telePoints;
+    public GameObject[] fakeGhosts = null;
+    Vector3[] telePoints = null;
     string trapName="";
-    Thunder thunder;
-    [SerializeField] GameObject lightning;
+    Thunder thunder = null;
+    [SerializeField] GameObject lightning = null;
 
    
     bool playerInRange = false;

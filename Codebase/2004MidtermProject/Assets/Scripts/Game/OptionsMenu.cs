@@ -7,16 +7,15 @@ using UnityEngine.UI;
 public class OptionsMenu : MonoBehaviour
 {
     public static bool isOpen = false;
-    [SerializeField] Slider musicVol;
-    [SerializeField] Slider effectsVol;
-    [SerializeField] Slider ambientVol;
-    [SerializeField] Slider sensitivitySlider;
-    string toWrite;
+    [SerializeField] Slider musicVol = null;
+    [SerializeField] Slider effectsVol = null;
+    [SerializeField] Slider ambientVol = null;
+    [SerializeField] Slider sensitivitySlider = null;
 
-    [SerializeField] TextMeshProUGUI musicVolText;
-    [SerializeField] TextMeshProUGUI meffectsVolText;
-    [SerializeField] TextMeshProUGUI ambientVolText;
-    [SerializeField] TextMeshProUGUI sensitivityText;
+    [SerializeField] TextMeshProUGUI musicVolText = null;
+    [SerializeField] TextMeshProUGUI meffectsVolText = null;
+    [SerializeField] TextMeshProUGUI ambientVolText = null;
+    [SerializeField] TextMeshProUGUI sensitivityText = null;
 
     public void Start()
     {

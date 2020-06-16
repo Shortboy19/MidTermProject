@@ -163,8 +163,8 @@ public class Monolith : MonoBehaviour
         PlayerController.Player.maxStamina *= 2;
         PlayerController.Player.maxBattery *= 2;
 
-        PlayerController.Player.currStamina *= PlayerController.Player.maxStamina;
-        PlayerController.Player.currBattery *= PlayerController.Player.maxBattery;
+        PlayerController.Player.currStamina = PlayerController.Player.maxStamina;
+        PlayerController.Player.currBattery = PlayerController.Player.maxBattery;
 
         PlayerController.Player.staminaRegenRate *= 0.5f;
         playerCanActivate = false;
