@@ -22,7 +22,7 @@ public class KeySpawner : MonoBehaviour
 
     void KeySpawn(GameObject Key)
     {
-        SpawnPoint = Random.Range(1, SpawnPoints.Length);
+        SpawnPoint = Random.Range(0, SpawnPoints.Length);
         Instantiate(Key, SpawnPoints[SpawnPoint].position, Quaternion.identity);
     }
 
