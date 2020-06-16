@@ -17,7 +17,7 @@ public class CreditManager : MonoBehaviour
     {
         do
         {
-            Text.rectTransform.position = Vector3.Lerp(start, End, T);
+            Text.rectTransform.anchoredPosition = Vector3.Lerp(start, End, T);
 
             T += Time.deltaTime * 0.05f;
             yield return null;

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Normal_Light : MonoBehaviour
 {
-    [SerializeField] GameObject interactableCanvas;
-    public GameObject button;
+    [SerializeField] GameObject interactableCanvas = null;
+    public GameObject button = null;
     public float duration = 5;
-    public GameObject[] lights;
-    public ObjectiveTracker objective;
-    public GameObject invisibleWall;
+    public GameObject[] lights = null;
+    public ObjectiveTracker objective = null;
+    public GameObject invisibleWall = null;
 
     bool activated = false;
     bool playerInRange = false;

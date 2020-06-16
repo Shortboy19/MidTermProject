@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBlink : MonoBehaviour
 {
-    [SerializeField] Light[] eyes;
+    [SerializeField] Light[] eyes = null;
     // Start is called before the first frame update
     void Start()
     {

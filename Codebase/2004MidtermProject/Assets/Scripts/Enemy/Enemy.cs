@@ -4,9 +4,9 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public NavMeshAgent agent;
-    public GameObject player;
-    public int SpawnLocationNumber;
+    public NavMeshAgent agent = null;
+    public GameObject player = null;
+    public int SpawnLocationNumber = -1;
     public Transform[] spawnPoints;
     [HideInInspector] public Renderer rend; 
     public Renderer StunRend;

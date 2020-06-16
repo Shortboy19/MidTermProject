@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class LifeSaver : MonoBehaviour
 {
-    [SerializeField] GameObject savior;
-    GameObject saviorOBJ;
-    [SerializeField]Enemy enemy;
-    [SerializeField]KeySpawner keySpawner;
-    [SerializeField]MiniMap map;
-    Camera playerCam;
+    [SerializeField] GameObject savior = null;
+    GameObject saviorOBJ = null;
+    [SerializeField]Enemy enemy = null;
+    [SerializeField]KeySpawner keySpawner = null;
+    [SerializeField]MiniMap map = null;
+    Camera playerCam = null;
 
-    Light saviorLight;
+    Light saviorLight = null;
 
     float speed = 1;
     private void Start()

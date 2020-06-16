@@ -5,11 +5,11 @@ using UnityEngine.AI;
 
 public class TrailMaker : MonoBehaviour
 {
-    NavMeshAgent agent;
-    TrailRenderer trail;
-    [SerializeField] LineRenderer trailPart;
-    [SerializeField] Transform destination;
-    [SerializeField] Transform[] waypoints;
+    NavMeshAgent agent = null;
+    TrailRenderer trail = null;
+    [SerializeField] LineRenderer trailPart = null;
+    [SerializeField] Transform destination = null;
+    [SerializeField] Transform[] waypoints = null;
 
     private void Start()
     {

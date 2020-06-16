@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class MainMenuAnim : MonoBehaviour
 {
-    [SerializeField] List<TextMeshProUGUI> text;
-    [SerializeField] List<Button> button;
-    SceneNavigator nav;
-    Camera cam;
+    [SerializeField] List<TextMeshProUGUI> text = null;
+    [SerializeField] List<Button> button = null;
+    SceneNavigator nav = null;
+    Camera cam = null;
     void Start()
     {
         nav = GetComponentInParent<SceneNavigator>();
@@ -68,7 +68,7 @@ public class MainMenuAnim : MonoBehaviour
     IEnumerator textRoutine;
     IEnumerator buttonRoutine;
 
-    [SerializeField] Transform endpoint;
+    [SerializeField] Transform endpoint = null;
     IEnumerator FadeElements(string name)
     {
         float _delta = 0;

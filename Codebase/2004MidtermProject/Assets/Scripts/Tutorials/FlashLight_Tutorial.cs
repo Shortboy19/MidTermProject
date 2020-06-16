@@ -2,8 +2,8 @@
 
 public class FlashLight_Tutorial : MonoBehaviour
 {
-    public Light[] tutorialLights;
-    [SerializeField] GameObject battery;
+    public Light[] tutorialLights = null;
+    [SerializeField] GameObject battery = null;
     [SerializeField] bool trigger = false;
     bool triggered = false;
 

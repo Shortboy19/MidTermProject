@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class KeySpawner : MonoBehaviour
 {
-    public GameObject Key;
-    [SerializeField] GameObject shard;
-    [SerializeField] ObjectiveTracker objective;
+    public GameObject Key = null;
+    [SerializeField] GameObject shard = null;
+    [SerializeField] ObjectiveTracker objective = null;
     #region Spawn Points
-    private int SpawnPoint;
-    public Transform[] SpawnPoints;
+    private int SpawnPoint = -1;
+    public Transform[] SpawnPoints = null;
     #endregion
     public void Start()
     {

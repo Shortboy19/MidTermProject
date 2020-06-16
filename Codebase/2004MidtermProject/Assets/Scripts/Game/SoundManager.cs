@@ -8,42 +8,42 @@ public class SoundManager : MonoBehaviour
     public static float AmbientVolume = 0.75f;
 
     //audio players component.
-    [SerializeField] AudioSource EffectSound;
-    [SerializeField] AudioSource MusicSound;
-    [SerializeField] AudioSource RainSound;
-    [SerializeField] AudioSource NightSound;
-    [SerializeField] AudioSource ThunderSound;
-    [SerializeField] AudioSource HeartBeatSound;
-    public AudioSource BreathSound;
-    public AudioSource VoiceLineSound;
-    public AudioSource GazeSound;
+    [SerializeField] AudioSource EffectSound = null;
+    [SerializeField] AudioSource MusicSound = null;
+    [SerializeField] AudioSource RainSound = null;
+    [SerializeField] AudioSource NightSound = null;
+    [SerializeField] AudioSource ThunderSound = null;
+    [SerializeField] AudioSource HeartBeatSound = null;
+    public AudioSource BreathSound = null;
+    public AudioSource VoiceLineSound = null;
+    public AudioSource GazeSound = null;
 
-    public AudioClip[] ThunderClap;
-    public AudioClip[] PlayerWalking;
-    public AudioClip PlayerRunning;
-    public AudioClip Rain;
-    public AudioClip MetalGate;
-    public AudioClip GhostPassThroughWalls;
-    public AudioClip GhostBreath;
-    public AudioClip FlashLightClick;
-    public AudioClip MetalGateClose;
-    public AudioClip GhostFade;
-    public AudioClip PlayerSliding;
-    public AudioClip TrapButton;
-    public AudioClip PlayerHurt; 
-    public AudioClip MonolithActivate;
-    public AudioClip Shard;
-    public AudioClip Battery;
-    public AudioClip Heartbeat;
-    public AudioClip OutOfBreath; 
-    public AudioClip TeleportTrap; 
-    public AudioClip MonsterKill; 
+    public AudioClip[] ThunderClap = null;
+    public AudioClip[] PlayerWalking = null;
+    public AudioClip PlayerRunning = null;
+    public AudioClip Rain = null;
+    public AudioClip MetalGate = null;
+    public AudioClip GhostPassThroughWalls = null;
+    public AudioClip GhostBreath = null;
+    public AudioClip FlashLightClick = null;
+    public AudioClip MetalGateClose = null;
+    public AudioClip GhostFade = null;
+    public AudioClip PlayerSliding = null;
+    public AudioClip TrapButton = null;
+    public AudioClip PlayerHurt = null; 
+    public AudioClip MonolithActivate = null;
+    public AudioClip Shard = null;
+    public AudioClip Battery = null;
+    public AudioClip Heartbeat = null;
+    public AudioClip OutOfBreath = null; 
+    public AudioClip TeleportTrap = null; 
+    public AudioClip MonsterKill = null; 
 
-    public AudioClip[] effects;
-    public AudioClip[] voiceLines;
+    public AudioClip[] effects = null;
+    public AudioClip[] voiceLines = null;
 
     //singleton instance
-    public static SoundManager Instance;
+    public static SoundManager Instance = null;
 
     //Initialize the singleton instance
     private void Awake()

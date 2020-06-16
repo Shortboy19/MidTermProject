@@ -7,15 +7,15 @@ public class Monolith : MonoBehaviour
     float rotSpeed = 0.035f;
     [Range(0, 1)]
     [SerializeField] float floatAmount = 0.05f;
-    [SerializeField] AudioSource Whispers;
+    [SerializeField] AudioSource Whispers = null;
 
-    [SerializeField] GameObject textObj;
-    [SerializeField] GameObject trailMaker;
-    Light[] lights;
+    [SerializeField] GameObject textObj = null;
+    [SerializeField] GameObject trailMaker = null;
+    Light[] lights = null;
 
     bool playerCanActivate = false;
     float floatSpeed = 0;
-    Vector3 floatVec;
+    Vector3 floatVec = Vector3.zero;
 
     void Start()
     {
@@ -206,7 +206,7 @@ public class Monolith : MonoBehaviour
         PlayerController.Player.hasShard = false;
     }
 
-    [SerializeField] GameObject capsule;
+    [SerializeField] GameObject capsule = null;
     void CapsuleMode()
     {
         capsule.SetActive(true);
