@@ -120,7 +120,7 @@ public class GameState : MonoBehaviour
     {
         SoundManager.Instance.ResumeAllSounds();
         Time.timeScale = 1;
-        if(Instance != null)
+        if(Instance != null && Instance.pauseMenu != null)
             Instance.pauseMenu.SetActive(false);
         gamePaused = false;
         AudioListener.pause = false;
