@@ -18,7 +18,7 @@ public class TrapTutorial : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && !triggered)
         {
             triggered = true;
-            TutorialManager.PlayVoiceLine(9, true, "Traps", "Arm traps by walking up to it and pressing <color=yellow>E</color> when the prompt appears. Traps will arm and automatically trigger when the monster gets close to it.");
+            TutorialManager.PlayVoiceLine(9, true, "Traps", "Arm traps by walking up to it and pressing <color=yellow>E</color> or <color=yellow>RMB</color> when the prompt appears. Traps will arm and automatically trigger when the monster gets close to it.");
             PlayerController.Player.objective.DisplayNewObjective("Arm the trap");
         }
     }
