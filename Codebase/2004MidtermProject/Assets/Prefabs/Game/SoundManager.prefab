@@ -1227,7 +1227,7 @@ MonoBehaviour:
   MetalGateClose: {fileID: 8300000, guid: 92747990a92937547be46a5562f39147, type: 3}
   GhostFade: {fileID: 8300000, guid: 2544b6b9538044f448c4fe3d1f38d1ea, type: 3}
   PlayerSliding: {fileID: 8300000, guid: fe0440fcf0a41894b9be34e64973d855, type: 3}
-  TrapButton: {fileID: 8300000, guid: 16e7ca1653f7e91488d9e1af662c0f50, type: 3}
+  TrapButton: {fileID: 8300000, guid: 556fd49dc01df324aa9a91660197a257, type: 3}
   PlayerHurt: {fileID: 8300000, guid: 946d8600645dcbd4b80e9b96f077458e, type: 3}
   MonolithActivate: {fileID: 8300000, guid: 3a81582cc12bc464ebcf03342df16d33, type: 3}
   Shard: {fileID: 8300000, guid: 2795324746784084996800714c0c9a5a, type: 3}

@@ -21087,6 +21087,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5637689614583118097}
     m_Modifications:
+    - target: {fileID: 566630971464054404, guid: 9da70ed5cfc7c3747bbc6fee4cdd7414,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 514
+      objectReference: {fileID: 0}
     - target: {fileID: 566630971874948992, guid: 9da70ed5cfc7c3747bbc6fee4cdd7414,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
