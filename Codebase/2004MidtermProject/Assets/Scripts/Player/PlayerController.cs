@@ -448,7 +448,6 @@ public class PlayerController : MonoBehaviour
     void Slide()
     {
         cc.height = 0.5f;
-        anim.SetTrigger("Silde"); 
         if (isSliding)
         {
             slideTimer -= Time.deltaTime;
