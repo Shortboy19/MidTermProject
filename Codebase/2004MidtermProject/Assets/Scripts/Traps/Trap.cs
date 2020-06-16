@@ -125,7 +125,7 @@ public class Trap : MonoBehaviour
         if (other.CompareTag("Player") && !armed)
         {
             interactableCanvas.SetActive(true);
-            interactableCanvas.GetComponentInChildren<TextMeshProUGUI>().text = "Press E to Arm " + trapName;
+            interactableCanvas.GetComponentInChildren<TextMeshProUGUI>().text = "Press E or RMB to Arm " + trapName;
             playerInRange = true;
         }
         if (other.CompareTag("Enemy") && armed)
