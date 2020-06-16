@@ -170,7 +170,7 @@ public class Trap : MonoBehaviour
         {
             yield return null;
         }
-        enemyComp.agent.speed = enemyComp.oldSpeed;
+        enemyComp.agent.speed = 4;
         PlayerController.Player.frozen = false;
         GameState.canPause = true;
     }
