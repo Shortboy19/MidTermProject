@@ -14988,7 +14988,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trailPart: {fileID: 1740351329}
-  destination: {fileID: 0}
   waypoints:
   - {fileID: 566849230}
   - {fileID: 797215287}

@@ -191,7 +191,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayHeartBeatEffect(AudioClip clip)
     {
-        HeartBeatSound.volume = 1 * EffectsVolume;
+        HeartBeatSound.volume = 3 * EffectsVolume;
         HeartBeatSound.clip = clip;
         HeartBeatSound.Play();
     }
