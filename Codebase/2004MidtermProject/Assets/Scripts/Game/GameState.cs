@@ -16,8 +16,6 @@ public class GameState : MonoBehaviour
     [SerializeField] OptionsMenu options = null;
 
     public static bool gameWon = false;
-
-    public GameTimer timer = null;
     public bool isMainMenu = false;
 
     private void Awake()

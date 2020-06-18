@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour
     public static bool tutorialBattery = false;
     public static bool firstTimeIntro = false;
     [SerializeField] GameObject shards = null;
+    [SerializeField] HeartBeatAnim heart = null;
     public static bool enemySeen = false;
 
     #endregion
@@ -482,6 +483,7 @@ public class PlayerController : MonoBehaviour
             SoundManager.Instance.PlayEffectAtPoint(other.GetComponent<AudioSource>().clip, transform.position, 0.25f);
             other.GetComponent<Animation>().Play();
             hitExit = true;
+            enemy.SetActive(false);
             GameState.ShowWinMenu();
         }
         if (other.gameObject.CompareTag("TExit"))
@@ -568,6 +570,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator Heartbeat(float waitTime)
     {
         SoundManager.Instance.PlayHeartBeatEffect(SoundManager.Instance.Heartbeat);
+        heart.Pulse();
         yield return new WaitForSeconds(waitTime);
         HeartbeatRoutine = null;
     }
@@ -578,6 +581,6 @@ public class PlayerController : MonoBehaviour
         {
             yield return null;
         }
-        DialogBox.ShowWindow("Flashlight", "Activate the flashlight by holding <color=yellow>Left Mouse Button</color>.", false);
+        DialogBox.ShowWindow("Flashlight", "Activate the flashlight by holding <color=yellow>Left Mouse Button</color>. The flashlight requires batteries to use and will drain its current battery while it is active.", false);
     }
 }
