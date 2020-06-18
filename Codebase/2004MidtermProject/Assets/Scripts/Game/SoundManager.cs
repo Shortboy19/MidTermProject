@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public static float MusicVolume = 0.75f;
+    public static float VoiceVolume = 0.75f;
     public static float EffectsVolume = 0.75f;
     public static float AmbientVolume = 0.75f;
 
     //audio players component.
     [SerializeField] AudioSource EffectSound = null;
-    [SerializeField] AudioSource MusicSound = null;
+    [SerializeField] AudioSource VoiceSound = null;
     [SerializeField] AudioSource RainSound = null;
     [SerializeField] AudioSource NightSound = null;
     [SerializeField] AudioSource ThunderSound = null;
@@ -92,9 +92,9 @@ public class SoundManager : MonoBehaviour
     //Play a single Clip through the music source.
     public void PlayMusic(AudioClip song)
     {
-        MusicSound.volume = 1 * MusicVolume;
-        MusicSound.clip = song;
-        MusicSound.Play(); 
+        VoiceSound.volume = 1 * VoiceVolume;
+        VoiceSound.clip = song;
+        VoiceSound.Play(); 
     }
 
     public void StartRain()
@@ -129,7 +129,7 @@ public class SoundManager : MonoBehaviour
     }
 
     float EffectSoundVol;
-    float MusicSoundVol;
+    float VoiceSoundVol;
     float RainSoundVol;
     float NightSoundVol;
     float ThunderSoundVol;
@@ -141,7 +141,7 @@ public class SoundManager : MonoBehaviour
         GetSoundVolumes();
 
         EffectSound.volume = 0;
-        MusicSound.volume = 0;
+        VoiceSound.volume = 0;
         RainSound.volume = 0;
         NightSound.volume = 0;
         ThunderSound.volume = 0;
@@ -152,7 +152,7 @@ public class SoundManager : MonoBehaviour
     public void ResumeAllSounds()
     {
         EffectSound.volume = EffectSoundVol;
-        MusicSound.volume = MusicSoundVol;
+        VoiceSound.volume = VoiceSoundVol;
         RainSound.volume = RainSoundVol;
         NightSound.volume = NightSoundVol;
         ThunderSound.volume = ThunderSoundVol;
@@ -163,7 +163,7 @@ public class SoundManager : MonoBehaviour
     void GetSoundVolumes()
     {
         EffectSoundVol = EffectSound.volume;
-        MusicSoundVol = MusicSound.volume;
+        VoiceSoundVol = VoiceSound.volume;
         RainSoundVol = RainSound.volume;
         NightSoundVol = NightSound.volume;
         ThunderSoundVol = ThunderSound.volume;
@@ -171,16 +171,22 @@ public class SoundManager : MonoBehaviour
         BreathVol = BreathSound.volume; 
     }
 
-    public void UpdateMusicSoundVolume()
+    public void UpdateVoiceSoundVolume()
     {
-        MusicSound.volume = 1 * MusicVolume;
-        MusicSoundVol = 1 * MusicVolume;
+        VoiceSound.volume = 1 * VoiceVolume;
+        VoiceSoundVol = 1 * VoiceVolume;
     }
 
     public void UpdateAmbientSoundVolume()
     {
+        RainSound.volume = 0.15f * AmbientVolume;
         RainSoundVol = 0.15f * AmbientVolume;
+
+        NightSound.volume = 0.15f * AmbientVolume;
         NightSoundVol = 0.15f * AmbientVolume;
+
+        ThunderSound.volume = 0.85f * AmbientVolume;
+        ThunderSoundVol = 0.85f * AmbientVolume;
     }
 
     public void PlayHeartBeatEffect(AudioClip clip)
@@ -199,7 +205,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayVoiceLine(int i)
     {
-        VoiceLineSound.volume = 1;
+        VoiceLineSound.volume = 1 * VoiceVolume;
         VoiceLineSound.clip = voiceLines[i];
         VoiceLineSound.Play();
     }

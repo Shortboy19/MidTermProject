@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,21 +6,21 @@ using UnityEngine.UI;
 public class OptionsMenu : MonoBehaviour
 {
     public static bool isOpen = false;
-    [SerializeField] Slider musicVol = null;
+    [SerializeField] Slider voiceVol = null;
     [SerializeField] Slider effectsVol = null;
     [SerializeField] Slider ambientVol = null;
     [SerializeField] Slider sensitivitySlider = null;
 
-    [SerializeField] TextMeshProUGUI musicVolText = null;
-    [SerializeField] TextMeshProUGUI meffectsVolText = null;
+    [SerializeField] TextMeshProUGUI voiceVolText = null;
+    [SerializeField] TextMeshProUGUI effectsVolText = null;
     [SerializeField] TextMeshProUGUI ambientVolText = null;
     [SerializeField] TextMeshProUGUI sensitivityText = null;
 
     public void Start()
     {
-        if (PlayerPrefs.HasKey("Music Volume"))
+        if (PlayerPrefs.HasKey("Voice Volume"))
         {
-            SoundManager.MusicVolume = PlayerPrefs.GetFloat("Music Volume");
+            SoundManager.VoiceVolume = PlayerPrefs.GetFloat("Music Volume");
         }
         if (PlayerPrefs.HasKey("Effects Volume"))
         {
@@ -38,7 +37,7 @@ public class OptionsMenu : MonoBehaviour
                 PlayerController.Player.LookSenstivity = PlayerPrefs.GetFloat("Sensitivity");
             }
         }
-        musicVol.value = SoundManager.MusicVolume;
+        voiceVol.value = SoundManager.VoiceVolume;
         effectsVol.value = SoundManager.EffectsVolume;
         ambientVol.value = SoundManager.AmbientVolume;
 
@@ -49,16 +48,16 @@ public class OptionsMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        musicVolText.text = (musicVol.value * 100).ToString("F0");
-        meffectsVolText.text = (effectsVol.value * 100).ToString("F0");
+        voiceVolText.text = (voiceVol.value * 100).ToString("F0");
+        effectsVolText.text = (effectsVol.value * 100).ToString("F0");
         ambientVolText.text = (ambientVol.value * 100).ToString("F0");
-        sensitivityText.text = (sensitivitySlider.value *100).ToString("F0");
+        sensitivityText.text = (sensitivitySlider.value * 100).ToString("F0");
     }
 
     public void Apply()
     {
         //Debug.Log("Written");
-        SoundManager.MusicVolume = musicVol.value;
+        SoundManager.VoiceVolume = voiceVol.value;
         SoundManager.EffectsVolume = effectsVol.value;
         SoundManager.AmbientVolume = ambientVol.value;
 
@@ -66,8 +65,8 @@ public class OptionsMenu : MonoBehaviour
             PlayerController.Player.LookSenstivity = sensitivitySlider.value * 200;
 
         SoundManager.Instance.UpdateAmbientSoundVolume();
-        SoundManager.Instance.UpdateMusicSoundVolume();
-        PlayerPrefs.SetFloat("Music Volume", SoundManager.MusicVolume);
+        SoundManager.Instance.UpdateVoiceSoundVolume();
+        PlayerPrefs.SetFloat("Voice Volume", SoundManager.VoiceVolume);
         PlayerPrefs.SetFloat("Effects Volume", SoundManager.EffectsVolume);
         PlayerPrefs.SetFloat("Ambient Volume", SoundManager.AmbientVolume);
 
