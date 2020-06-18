@@ -155,7 +155,7 @@ RectTransform:
   m_Children:
   - {fileID: 1664880356}
   m_Father: {fileID: 1004934919}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -998,10 +998,9 @@ GameObject:
   - component: {fileID: 814752221}
   - component: {fileID: 814752220}
   - component: {fileID: 814752219}
-  - component: {fileID: 814752218}
   - component: {fileID: 814752217}
   m_Layer: 5
-  m_Name: Replay Tutorial Button
+  m_Name: Tutorial Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1020,11 +1019,11 @@ RectTransform:
   m_Children:
   - {fileID: 1159273684}
   m_Father: {fileID: 1004934919}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.7852, y: -3.0086}
+  m_AnchoredPosition: {x: 0.7852, y: -3}
   m_SizeDelta: {x: -1.5704, y: 0.2661}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &814752217
@@ -1059,9 +1058,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 814752218}
-          m_MethodName: Play
-          m_Mode: 5
+        - m_Target: {fileID: 814752219}
+          m_MethodName: PlaySecondSound
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1070,53 +1069,6 @@ MonoBehaviour:
             m_StringArgument: TutorialScene
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &814752218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814752215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aaea5baf61d6a84ba75bf0c06c22200, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text:
-  - {fileID: 1806242206}
-  - {fileID: 1248648370}
-  button:
-  - {fileID: 814752220}
-  - {fileID: 1853981155}
-  - {fileID: 631225897}
-  - {fileID: 282033997}
-  - {fileID: 1138169275}
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  endpoint: {fileID: 2145425526}
-  sound: {fileID: 8300000, guid: 3a81582cc12bc464ebcf03342df16d33, type: 3}
 --- !u!114 &814752219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1173,7 +1125,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1159273685}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1004934920}
+        m_MethodName: LoadSceneWithFade
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: TutorialScene
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &814752221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1323,6 +1286,7 @@ GameObject:
   - component: {fileID: 1004934916}
   - component: {fileID: 1004934920}
   - component: {fileID: 1004934921}
+  - component: {fileID: 1004934922}
   m_Layer: 5
   m_Name: Main Menu
   m_TagString: Untagged
@@ -1405,9 +1369,9 @@ RectTransform:
   - {fileID: 1943610475}
   - {fileID: 1853981154}
   - {fileID: 631225896}
+  - {fileID: 814752216}
   - {fileID: 282033996}
   - {fileID: 1138169274}
-  - {fileID: 814752216}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1474,6 +1438,19 @@ MonoBehaviour:
   timer: {fileID: 0}
   isMainMenu: 1
   optionsMenu: {fileID: 677339362}
+--- !u!114 &1004934922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004934915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68258bb30e844854aa22f4330263cf4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 814752215}
 --- !u!1 &1138169273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1508,7 +1485,7 @@ RectTransform:
   m_Children:
   - {fileID: 1521859060}
   m_Father: {fileID: 1004934919}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -1696,8 +1673,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.16400003, y: -0.0123000145}
-  m_SizeDelta: {x: -0.4082, y: -0.0411}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1159273685
 MonoBehaviour:
@@ -1717,7 +1694,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Replay tutorial
+  m_text: 'Tutorial
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -1745,14 +1724,14 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 0.17
-  m_fontSizeBase: 0.17
+  m_fontSize: 0.15
+  m_fontSizeBase: 0.15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
   m_fontSizeMax: 72
   m_fontStyle: 16
-  m_textAlignment: 1028
+  m_textAlignment: 516
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -1783,13 +1762,13 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.13348043, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1159273685}
-    characterCount: 15
+    characterCount: 9
     spriteCount: 0
     spaceCount: 1
-    wordCount: 2
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
