@@ -554,10 +554,10 @@ public class PlayerController : MonoBehaviour
             SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.Shard, transform.position);
         }
     }
-
+    [SerializeField] float entranceZPos = -29;
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Entrance") && transform.position.z >= -29)
+        if (other.gameObject.CompareTag("Entrance") && transform.position.z >= entranceZPos)
         {
             other.isTrigger = false;
         }
