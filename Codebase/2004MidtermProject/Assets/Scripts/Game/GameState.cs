@@ -46,9 +46,6 @@ public class GameState : MonoBehaviour
 
     public void Pause()
     {
-        if (!canPause)
-            return;
-
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
         gamePaused = true;
@@ -64,7 +61,18 @@ public class GameState : MonoBehaviour
 
     private void Update()
     {
-        if (isMainMenu)
+        if (gamePaused || isMainMenu)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+        if (isMainMenu || !canPause)
             return;
 
         if (Input.GetButtonDown("Pause") && !OptionsMenu.isOpen && !deathMenu.activeSelf && !winMenu.activeSelf && (fadeImg.color.a==0))
@@ -72,16 +80,6 @@ public class GameState : MonoBehaviour
             TogglePause();
         }
 
-        if (!gamePaused)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
     }
 
     public static void ShowDeathMenu()

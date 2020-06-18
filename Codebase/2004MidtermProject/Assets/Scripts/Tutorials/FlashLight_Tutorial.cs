@@ -29,6 +29,10 @@ public class FlashLight_Tutorial : MonoBehaviour
             }
             else
             {
+                if(PlayerController.Player.currBattery <= 1)
+                {
+                    PlayerController.Player.currBattery = 1;
+                }
                 TutorialManager.PlayVoiceLine(6);
                 PlayerController.Player.objective.DisplayNewObjective("Turn on the lights");
                 triggered = true;

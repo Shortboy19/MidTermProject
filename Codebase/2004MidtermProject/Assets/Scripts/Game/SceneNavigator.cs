@@ -155,10 +155,11 @@ public class SceneNavigator : MonoBehaviour
         while (source.time < 4)
         {
             _delta -= Time.deltaTime;
-            source.volume = Mathf.Lerp(0, 1, curve.Evaluate(_delta));
+            source.volume = Mathf.Lerp(0, 1 * SoundManager.EffectsVolume, curve.Evaluate(_delta));
             yield return null;
         }
-
+        TutorialManager.pitDeath = false;
+        TutorialManager.skippedSetup = false;
         SceneManager.LoadScene(name);
     }
 }

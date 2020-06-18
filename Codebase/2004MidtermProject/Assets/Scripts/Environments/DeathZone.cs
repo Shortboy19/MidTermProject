@@ -20,6 +20,7 @@ public class DeathZone : MonoBehaviour
                 SoundManager.Instance.VoiceLineSound.clip = null;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 TutorialManager.pitDeath = true;
+                GameState.ResetState();
             }
         }
     }

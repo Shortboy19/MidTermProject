@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     public float staminaRegenRate = 1f;
     [Tooltip("The players maximum amount of flashlight battery. (Defaults to 10")]
     [Space(10)]
-    public float maxBattery = 5f;
+    public float maxBattery = 8f;
     [Tooltip("The players current amount of battery.")]
     [HideInInspector] public float currBattery;
     [Tooltip("The ammount of battery the flashlight requires (Defaults to 1)")]

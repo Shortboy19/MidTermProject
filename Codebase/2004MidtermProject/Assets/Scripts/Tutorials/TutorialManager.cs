@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
-    public static TutorialManager Instance;
+    public static TutorialManager Instance = null;
     public static bool pitDeath = false;
     public static bool skippedSetup = false;
-    Collider[] blockers;
+    Collider[] blockers = null;
 
     private void Awake()
     {
@@ -72,15 +72,7 @@ public class TutorialManager : MonoBehaviour
         SoundManager.Instance.VoiceLineSound.Stop();
         Instance.voiceRoutine = null;
 
-        if(!skippedSetup)
-        {
-            Instance.StartCoroutine(Instance.QueueRoutine(Instance.VoiceLine(16, false, string.Empty, string.Empty, true)));
-            skippedSetup = true;
-        }
-        else
-        {
-            Instance.StartCoroutine(Instance.QueueRoutine(Instance.VoiceLine(16, false, string.Empty, string.Empty, true)));
-        }
+        Instance.StartCoroutine(Instance.QueueRoutine(Instance.VoiceLine(16, false, string.Empty, string.Empty, true)));
 
         PlayerController.Player.objective.DisplayNewObjective("Continue forward", 0);
     }
