@@ -100,6 +100,7 @@ public class MainMenuAnim : MonoBehaviour
     void PlaySound()
     {
         //SoundManager.Instance.PlayEffectAtPoint(source.clip, transform.position, 1);
+        source.volume = 1 * SoundManager.EffectsVolume;
         source.Play();
     }
 }

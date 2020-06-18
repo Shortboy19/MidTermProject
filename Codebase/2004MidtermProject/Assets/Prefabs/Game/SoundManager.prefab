@@ -900,7 +900,7 @@ GameObject:
   - component: {fileID: 777471255320442834}
   - component: {fileID: 2002259562854365693}
   m_Layer: 0
-  m_Name: MusicSource
+  m_Name: VoiceSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1196,7 +1196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EffectSound: {fileID: 7879438273053917199}
-  MusicSound: {fileID: 2002259562854365693}
+  VoiceSound: {fileID: 2002259562854365693}
   RainSound: {fileID: 4035275300922704214}
   NightSound: {fileID: 2557678213799282636}
   ThunderSound: {fileID: 2082298851}
