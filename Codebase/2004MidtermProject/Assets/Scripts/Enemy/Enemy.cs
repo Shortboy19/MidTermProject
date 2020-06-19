@@ -101,13 +101,10 @@ public class Enemy : MonoBehaviour
             {
                 if(!kill)
                 {
-                    //StartCoroutine(WaitForDeath());
                     anim.SetBool("Stunned", true);
                     agent.SetDestination(transform.position);
                     stunned = true;
-                    //PlayerController.Player.frozen = true;
-                    //SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.PlayerHurt);
-                    agent.Warp(PlayerController.Player.transform.position - playerCam.transform.forward);
+                    //agent.Warp(PlayerController.Player.transform.position - playerCam.transform.forward);
                     Quaternion targetRot = Quaternion.LookRotation(playerCam.transform.position - transform.position);
                     targetRot.x = targetRot.z = 0;
                     transform.rotation = targetRot;
@@ -168,8 +165,9 @@ public class Enemy : MonoBehaviour
             lights[i].color = Color.red;
         }
         anim.SetBool("Stunned", false);
-        GetComponent<Collider>().enabled = true;
         stunDuration -= 0.5f;
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<Collider>().enabled = true;
         stunned = false;
         StunRoutine = null;
     }

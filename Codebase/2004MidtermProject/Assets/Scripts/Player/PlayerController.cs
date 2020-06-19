@@ -129,6 +129,7 @@ public class PlayerController : MonoBehaviour
         SoundManager.Instance.PlayGlobalEffect(SoundManager.Instance.GhostBreath);
     }
 
+    RaycastHit hit;
     void Update()
     {
         if (GameState.gamePaused)
@@ -171,14 +172,12 @@ public class PlayerController : MonoBehaviour
         Vector3 screenPoint = cam.WorldToViewportPoint(enemy.transform.position);
         if (screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1)
         {
-            if (!enemySeen)
+            if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
             {
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, enemy.transform.position - transform.position, out hit, Mathf.Infinity))
+                if (hit.collider.gameObject == enemy.gameObject)
                 {
-                    if (hit.collider.gameObject == enemy.gameObject)
+                    if (!enemySeen)
                     {
-                        enemySeen = true;
                         if (!firstTimeSeen && SceneManager.GetActiveScene().name == "ProtoypeMilestoneScene")
                         {
                             if (hasKey)
@@ -197,7 +196,21 @@ public class PlayerController : MonoBehaviour
                             SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.effects[2], transform.position);
                         }
                     }
+                    enemySeen = true;
                 }
+            }
+            else
+            {
+                if (enemySeen)
+                {
+                    if (sightDelay == null)
+                    {
+                        sightDelay = DelayedSightRefresh();
+                        StartCoroutine(sightDelay);
+                    }
+                }
+                else
+                    enemySeen = false;
             }
         }
         else
@@ -290,9 +303,9 @@ public class PlayerController : MonoBehaviour
     bool flashlightOn = false;
     void FlashLight(bool val)
     {
-        if (inDeathAnim == false)
+        if (!inDeathAnim)
         {
-            if (val == true)
+            if (val)
             {
                 if (flashlightOn)
                     return;
@@ -310,7 +323,7 @@ public class PlayerController : MonoBehaviour
                 SoundManager.Instance.PlayEffectAtPoint(SoundManager.Instance.FlashLightClick, transform.position);
             }
         }
-        else if (inDeathAnim == true)
+        else if (inDeathAnim)
         {
             flashlight.SetActive(false);
 
