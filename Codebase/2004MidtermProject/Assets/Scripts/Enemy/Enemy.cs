@@ -139,6 +139,7 @@ public class Enemy : MonoBehaviour
                         if(!firstFreeze)
                         {
                             DialogBox.ShowWindow("Stunning", "You <color=yellow>stunned</color> the monster. Stunning the monster causing it to become <color=yellow>frozen</color> and <color=yellow>harmless</color> for a short while.\n\nBe careful though, stunning the monster causes him to ramain stunned for a <color=red>shorter</color> duration next time.");
+                            firstFreeze = true;
                         }
                     }
                 }
