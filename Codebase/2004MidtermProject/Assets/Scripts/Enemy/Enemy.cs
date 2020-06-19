@@ -120,17 +120,18 @@ public class Enemy : MonoBehaviour
                 lifeSaver.GetComponent<LifeSaver>().SaveFromMonster();
             }
         }
-    }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("FlashLight"))
+        if (other.gameObject.CompareTag("FlashLight") && !scared && !stunned)
         {
             if (PlayerController.enemySeen)
             {
-                if(PlayerController.Player.UVFlashlight)
+                if (PlayerController.Player.UVFlashlight)
                 {
-                    StartCoroutine(Scare(4));
+                    if (ScareRoutine == null)
+                    {
+                        ScareRoutine = Scare(4);
+                        StartCoroutine(ScareRoutine);
+                    }
                 }
                 else
                 {
@@ -145,6 +146,7 @@ public class Enemy : MonoBehaviour
     }
 
     IEnumerator StunRoutine;
+    IEnumerator ScareRoutine;
     IEnumerator StunEnemy(float waitTime)
     {
         agent.speed = 0;
