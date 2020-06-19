@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
 
     Material normalMat = null;
     [SerializeField] Material transMat = null;
+    [SerializeField] Vector3 defPos = Vector3.zero;
 
     void Start()
     {
@@ -60,7 +61,14 @@ public class Enemy : MonoBehaviour
 
         if (player != null && !stunned && !kill && !scared)
         {
-            agent.SetDestination(player.transform.position);
+            if (PlayerController.Player.isOnNavMesh)
+            {
+                agent.SetDestination(player.transform.position);
+            }
+            else
+            {
+                agent.SetDestination(defPos);
+            }
         }
 
         if (kill)

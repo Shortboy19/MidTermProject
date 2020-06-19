@@ -10282,6 +10282,21 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[3]
       value: 
       objectReference: {fileID: 987984704}
+    - target: {fileID: 5424791866911700605, guid: e0cf66170f0c957458b5f61c219d997c,
+        type: 3}
+      propertyPath: defPos.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5424791866911700605, guid: e0cf66170f0c957458b5f61c219d997c,
+        type: 3}
+      propertyPath: defPos.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5424791866911700605, guid: e0cf66170f0c957458b5f61c219d997c,
+        type: 3}
+      propertyPath: defPos.z
+      value: -30
+      objectReference: {fileID: 0}
     - target: {fileID: 5424791866911700606, guid: e0cf66170f0c957458b5f61c219d997c,
         type: 3}
       propertyPath: m_Name

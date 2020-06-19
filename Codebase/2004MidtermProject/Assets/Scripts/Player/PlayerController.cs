@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -89,6 +90,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject shards = null;
     [SerializeField] HeartBeatAnim heart = null;
     public static bool enemySeen = false;
+    [HideInInspector] public bool isOnNavMesh = false;
 
     #endregion
 
@@ -272,6 +274,15 @@ public class PlayerController : MonoBehaviour
         }
         else
             anim.SetBool("IsMoving", false);
+
+        if(transform.position.z > entranceZPos)
+        {
+            isOnNavMesh = true;
+        }
+        else
+        {
+            isOnNavMesh = false;
+        }
 
     }
     IEnumerator HeartbeatRoutine;

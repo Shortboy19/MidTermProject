@@ -20,7 +20,7 @@ public class OptionsMenu : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("Voice Volume"))
         {
-            SoundManager.VoiceVolume = PlayerPrefs.GetFloat("Music Volume");
+            SoundManager.VoiceVolume = PlayerPrefs.GetFloat("Voice Volume");
         }
         if (PlayerPrefs.HasKey("Effects Volume"))
         {

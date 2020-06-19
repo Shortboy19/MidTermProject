@@ -7,7 +7,6 @@ public class TutorialManager : MonoBehaviour
     public static TutorialManager Instance = null;
     public static bool pitDeath = false;
     public static bool skippedSetup = false;
-    Collider[] blockers = null;
 
     private void Awake()
     {
