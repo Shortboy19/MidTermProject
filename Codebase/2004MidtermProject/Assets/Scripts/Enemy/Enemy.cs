@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
     Material normalMat = null;
     [SerializeField] Material transMat = null;
     [SerializeField] Vector3 defPos = Vector3.zero;
-
+    public static bool firstFreeze = false;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
