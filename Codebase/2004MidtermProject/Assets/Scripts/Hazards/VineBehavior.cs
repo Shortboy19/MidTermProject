@@ -5,20 +5,19 @@ using UnityEngine;
 public class VineBehavior : MonoBehaviour
 {
    
-    public Vector3 originalVineLoc;
-    public Vector3 finalVineLoc;
-    public Vector3 currVineLoc;
-    //public float slowPlayerAmount = 1.3f;
+    Vector3 originalVineLoc = Vector3.zero;
+    Vector3 finalVineLoc = Vector3.zero;
     public float speed = 1.0f;
     public float durationOfEffect = 5;
+    bool active = true;
 
     void Start()
     {
         originalVineLoc = transform.position;
-        originalVineLoc.y = -1.8f;
+        originalVineLoc.y = -2.7f;
 
         finalVineLoc = transform.position;
-        finalVineLoc.y = 1.7f;
+        finalVineLoc.y = 1.25f;
 
         transform.position = finalVineLoc;
     }
@@ -29,7 +28,7 @@ public class VineBehavior : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && active)
         {
             PlayerController.Player.walkSpeed = 1.5f;    
         }
@@ -57,7 +56,8 @@ public class VineBehavior : MonoBehaviour
 
     IEnumerator VineLerpUp()
     {
-        while(transform.position != finalVineLoc)
+        active = true;
+        while (transform.position != finalVineLoc)
         {
             transform.position = Vector3.Lerp(originalVineLoc, finalVineLoc, speed);
             speed += 1f * Time.deltaTime;
@@ -68,6 +68,7 @@ public class VineBehavior : MonoBehaviour
 
     IEnumerator VineLerpDown()
     {
+        active = false;
         while (transform.position != originalVineLoc)
         {
             transform.position = Vector3.Lerp(originalVineLoc, finalVineLoc, speed);
