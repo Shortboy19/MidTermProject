@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public CharacterController cc;
     [Tooltip("The mouse sensitivity for looking around. (Defaults to 100)")]
     [Range(1, 200)]
-    public float LookSenstivity = 100f;
+    public static float LookSenstivity = 100f;
     [Tooltip("The speed at which the player moves. (Defaults to 3.5)")]
     [Range(0, 10)]
     [Space(10)]
@@ -376,7 +376,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (!isSliding)
                 {
-                    if (currStamina > 0)
+                    if (currStamina > slideStaminaCost)
                     {
 
                         isSliding = true;

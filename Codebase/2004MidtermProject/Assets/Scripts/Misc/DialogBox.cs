@@ -26,6 +26,9 @@ public class DialogBox : MonoBehaviour
 
     public static void ShowWindow(string TITLE, string MESSAGE, bool muteSounds = true)
     {
+        if (GameState.gamePaused)
+            return;
+
         GameState.canPause = false;
         Time.timeScale = 0;
         if (muteSounds) { SoundManager.Instance.StopAllSounds(); }
