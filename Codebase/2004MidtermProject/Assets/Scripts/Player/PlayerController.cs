@@ -508,6 +508,14 @@ public class PlayerController : MonoBehaviour
             other.GetComponent<Animation>().Play();
             hitExit = true;
             enemy.SetActive(false);
+            if (SceneManager.GetActiveScene().name == "ProtoypeMilestoneScene")
+            {
+                PlayerPrefs.SetString("Level 1", "Inactive");
+            }
+            else
+            {
+                PlayerPrefs.SetString("Level 1", "Active");
+            }
             GameState.ShowWinMenu();
         }
         if (other.gameObject.CompareTag("TExit"))
