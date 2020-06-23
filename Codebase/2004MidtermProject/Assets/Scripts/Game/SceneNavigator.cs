@@ -35,7 +35,14 @@ public class SceneNavigator : MonoBehaviour
         }
         else
         {
-            StartCoroutine(WaitToLoad(name, source));
+            if (PlayerPrefs.GetString("Level 1") =="Inactive")
+            {
+                StartCoroutine(WaitToLoad("Level2", source));
+            }
+            else
+            {
+                StartCoroutine(WaitToLoad(name, source));
+            }
         }
     }
 
