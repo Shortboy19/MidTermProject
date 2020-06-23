@@ -5,8 +5,8 @@ using UnityEngine.UI;
     [RequireComponent(typeof (Button))]
 public class ButtonSounds : MonoBehaviour
 {
-    public AudioClip sound;
-    public AudioClip sound2;
+    public AudioClip sound = null;
+    public AudioClip sound2 = null;
     private AudioSource source { get { return GetComponent<AudioSource>(); } } 
 
     // Start is called before the first frame update
