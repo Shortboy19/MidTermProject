@@ -603,7 +603,10 @@ public class PlayerController : MonoBehaviour
     {
         SoundManager.Instance.PlayHeartBeatEffect(SoundManager.Instance.Heartbeat);
         heart.Pulse();
-        yield return new WaitForSeconds(waitTime);
+        while(SoundManager.Instance.HeartBeatSound.isPlaying)
+        {
+            yield return null;
+        }
         HeartbeatRoutine = null;
     }
 

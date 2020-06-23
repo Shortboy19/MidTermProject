@@ -58,12 +58,13 @@ public class OptionsMenu : MonoBehaviour
 
         PlayerController.LookSenstivity = sensitivitySlider.value * 200;
 
-        SoundManager.Instance.UpdateAmbientSoundVolume();
-        SoundManager.Instance.UpdateVoiceSoundVolume();
         PlayerPrefs.SetFloat("Voice Volume", SoundManager.VoiceVolume);
         PlayerPrefs.SetFloat("Effects Volume", SoundManager.EffectsVolume);
         PlayerPrefs.SetFloat("Ambient Volume", SoundManager.AmbientVolume);
         PlayerPrefs.SetFloat("Sensitivity", PlayerController.LookSenstivity);
+        SoundManager.Instance.UpdateAmbientSoundVolume();
+        SoundManager.Instance.UpdateVoiceSoundVolume();
+        DebugValues();
     }
 
     private void OnEnable()
@@ -73,5 +74,13 @@ public class OptionsMenu : MonoBehaviour
     private void OnDisable()
     {
         isOpen = false;
+    }
+
+    void DebugValues()
+    {
+        Debug.Log("Slider Value:" + voiceVol.value);
+        Debug.Log("Desired Value:" + SoundManager.VoiceVolume);
+        Debug.Log("Actual Value:" + SoundManager.Instance.VoiceLineSound.volume);
+        Debug.Log("Sound is Playing: " + SoundManager.Instance.VoiceLineSound.isPlaying);
     }
 }

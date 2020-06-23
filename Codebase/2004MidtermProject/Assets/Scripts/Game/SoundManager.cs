@@ -9,11 +9,10 @@ public class SoundManager : MonoBehaviour
 
     //audio players component.
     [SerializeField] AudioSource EffectSound = null;
-    [SerializeField] AudioSource VoiceSound = null;
     [SerializeField] AudioSource RainSound = null;
     [SerializeField] AudioSource NightSound = null;
     [SerializeField] AudioSource ThunderSound = null;
-    [SerializeField] AudioSource HeartBeatSound = null;
+    public AudioSource HeartBeatSound = null;
     public AudioSource BreathSound = null;
     public AudioSource VoiceLineSound = null;
     public AudioSource GazeSound = null;
@@ -89,14 +88,6 @@ public class SoundManager : MonoBehaviour
         GazeSound.Play();
     }
 
-    //Play a single Clip through the music source.
-    public void PlayMusic(AudioClip song)
-    {
-        VoiceSound.volume = 1 * VoiceVolume;
-        VoiceSound.clip = song;
-        VoiceSound.Play(); 
-    }
-
     public void StartRain()
     {
         if (RainSound.isPlaying)
@@ -141,7 +132,7 @@ public class SoundManager : MonoBehaviour
         GetSoundVolumes();
 
         EffectSound.volume = 0;
-        VoiceSound.volume = 0;
+        VoiceLineSound.volume = 0;
         RainSound.volume = 0;
         NightSound.volume = 0;
         ThunderSound.volume = 0;
@@ -152,7 +143,7 @@ public class SoundManager : MonoBehaviour
     public void ResumeAllSounds()
     {
         EffectSound.volume = EffectSoundVol;
-        VoiceSound.volume = VoiceSoundVol;
+        VoiceLineSound.volume = VoiceSoundVol;
         RainSound.volume = RainSoundVol;
         NightSound.volume = NightSoundVol;
         ThunderSound.volume = ThunderSoundVol;
@@ -163,7 +154,7 @@ public class SoundManager : MonoBehaviour
     void GetSoundVolumes()
     {
         EffectSoundVol = EffectSound.volume;
-        VoiceSoundVol = VoiceSound.volume;
+        VoiceSoundVol = VoiceLineSound.volume;
         RainSoundVol = RainSound.volume;
         NightSoundVol = NightSound.volume;
         ThunderSoundVol = ThunderSound.volume;
@@ -173,8 +164,8 @@ public class SoundManager : MonoBehaviour
 
     public void UpdateVoiceSoundVolume()
     {
-        VoiceSound.volume = 1 * VoiceVolume;
         VoiceSoundVol = 1 * VoiceVolume;
+        VoiceLineSound.volume = 1 * VoiceVolume;
     }
 
     public void UpdateAmbientSoundVolume()
