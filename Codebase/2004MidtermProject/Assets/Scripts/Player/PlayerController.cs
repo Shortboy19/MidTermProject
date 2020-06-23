@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] HeartBeatAnim heart = null;
     public static bool enemySeen = false;
     [HideInInspector] public bool isOnNavMesh = false;
+    [SerializeField] LayerMask layerToIgnoreRaycast;
 
     #endregion
 
@@ -172,7 +173,7 @@ public class PlayerController : MonoBehaviour
         Vector3 screenPoint = cam.WorldToViewportPoint(enemy.transform.position);
         if (screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1)
         {
-            if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+            if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, layerToIgnoreRaycast))
             {
                 if (hit.collider.gameObject == enemy.gameObject)
                 {
@@ -266,7 +267,7 @@ public class PlayerController : MonoBehaviour
         if (Vector3.Distance(enemy.transform.position, transform.position) < 15)
         {
             float distancemod = Vector3.Distance(enemy.transform.position, transform.position) * 0.25f;
-            if (HeartbeatRoutine == null)
+            if (HeartbeatRoutine == null && !frozen)
             {
                 HeartbeatRoutine = Heartbeat(distancemod);
                 StartCoroutine(HeartbeatRoutine);
@@ -603,10 +604,7 @@ public class PlayerController : MonoBehaviour
     {
         SoundManager.Instance.PlayHeartBeatEffect(SoundManager.Instance.Heartbeat);
         heart.Pulse();
-        while(SoundManager.Instance.HeartBeatSound.isPlaying)
-        {
-            yield return null;
-        }
+        yield return new WaitForSeconds(waitTime * 0.75f);
         HeartbeatRoutine = null;
     }
 

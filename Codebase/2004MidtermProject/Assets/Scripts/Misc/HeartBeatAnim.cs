@@ -22,7 +22,7 @@ public class HeartBeatAnim : MonoBehaviour
     IEnumerator PulseRoutine()
     {
         rect.localScale = new Vector3(0.9f, 0.9f, 0.9f);
-        yield return new WaitForSeconds(0.45f);
+        yield return new WaitForSeconds(0.35f);
         rect.localScale = new Vector3(1,1,1);
         routine = null;
     }

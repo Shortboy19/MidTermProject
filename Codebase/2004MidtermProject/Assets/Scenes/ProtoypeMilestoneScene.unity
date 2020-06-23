@@ -8579,7 +8579,7 @@ GameObject:
   m_Component:
   - component: {fileID: 717453835}
   - component: {fileID: 717453836}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Starting room
   m_TagString: Entrance
   m_Icon: {fileID: 0}

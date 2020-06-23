@@ -4431,7 +4431,7 @@ MonoBehaviour:
   sprintStaminaCost: 3
   jumpHeight: 3
   slideDistance: 3
-  slideStaminaCost: 2
+  slideStaminaCost: 1
   slideDuration: 0.35
   maxStamina: 10
   currStamina: 0
@@ -4456,6 +4456,9 @@ MonoBehaviour:
   shards: {fileID: 0}
   heart: {fileID: 0}
   isOnNavMesh: 0
+  layerToIgnoreRaycast:
+    serializedVersion: 2
+    m_Bits: 1025
   walkingBobbingSpeed: 14
   bobbingAmount: 0.05
   hitExit: 0
@@ -10055,7 +10058,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3962723896109017708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -0.4}
+  m_LocalPosition: {x: 0, y: -0.05, z: -0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 451551530613341445}

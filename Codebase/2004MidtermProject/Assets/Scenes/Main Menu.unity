@@ -1845,7 +1845,6 @@ MonoBehaviour:
   tutorialExit: {fileID: 0}
   fadeImg: {fileID: 0}
   options: {fileID: 677339363}
-  timer: {fileID: 0}
   isMainMenu: 1
   optionsMenu: {fileID: 677339362}
 --- !u!114 &1004934922
@@ -3919,6 +3918,7 @@ MonoBehaviour:
   - {fileID: 1943610476}
   - {fileID: 1853981155}
   - {fileID: 631225897}
+  - {fileID: 814752220}
   - {fileID: 282033997}
   - {fileID: 1138169275}
   curve:
@@ -6372,6 +6372,7 @@ MonoBehaviour:
   oldSpeed: 0
   eyes: {fileID: 6174312121465125288}
   transMat: {fileID: 0}
+  defPos: {x: 0, y: 0, z: 0}
   kill: 0
 --- !u!4 &8338826498409891652
 Transform:

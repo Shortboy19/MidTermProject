@@ -120,7 +120,7 @@ public class Enemy : MonoBehaviour
 
         if (other.gameObject.CompareTag("FlashLight") && !scared && !stunned)
         {
-            if (PlayerController.enemySeen)
+            if (PlayerController.enemySeen )
             {
                 if (PlayerController.Player.UVFlashlight)
                 {
